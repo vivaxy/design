@@ -7,6 +7,10 @@
         {
             "name": "menu-animation",
             "link": "menu-animation"
+        },
+        {
+            "name": "snow",
+            "link": "snow"
         }
     ]
 }

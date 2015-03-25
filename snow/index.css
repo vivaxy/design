@@ -1,0 +1,16 @@
+/**
+ * @since 2014/9/24 10:05
+ * @author vivaxy
+ */
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    background: black;
+}
+
+canvas {
+    display: block;
+}
