@@ -19,6 +19,10 @@
         {
             "name": "checkbox",
             "link": "checkbox"
+        },
+        {
+            "name": "fixed bar",
+            "link": "fixed-bar"
         }
     ]
 }
