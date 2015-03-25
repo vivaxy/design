@@ -23,6 +23,22 @@
         {
             "name": "fixed bar",
             "link": "fixed-bar"
+        },
+        {
+            "name": "drag to load",
+            "link": "drag-to-load"
+        },
+        {
+            "name": "shuffling horizontal",
+            "link": "shuffling-horizontal"
+        },
+        {
+            "name": "shuffling vertical",
+            "link": "shuffling-vertical"
+        },
+        {
+            "name": "tween",
+            "link": "tween"
         }
     ]
 }

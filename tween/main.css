@@ -1,0 +1,18 @@
+/**
+ * @since 150216 09:45
+ * @author vivaxy
+ */
+body {
+    margin: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #eee;
+}
+
+.test {
+    width: 10%;
+    height: 10%;
+    background: #f99;
+    position: absolute;
+}
