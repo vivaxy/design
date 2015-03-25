@@ -1,0 +1,39 @@
+body {
+    margin: 0;
+}
+
+.section {
+
+    text-align: center;
+}
+
+img {
+    margin: auto;
+}
+
+#menu {
+    position: fixed;
+    top: 100%;
+    left: 0;
+    height: 3px;
+    z-index: 1;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    line-height: 0;
+    list-style-type: none;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+}
+
+#menu li {
+    float: left;
+    background: rgb(237, 78, 110);
+    width: 5.2631578947368421052631578947368%;
+    height: 3px;
+    position: relative;
+    top: -3px;
+}
+
+#menu li.active {
+    background: rgba(41, 128, 185, 1);
+}
