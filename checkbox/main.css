@@ -1,0 +1,51 @@
+/**
+ * @since 150125 19:57
+ * @author vivaxy
+ */
+.checkbox {
+    position: relative;
+    width: 20px;
+    height: 20px;
+}
+
+.checkbox input {
+    display: none;
+    display: block\9;
+    width: 14px;
+    height: 14px;
+}
+
+.checkbox label {
+    width: 20px;
+    height: 20px;
+    display: block;
+}
+
+.checkbox label:before {
+    content: ' ';
+    font-size: 0;
+    width: 14px;
+    height: 14px;
+    position: absolute;
+    left: 2px;
+    top: 2px;
+    border: 1px solid #e5e5e5;
+    border-radius: 1px;
+}
+
+.checkbox:hover label:before {
+    border-color: #ddd;
+}
+
+.checkbox input:checked + label:after {
+    content: '\2714';
+    color: #919191;
+    font-size: 12px;
+    text-align: center;
+    line-height: 16px;
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    left: 2px;
+    top: 2px;
+}
