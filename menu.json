@@ -1,44 +1,31 @@
-{
-    "menu": [
-        {
-            "name": "comment-j-ai-rate-ma-vie",
-            "link": "comment-j-ai-rate-ma-vie"
-        },
-        {
-            "name": "menu-animation",
-            "link": "menu-animation"
-        },
-        {
-            "name": "snow",
-            "link": "snow"
-        },
-        {
-            "name": "common list",
-            "link": "common-list"
-        },
-        {
-            "name": "checkbox",
-            "link": "checkbox"
-        },
-        {
-            "name": "fixed bar",
-            "link": "fixed-bar"
-        },
-        {
-            "name": "drag to load",
-            "link": "drag-to-load"
-        },
-        {
-            "name": "shuffling horizontal",
-            "link": "shuffling-horizontal"
-        },
-        {
-            "name": "shuffling vertical",
-            "link": "shuffling-vertical"
-        },
-        {
-            "name": "tween",
-            "link": "tween"
-        }
-    ]
-}
+[{
+    "name": "comment-j-ai-rate-ma-vie",
+    "link": "comment-j-ai-rate-ma-vie"
+}, {
+    "name": "menu-animation",
+    "link": "menu-animation"
+}, {
+    "name": "snow",
+    "link": "snow"
+}, {
+    "name": "common list",
+    "link": "common-list"
+}, {
+    "name": "checkbox",
+    "link": "checkbox"
+}, {
+    "name": "fixed bar",
+    "link": "fixed-bar"
+}, {
+    "name": "drag to load",
+    "link": "drag-to-load"
+}, {
+    "name": "shuffling horizontal",
+    "link": "shuffling-horizontal"
+}, {
+    "name": "shuffling vertical",
+    "link": "shuffling-vertical"
+}, {
+    "name": "tween",
+    "link": "tween"
+}]
