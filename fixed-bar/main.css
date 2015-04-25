@@ -62,10 +62,8 @@ p {
     width: 32px;
     height: 32px;
     display: block;
-    background-image: url(arrow.png);
-    background-repeat: no-repeat;
     background-size: 50%;
-    background-position: 50%;
+    background: url(arrow.png) no-repeat 50%;
 }
 
 .separator {
