@@ -9,4 +9,7 @@ Array.prototype.slice.call(document.querySelectorAll('.button')).forEach(functio
     button.addEventListener('animationend', function () {
         this.classList.remove('clicked');
     });
+    button.addEventListener('webkitAnimationEnd', function () {
+        this.classList.remove('clicked');
+    });
 });
