@@ -38,5 +38,9 @@
     {
         "name": "cast",
         "link": "cast"
+    },
+    {
+        "name": "loading effects",
+        "link": "loading"
     }
 ]
