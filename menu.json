@@ -41,6 +41,10 @@
     },
     {
         "name": "loading effects",
-        "link": "loading"
+        "link": "loading-effects"
+    },
+    {
+        "name": "click effects",
+        "link": "click-effects"
     }
 ]
