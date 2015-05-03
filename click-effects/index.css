@@ -8,10 +8,20 @@ body {
     position: relative;
 }
 
-.page:nth-of-type(even){
+.page:nth-of-type(even) {
     background-color: #ffc;
 }
 
-.page:nth-of-type(odd){
+.page:nth-of-type(odd) {
     background-color: #cff;
+}
+
+.button {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    text-align: center;
+    display: block;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
 }

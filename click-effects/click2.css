@@ -1,17 +1,11 @@
 .click2 .button {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    margin-top: -50px;
-    margin-left: -25px;
+    margin-top: -25px;
+    margin-left: -50px;
     width: 100px;
     height: 50px;
-    text-align: center;
-    display: block;
     background-color: rgb(34, 153, 221);
     color: #fff;
     line-height: 50px;
-    text-decoration: none;
     box-shadow: 0 3px 0 0 rgb(24, 91, 127);
     transition: all 0.3s;
 }
