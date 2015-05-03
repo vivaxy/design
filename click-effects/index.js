@@ -12,4 +12,10 @@ Array.prototype.slice.call(document.querySelectorAll('.button')).forEach(functio
     button.addEventListener('webkitAnimationEnd', function () {
         this.classList.remove('clicked');
     });
+    button.addEventListener('transitionend', function () {
+        this.classList.remove('clicked');
+    });
+    button.addEventListener('webkitTransitionEnd', function () {
+        this.classList.remove('clicked');
+    });
 });

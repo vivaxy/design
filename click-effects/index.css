@@ -15,16 +15,3 @@ body {
 .page:nth-of-type(odd){
     background-color: #cff;
 }
-
-.button {
-    border-radius: 50%;
-    color: #fff;
-    background-color: #999;
-    display: block;
-    width: 30px;
-    height: 30px;
-    text-align: center;
-    line-height: 30px;
-    text-decoration: none;
-    position: relative;
-}
