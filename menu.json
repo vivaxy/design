@@ -50,5 +50,9 @@
     {
         "name": "title effects",
         "link": "title-effects"
+    },
+    {
+        "name": "letter animation",
+        "link": "letter-animation"
     }
 ]
