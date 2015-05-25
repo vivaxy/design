@@ -15,9 +15,6 @@ var animate = function () {
     });
 };
 
-window.addEventListener('click', function () {
-    alert(0);
-    animate();
-}, false);
+window.addEventListener('touchstart', animate, false);
 
 animate();
