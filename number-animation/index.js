@@ -15,6 +15,8 @@ var animate = function () {
     });
 };
 
+// in ios : click event not fired
+// http://stackoverflow.com/questions/14054272/click-event-listener-works-in-safari-in-osx-but-not-in-ios
 window.addEventListener('touchstart', animate, false);
 
 animate();
