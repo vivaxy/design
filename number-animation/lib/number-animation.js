@@ -5,6 +5,7 @@
 
 var NumberAnimation = function (options) {
     this.container = options.container;
+    this.baseNumber = options.baseNumber || 0;
     this.targetNumber = options.targetNumber;
     this.duration = options.duration || 1000;
     this.callback = options.callback;
@@ -33,7 +34,7 @@ p.animate = function () {
 };
 
 p.render = function () {
-    this.container.innerHTML = numeral(this.targetNumber * this.rate).format('0,0.00');
+    this.container.innerHTML = numeral((this.targetNumber - this.baseNumber) * this.rate + this.baseNumber).format('0,0.00');
     return this;
 };
 

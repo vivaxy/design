@@ -13,6 +13,12 @@ var animate = function () {
         container: document.querySelector('.number2'),
         targetNumber: 54321.09
     });
+
+    new NumberAnimation({
+        container: document.querySelector('.number3'),
+        baseNumber: 12345.67,
+        targetNumber: 54321.09
+    });
 };
 
 // in ios : click event not fired
