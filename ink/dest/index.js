@@ -231,6 +231,7 @@
                 var event = _isMobile['default'] ? 'touchend' : 'click';
                 canvas.addEventListener(event, function (e) {
                     e.stopPropagation(); // should not effects canvas
+                    e.preventDefault();
                     var position = _this._getPosition(e);
                     var imageData = ctx.getImageData(position.x, 0, 1, 1);
                     var color = imageData.data;
@@ -450,17 +451,20 @@
                 var lastPosition = {};
 
                 var moveHandler = function moveHandler(e) {
+                    e.preventDefault();
                     var position = _this._getPosition(e);
                     _this.dip.paint(lastPosition, position);
                     lastPosition = position;
                 };
 
                 var endHandler = function endHandler(e) {
+                    e.preventDefault();
                     lastPosition = _this._getPosition(e);
                     canvas.removeEventListener(endEvent, moveHandler, false);
                 };
 
                 var startHandler = function startHandler(e) {
+                    e.preventDefault();
                     lastPosition = _this._getPosition(e);
                     canvas.addEventListener(moveEvent, moveHandler, false);
                     canvas.addEventListener(endEvent, endHandler, false);

@@ -54,6 +54,7 @@ class ColorPicker extends EventEmitter {
         let event = isMobile ? 'touchend' : 'click';
         canvas.addEventListener(event, (e) => {
             e.stopPropagation(); // should not effects canvas
+            e.preventDefault();
             let position = _this._getPosition(e);
             let imageData = ctx.getImageData(position.x, 0, 1, 1);
             let color = imageData.data;

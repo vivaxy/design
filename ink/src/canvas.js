@@ -53,17 +53,20 @@ class Canvas {
         let lastPosition = {};
 
         let moveHandler = (e) => {
+            e.preventDefault();
             let position = this._getPosition(e);
             this.dip.paint(lastPosition, position);
             lastPosition = position;
         };
 
         let endHandler = (e) => {
+            e.preventDefault();
             lastPosition = this._getPosition(e);
             canvas.removeEventListener(endEvent, moveHandler, false);
         };
 
         let startHandler = (e) => {
+            e.preventDefault();
             lastPosition = this._getPosition(e);
             canvas.addEventListener(moveEvent, moveHandler, false);
             canvas.addEventListener(endEvent, endHandler, false);
