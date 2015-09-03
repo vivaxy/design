@@ -143,13 +143,13 @@ var _isMobileJs = require('./is-mobile.js');
 
 var _isMobileJs2 = _interopRequireDefault(_isMobileJs);
 
-var _getTouchPositionJs = require('./get-touch-position.js');
-
-var _getTouchPositionJs2 = _interopRequireDefault(_getTouchPositionJs);
-
 var _eventEmitterJs = require('./event-emitter.js');
 
 var _eventEmitterJs2 = _interopRequireDefault(_eventEmitterJs);
+
+var _getTouchPositionJs = require('./get-touch-position.js');
+
+var _getTouchPositionJs2 = _interopRequireDefault(_getTouchPositionJs);
 
 var ColorPicker = (function (_EventEmitter) {
     _inherits(ColorPicker, _EventEmitter);
