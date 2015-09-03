@@ -282,6 +282,7 @@
      * @author vivaxy
      */
     'use strict';
+    // todo simulate 100 hair with color to paint one point
 
     var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
@@ -328,12 +329,6 @@
                     this._draw(from)._draw(to);
                 }
                 this._consume();
-                return this;
-            }
-        }, {
-            key: 'destroy',
-            value: function destroy() {
-                delete this;
                 return this;
             }
         }, {
@@ -431,7 +426,7 @@
         }, {
             key: 'setDip',
             value: function setDip(color) {
-                this.dip && this.dip.destroy && this.dip.destroy();
+                delete this.dip;
                 this.dip = new _Dip['default']({
                     ctx: this.canvas.getContext('2d'),
                     color: color
@@ -447,6 +442,7 @@
                 var startEvent = _isMobile['default'] ? 'touchstart' : 'mousedown';
                 var moveEvent = _isMobile['default'] ? 'touchmove' : 'mousemove';
                 var endEvent = _isMobile['default'] ? 'touchend' : 'mouseup';
+                var cancelEvent = _isMobile['default'] ? 'touchcancel' : 'mouseout';
 
                 var lastPosition = {};
 
@@ -460,17 +456,18 @@
                 var endHandler = function endHandler(e) {
                     e.preventDefault();
                     lastPosition = _this._getPosition(e);
-                    canvas.removeEventListener(endEvent, moveHandler, false);
+                    canvas.removeEventListener(moveEvent, moveHandler, false);
                 };
 
                 var startHandler = function startHandler(e) {
                     e.preventDefault();
                     lastPosition = _this._getPosition(e);
                     canvas.addEventListener(moveEvent, moveHandler, false);
-                    canvas.addEventListener(endEvent, endHandler, false);
                 };
 
                 canvas.addEventListener(startEvent, startHandler, false);
+                canvas.addEventListener(endEvent, endHandler, false);
+                canvas.addEventListener(cancelEvent, endHandler, false);
                 return this;
             }
         }, {

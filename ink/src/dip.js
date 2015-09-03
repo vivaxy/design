@@ -3,6 +3,7 @@
  * @author vivaxy
  */
 'use strict';
+// todo simulate 100 hair with color to paint one point
 class Dip {
     constructor(options) {
         this.ctx = options.ctx || (() => {
@@ -39,11 +40,6 @@ class Dip {
             this._draw(from)._draw(to);
         }
         this._consume();
-        return this;
-    }
-
-    destroy() {
-        delete this;
         return this;
     }
 

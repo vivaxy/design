@@ -36,7 +36,7 @@ class Canvas {
     }
 
     setDip(color) {
-        this.dip && this.dip.destroy && this.dip.destroy();
+        delete this.dip;
         this.dip = new Dip({
             ctx: this.canvas.getContext('2d'),
             color: color
@@ -49,6 +49,7 @@ class Canvas {
         let startEvent = isMobile ? 'touchstart' : 'mousedown';
         let moveEvent = isMobile ? 'touchmove' : 'mousemove';
         let endEvent = isMobile ? 'touchend' : 'mouseup';
+        let cancelEvent = isMobile ? 'touchcancel' : 'mouseout';
 
         let lastPosition = {};
 
@@ -62,17 +63,18 @@ class Canvas {
         let endHandler = (e) => {
             e.preventDefault();
             lastPosition = this._getPosition(e);
-            canvas.removeEventListener(endEvent, moveHandler, false);
+            canvas.removeEventListener(moveEvent, moveHandler, false);
         };
 
         let startHandler = (e) => {
             e.preventDefault();
             lastPosition = this._getPosition(e);
             canvas.addEventListener(moveEvent, moveHandler, false);
-            canvas.addEventListener(endEvent, endHandler, false);
         };
 
         canvas.addEventListener(startEvent, startHandler, false);
+        canvas.addEventListener(endEvent, endHandler, false);
+        canvas.addEventListener(cancelEvent, endHandler, false);
         return this;
     }
 
