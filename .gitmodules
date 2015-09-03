@@ -1,0 +1,4 @@
+[submodule "event-emitter"]
+	path = ink/event-emitter
+	url = https://github.com/vivaxy/event-emitter.git
+	branch = gh-pages
