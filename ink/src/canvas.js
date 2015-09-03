@@ -3,10 +3,10 @@
  * @author vivaxy
  */
 'use strict';
-import isMobile from './is-mobile.js';
-import {color, lineWidth} from './option.js';
 import Dip from './dip.js';
-import setStyle from '.set-style.js';
+import setStyle from './set-style.js';
+import isMobile from './is-mobile.js';
+import getTouchPosition from './get-touch-position.js';
 
 class Canvas {
     constructor() {
@@ -55,20 +55,20 @@ class Canvas {
 
         let moveHandler = (e) => {
             e.preventDefault();
-            let position = this._getPosition(e);
+            let position = getTouchPosition(e);
             this.dip.paint(lastPosition, position);
             lastPosition = position;
         };
 
         let endHandler = (e) => {
             e.preventDefault();
-            lastPosition = this._getPosition(e);
+            lastPosition = getTouchPosition(e);
             canvas.removeEventListener(moveEvent, moveHandler, false);
         };
 
         let startHandler = (e) => {
             e.preventDefault();
-            lastPosition = this._getPosition(e);
+            lastPosition = getTouchPosition(e);
             canvas.addEventListener(moveEvent, moveHandler, false);
         };
 
@@ -76,14 +76,6 @@ class Canvas {
         canvas.addEventListener(endEvent, endHandler, false);
         canvas.addEventListener(cancelEvent, endHandler, false);
         return this;
-    }
-
-    _getPosition(e) {
-        let touch = isMobile ? e.changedTouches[0] : e;
-        return {
-            x: touch.pageX,
-            y: touch.pageY
-        };
     }
 }
 

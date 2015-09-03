@@ -5,7 +5,8 @@
 'use strict';
 import setStyle from './set-style.js';
 import isMobile from './is-mobile.js';
-import EventEmitter from '../event-emitter/src/event-emitter.js';
+import getTouchPosition from './get-touch-position.js';
+import EventEmitter from './event-emitter.js';
 
 class ColorPicker extends EventEmitter {
     constructor() {
@@ -55,7 +56,7 @@ class ColorPicker extends EventEmitter {
         canvas.addEventListener(event, (e) => {
             e.stopPropagation(); // should not effects canvas
             e.preventDefault();
-            let position = _this._getPosition(e);
+            let position = getTouchPosition(e);
             let imageData = ctx.getImageData(position.x, 0, 1, 1);
             let color = imageData.data;
             let r = color[0];
@@ -70,14 +71,6 @@ class ColorPicker extends EventEmitter {
             });
         }, false);
         return this;
-    }
-
-    _getPosition(e) {
-        let touch = isMobile ? e.changedTouches[0] : e;
-        return {
-            x: touch.pageX,
-            y: touch.pageY
-        };
     }
 }
 
