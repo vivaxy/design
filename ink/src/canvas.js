@@ -71,7 +71,7 @@ class Canvas {
     }
 
     _getPosition(e) {
-        let touch = isMobile ? e.changedTouches[0] : [e];
+        let touch = isMobile ? e.changedTouches[0] : e;
         return {
             x: touch.pageX,
             y: touch.pageY

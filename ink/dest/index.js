@@ -143,17 +143,17 @@
 });
 (function (global, factory) {
     if (typeof define === 'function' && define.amd) {
-        define('ColorPicker', ['exports', 'module', './set-style.js', '../event-emitter/src/event-emitter.js'], factory);
+        define('ColorPicker', ['exports', 'module', './set-style.js', './is-mobile.js', '../event-emitter/src/event-emitter.js'], factory);
     } else if (typeof exports !== 'undefined' && typeof module !== 'undefined') {
-        factory(exports, module, require('./set-style.js'), require('../event-emitter/src/event-emitter.js'));
+        factory(exports, module, require('./set-style.js'), require('./is-mobile.js'), require('../event-emitter/src/event-emitter.js'));
     } else {
         var mod = {
             exports: {}
         };
-        factory(mod.exports, mod, global.setStyle, global.EventEmitter);
+        factory(mod.exports, mod, global.setStyle, global.isMobile, global.EventEmitter);
         global.ColorPicker = mod.exports;
     }
-})(this, function (exports, module, _setStyleJs, _eventEmitterSrcEventEmitterJs) {
+})(this, function (exports, module, _setStyleJs, _isMobileJs, _eventEmitterSrcEventEmitterJs) {
     /**
      * @since 15-09-03 12:04
      * @author vivaxy
@@ -172,6 +172,8 @@
 
     var _setStyle = _interopRequireDefault(_setStyleJs);
 
+    var _isMobile = _interopRequireDefault(_isMobileJs);
+
     var _EventEmitter2 = _interopRequireDefault(_eventEmitterSrcEventEmitterJs);
 
     var ColorPicker = (function (_EventEmitter) {
@@ -181,12 +183,12 @@
             _classCallCheck(this, ColorPicker);
 
             _get(Object.getPrototypeOf(ColorPicker.prototype), 'constructor', this).call(this);
-            this.initialize();
+            this._createCanvas()._addColor()._bindEvent();
         }
 
         _createClass(ColorPicker, [{
-            key: 'initialize',
-            value: function initialize() {
+            key: '_createCanvas',
+            value: function _createCanvas() {
                 var canvas = document.createElement('canvas');
                 (0, _setStyle['default'])(canvas, {
                     position: 'absolute',
@@ -195,6 +197,24 @@
                     top: 0,
                     left: 0
                 });
+                document.body.appendChild(canvas);
+                this.canvas = canvas;
+                return this;
+            }
+        }, {
+            key: '_addColor',
+            value: function _addColor() {
+                return this;
+            }
+        }, {
+            key: '_bindEvent',
+            value: function _bindEvent() {
+                var canvas = this.canvas;
+                var startEvent = _isMobile['default'] ? 'touchstart' : 'mousedown';
+                canvas.addEventListener(startEvent, function (e) {
+                    e.stopPropagation(); // should not effects canvas
+                }, false);
+                return this;
             }
         }]);
 
@@ -333,14 +353,12 @@
         function Canvas() {
             _classCallCheck(this, Canvas);
 
-            this._createCanvas();
-            this.setDip({
+            this._createCanvas().setDip({
                 r: 255,
                 g: 0,
                 b: 0,
                 a: 0.3
-            });
-            this._bindEvents();
+            })._bindEvents();
         }
 
         _createClass(Canvas, [{
@@ -359,6 +377,7 @@
                 });
                 document.body.appendChild(canvas);
                 this.canvas = canvas;
+                return this;
             }
         }, {
             key: 'setDip',
@@ -367,6 +386,7 @@
                     ctx: this.canvas.getContext('2d'),
                     color: color
                 });
+                return this;
             }
         }, {
             key: '_bindEvents',
@@ -396,11 +416,12 @@
                 };
 
                 canvas.addEventListener(startEvent, startHandler, false);
+                return this;
             }
         }, {
             key: '_getPosition',
             value: function _getPosition(e) {
-                var touch = _isMobile['default'] ? e.changedTouches[0] : [e];
+                var touch = _isMobile['default'] ? e.changedTouches[0] : e;
                 return {
                     x: touch.pageX,
                     y: touch.pageY
