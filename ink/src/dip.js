@@ -38,6 +38,11 @@ class Dip {
         return this;
     }
 
+    destroy() {
+        delete this;
+        return this;
+    }
+
     _draw(point) {
         let ctx = this.ctx;
         let width = this.strokeWidth;

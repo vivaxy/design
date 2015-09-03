@@ -190,31 +190,71 @@
             key: '_createCanvas',
             value: function _createCanvas() {
                 var canvas = document.createElement('canvas');
+                canvas.width = window.innerWidth;
+                canvas.height = 1;
                 (0, _setStyle['default'])(canvas, {
                     position: 'absolute',
                     width: '100%',
                     height: '10%',
-                    top: 0,
+                    bottom: 0,
                     left: 0
                 });
                 document.body.appendChild(canvas);
                 this.canvas = canvas;
+                this.ctx = canvas.getContext('2d');
                 return this;
             }
         }, {
             key: '_addColor',
             value: function _addColor() {
+                var canvas = this.canvas;
+                var width = canvas.width;
+                var height = canvas.height;
+                var ctx = this.ctx;
+                var grd = ctx.createLinearGradient(0, 0, width, 0);
+                grd.addColorStop(0, 'rgb(255, 0, 0)');
+                grd.addColorStop(0.2, 'rgb(255, 255, 0)');
+                grd.addColorStop(0.4, 'rgb(0, 255, 0)');
+                grd.addColorStop(0.6, 'rgb(0, 255, 255)');
+                grd.addColorStop(0.8, 'rgb(0, 0, 255)');
+                grd.addColorStop(1, 'rgb(255, 0, 255)');
+                ctx.fillStyle = grd;
+                ctx.fillRect(0, 0, width, height);
                 return this;
             }
         }, {
             key: '_bindEvent',
             value: function _bindEvent() {
+                var _this = this;
                 var canvas = this.canvas;
-                var startEvent = _isMobile['default'] ? 'touchstart' : 'mousedown';
-                canvas.addEventListener(startEvent, function (e) {
+                var ctx = this.ctx;
+                var event = _isMobile['default'] ? 'touchend' : 'click';
+                canvas.addEventListener(event, function (e) {
                     e.stopPropagation(); // should not effects canvas
+                    var position = _this._getPosition(e);
+                    var imageData = ctx.getImageData(position.x, 0, 1, 1);
+                    var color = imageData.data;
+                    var r = color[0];
+                    var g = color[1];
+                    var b = color[2];
+                    var a = color[3] / 256; // 0 ~ 255
+                    _this.emit('pick', {
+                        r: r,
+                        g: g,
+                        b: b,
+                        a: a
+                    });
                 }, false);
                 return this;
+            }
+        }, {
+            key: '_getPosition',
+            value: function _getPosition(e) {
+                var touch = _isMobile['default'] ? e.changedTouches[0] : e;
+                return {
+                    x: touch.pageX,
+                    y: touch.pageY
+                };
             }
         }]);
 
@@ -283,6 +323,12 @@
             key: 'paint',
             value: function paint(from, to) {
                 this._draw(from)._draw(to)._consume();
+                return this;
+            }
+        }, {
+            key: 'destroy',
+            value: function destroy() {
+                delete this;
                 return this;
             }
         }, {
@@ -357,7 +403,7 @@
                 r: 255,
                 g: 0,
                 b: 0,
-                a: 0.3
+                a: 1
             })._bindEvents();
         }
 
@@ -382,6 +428,8 @@
         }, {
             key: 'setDip',
             value: function setDip(color) {
+                color.a *= 0.3;
+                this.dip && this.dip.destroy && this.dip.destroy();
                 this.dip = new _Dip['default']({
                     ctx: this.canvas.getContext('2d'),
                     color: color
@@ -400,19 +448,21 @@
 
                 var lastPosition = {};
 
-                var startHandler = function startHandler(e) {
-                    lastPosition = _this._getPosition(e);
-                    canvas.addEventListener(moveEvent, moveHandler, false);
-                    canvas.addEventListener(endEvent, endHandler, false);
-                };
                 var moveHandler = function moveHandler(e) {
                     var position = _this._getPosition(e);
                     _this.dip.paint(lastPosition, position);
                     lastPosition = position;
                 };
+
                 var endHandler = function endHandler(e) {
                     lastPosition = _this._getPosition(e);
                     canvas.removeEventListener(endEvent, moveHandler, false);
+                };
+
+                var startHandler = function startHandler(e) {
+                    lastPosition = _this._getPosition(e);
+                    canvas.addEventListener(moveEvent, moveHandler, false);
+                    canvas.addEventListener(endEvent, endHandler, false);
                 };
 
                 canvas.addEventListener(startEvent, startHandler, false);
