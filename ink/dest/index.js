@@ -303,13 +303,14 @@
              * @type {*|color|string}
              */
             this.color = options.color;
+            this.color.a = 0.02;
             this.strokeWidth = options.strokeWidth || 20;
 
             /**
              * 0 ~ 100
              * @type {number}
              */
-            this.consumeRate = 10;
+            this.consumeRate = 1;
         }
 
         /**
@@ -322,7 +323,10 @@
         _createClass(Dip, [{
             key: 'paint',
             value: function paint(from, to) {
-                this._draw(from)._draw(to)._consume();
+                for (var i = 0; i < 10; i++) {
+                    this._draw(from)._draw(to);
+                }
+                this._consume();
                 return this;
             }
         }, {
@@ -346,9 +350,7 @@
             key: '_consume',
             value: function _consume() {
                 var color = this.color;
-                if (color.a > 0.02) {
-                    color.a *= (100 - this.consumeRate) / 100;
-                }
+                color.a *= (100 - this.consumeRate) / 100;
                 return this;
             }
         }, {
@@ -428,7 +430,6 @@
         }, {
             key: 'setDip',
             value: function setDip(color) {
-                color.a *= 0.3;
                 this.dip && this.dip.destroy && this.dip.destroy();
                 this.dip = new _Dip['default']({
                     ctx: this.canvas.getContext('2d'),

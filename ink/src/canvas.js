@@ -36,7 +36,6 @@ class Canvas {
     }
 
     setDip(color) {
-        color.a *= 0.3;
         this.dip && this.dip.destroy && this.dip.destroy();
         this.dip = new Dip({
             ctx: this.canvas.getContext('2d'),

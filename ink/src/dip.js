@@ -18,13 +18,14 @@ class Dip {
          * @type {*|color|string}
          */
         this.color = options.color;
+        this.color.a = 0.02;
         this.strokeWidth = options.strokeWidth || 20;
 
         /**
          * 0 ~ 100
          * @type {number}
          */
-        this.consumeRate = 10;
+        this.consumeRate = 1;
     }
 
     /**
@@ -34,7 +35,10 @@ class Dip {
      * @param to
      */
     paint(from, to) {
-        this._draw(from)._draw(to)._consume();
+        for (let i = 0; i < 10; i++) {
+            this._draw(from)._draw(to);
+        }
+        this._consume();
         return this;
     }
 
@@ -55,9 +59,7 @@ class Dip {
 
     _consume() {
         let color = this.color;
-        if (color.a > 0.02) {
-            color.a *= ((100 - this.consumeRate) / 100);
-        }
+        color.a *= ((100 - this.consumeRate) / 100);
         return this;
     }
 
