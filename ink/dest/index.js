@@ -81,6 +81,7 @@ var Canvas = (function () {
             var endEvent = _isMobileJs2['default'] ? 'touchend' : 'mouseup';
             var cancelEvent = _isMobileJs2['default'] ? 'touchcancel' : 'mouseout';
 
+            var firstPosition = {};
             var lastPosition = {};
             var saveTimeout = null;
 
@@ -88,10 +89,10 @@ var Canvas = (function () {
                 e.preventDefault();
                 var position = (0, _getTouchPositionJs2['default'])(e);
                 _this.dip.paint(lastPosition, position);
-                if (_this._getDistance(position, lastPosition) > 10) {
+                lastPosition = position;
+                if (_this._getDistance(firstPosition, position) > 20) {
                     clearTimeout(saveTimeout);
                 }
-                lastPosition = position;
             };
 
             var endHandler = function endHandler(e) {
@@ -104,6 +105,7 @@ var Canvas = (function () {
             var startHandler = function startHandler(e) {
                 e.preventDefault();
                 lastPosition = (0, _getTouchPositionJs2['default'])(e);
+                firstPosition = (0, _getTouchPositionJs2['default'])(e);
                 canvas.addEventListener(moveEvent, moveHandler, false);
                 saveTimeout = setTimeout(_this._saveCanvas.bind(_this), 1000);
             };
@@ -126,7 +128,7 @@ var Canvas = (function () {
                 height: '100%',
                 top: 0,
                 left: 0,
-                background: 'rgba(0, 0, 0, 0.8)'
+                background: '#fff'
             });
             img.src = canvas.toDataURL('image/png');
 

@@ -53,6 +53,7 @@ class Canvas {
         let endEvent = isMobile ? 'touchend' : 'mouseup';
         let cancelEvent = isMobile ? 'touchcancel' : 'mouseout';
 
+        let firstPosition = {};
         let lastPosition = {};
         let saveTimeout = null;
 
@@ -60,10 +61,10 @@ class Canvas {
             e.preventDefault();
             let position = getTouchPosition(e);
             _this.dip.paint(lastPosition, position);
-            if (_this._getDistance(position, lastPosition) > 10) {
+            lastPosition = position;
+            if (_this._getDistance(firstPosition, position) > 20) {
                 clearTimeout(saveTimeout);
             }
-            lastPosition = position;
         };
 
         let endHandler = (e) => {
@@ -76,6 +77,7 @@ class Canvas {
         let startHandler = (e) => {
             e.preventDefault();
             lastPosition = getTouchPosition(e);
+            firstPosition = getTouchPosition(e);
             canvas.addEventListener(moveEvent, moveHandler, false);
             saveTimeout = setTimeout(_this._saveCanvas.bind(_this), 1000);
         };
@@ -97,7 +99,7 @@ class Canvas {
             height: '100%',
             top: 0,
             left: 0,
-            background: 'rgba(0, 0, 0, 0.8)'
+            background: '#fff'
         });
         img.src = canvas.toDataURL('image/png');
 
