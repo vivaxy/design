@@ -57,15 +57,11 @@ class ColorPicker extends EventEmitter {
             let position = getTouchPosition(e);
             let imageData = ctx.getImageData(position.x, 0, 1, 1);
             let color = imageData.data;
-            let r = color[0];
-            let g = color[1];
-            let b = color[2];
-            let a = color[3] / 256; // 0 ~ 255
             _this.emit('pick', {
-                r: r,
-                g: g,
-                b: b,
-                a: a
+                r: color[0],
+                g: color[1],
+                b: color[2],
+                a: color[3] / 256 // 0 ~ 255
             });
         }, false);
         // prevent default page scroll

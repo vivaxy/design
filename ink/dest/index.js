@@ -143,7 +143,7 @@ var Canvas = (function () {
             var square = function square(a, b) {
                 return Math.pow(a - b, 2);
             };
-            return Math.sqrt(square(from.x - to.x) + square(from.y - to.y));
+            return Math.sqrt(square(from.x, to.x) + square(from.y, to.y));
         }
     }]);
 
@@ -244,6 +244,7 @@ var ColorPicker = (function (_EventEmitter) {
             canvas.addEventListener(_isMobileJs2['default'] ? 'touchend' : 'click', function (e) {
                 e.preventDefault();
                 var position = (0, _getTouchPositionJs2['default'])(e);
+                console.log(position);
                 var imageData = ctx.getImageData(position.x, 0, 1, 1);
                 var color = imageData.data;
                 var r = color[0];
@@ -462,8 +463,8 @@ var _isMobileJs2 = _interopRequireDefault(_isMobileJs);
 exports['default'] = function (e) {
     var touch = _isMobileJs2['default'] ? e.changedTouches[0] : e;
     return {
-        x: touch.pageX,
-        y: touch.pageY
+        x: touch.pageX - e.target.offsetLeft,
+        y: touch.pageY - e.target.offsetTop
     };
 };
 

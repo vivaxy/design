@@ -8,7 +8,7 @@ import isMobile from './is-mobile.js';
 export default (e) => {
     let touch = isMobile ? e.changedTouches[0] : e;
     return {
-        x: touch.pageX,
-        y: touch.pageY
+        x: touch.pageX - e.target.offsetLeft,
+        y: touch.pageY - e.target.offsetTop
     };
 };

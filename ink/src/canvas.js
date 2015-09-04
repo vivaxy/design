@@ -113,7 +113,7 @@ class Canvas {
         let square = function (a, b) {
             return Math.pow(a - b, 2);
         };
-        return Math.sqrt(square(from.x - to.x) + square(from.y - to.y));
+        return Math.sqrt(square(from.x, to.x) + square(from.y, to.y));
     }
 }
 
