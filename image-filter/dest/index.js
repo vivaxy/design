@@ -255,22 +255,24 @@ var _canvasJs = require('./canvas.js');
 
 var _canvasJs2 = _interopRequireDefault(_canvasJs);
 
-var savedColorChanges = [100, 100, 100, 100, 0];
+var savedColorChanges = [100, 100, 100, 255, 0];
 
 var canvas = new _canvasJs2['default']();
 
 var range = new _rangeJs2['default']().on('change', function (e) {
     savedColorChanges[e.index] = e.value;
     var imageData = imageCanvas.getColorMap();
-    var map = Array.prototype.map.call(imageData.data, function (v, i, array) {
-        var anotherValue = v * savedColorChanges[i % 4] / 100;
+    var map = Array.prototype.map.call(imageData.data, function (v, i) {
+        return v * savedColorChanges[i % 4] / 100;
+    });
+    // grey scale
+    canvas.draw(map.map(function (v, i, array) {
         var colorStart = i - i % 4;
         var color = Array.prototype.slice.call(array, colorStart, colorStart + 4);
         var averageColor = (color[0] + color[1] + color[2]) * color[3] / 3 / 255;
-        var colorDiff = averageColor - anotherValue;
-        return anotherValue + colorDiff * savedColorChanges[4] / 100;
-    });
-    canvas.draw(map, imageData.width, imageData.height);
+        var colorDiff = averageColor - v;
+        return v + colorDiff * savedColorChanges[4] / 100;
+    }), imageData.width, imageData.height);
 });
 
 var imageCanvas = new _imageCanvasJs2['default']({
@@ -291,7 +293,7 @@ Object.defineProperty(exports, '__esModule', {
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
-var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+var _get = function get(_x4, _x5, _x6) { var _again = true; _function: while (_again) { var object = _x4, property = _x5, receiver = _x6; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x4 = parent; _x5 = property; _x6 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
@@ -324,14 +326,17 @@ var Range = (function (_EventEmitter) {
     _createClass(Range, [{
         key: '_initialize',
         value: function _initialize() {
-            this._addRangeInput(0, 'r', '#f00')._addRangeInput(1, 'g', '#0f0')._addRangeInput(2, 'b', '#00f')._addRangeInput(3, 'a', '#000')._addRangeInput(4, 'greyscale', '#999', 0, 100, 0);
+            this._addRangeInput(0, '#f00', 0, 200, 100) // red
+            ._addRangeInput(1, '#0f0', 0, 200, 100) // green
+            ._addRangeInput(2, '#00f', 0, 200, 100) // blue
+            ._addRangeInput(3, '#000', 0, 100, 100) // opacity
+            ._addRangeInput(4, '#999'); // grey scale
             return this;
         }
 
         /**
          *
          * @param index - from 0
-         * @param type
          * @param color
          * @param min
          * @param max
@@ -341,15 +346,20 @@ var Range = (function (_EventEmitter) {
          */
     }, {
         key: '_addRangeInput',
-        value: function _addRangeInput(index, type, color, min, max, initial) {
+        value: function _addRangeInput(index, color) {
+            var min = arguments.length <= 2 || arguments[2] === undefined ? 0 : arguments[2];
+
             var _this = this;
+
+            var max = arguments.length <= 3 || arguments[3] === undefined ? 100 : arguments[3];
+            var initial = arguments.length <= 4 || arguments[4] === undefined ? 0 : arguments[4];
 
             var height = this.height;
             var input = document.createElement('input');
             input.type = 'range';
-            input.min = min === undefined ? 0 : min;
-            input.max = max === undefined ? 200 : max;
-            input.value = initial === undefined ? 100 : initial;
+            input.min = min;
+            input.max = max;
+            input.value = initial;
             (0, _setStyleJs2['default'])(input, {
                 width: '100%',
                 height: height + '%',
@@ -365,7 +375,6 @@ var Range = (function (_EventEmitter) {
             });
             input.addEventListener('change', function (e) {
                 _this.emit('change', {
-                    type: type,
                     index: index,
                     value: parseInt(e.target.value) // 0 ~ 200
                 });
