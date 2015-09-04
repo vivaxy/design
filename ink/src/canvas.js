@@ -59,8 +59,8 @@ class Canvas {
         let moveHandler = (e) => {
             e.preventDefault();
             let position = getTouchPosition(e);
-            this.dip.paint(lastPosition, position);
-            if (_getDistance(position, lastPosition) > 10) {
+            _this.dip.paint(lastPosition, position);
+            if (_this._getDistance(position, lastPosition) > 10) {
                 clearTimeout(saveTimeout);
             }
             lastPosition = position;
@@ -89,38 +89,22 @@ class Canvas {
     _saveCanvas() {
         let canvas = this.canvas;
 
-        let overlay = document.createElement('div');
-        setStyle(overlay, {
+        let img = document.createElement('img');
+        setStyle(img, {
             position: 'absolute',
+            display: 'block',
             width: '100%',
             height: '100%',
             top: 0,
             left: 0,
             background: 'rgba(0, 0, 0, 0.8)'
         });
+        img.src = canvas.toDataURL('image/png');
 
-        let downloadButton = document.createElement('a');
-        setStyle(downloadButton, {
-            margin: '40% 5% 0',
-            background: '#fff',
-            borderRadius: '2px',
-            display: 'block',
-            height: '60px',
-            lineHeight: '60px',
-            color: '#000',
-            textDecoration: 'none',
-            textAlign: 'center'
-        });
-        downloadButton.textContent = 'download `ink.png`';
-        downloadButton.target = '_blank';
-        downloadButton.download = 'ink.png';
-        downloadButton.href = canvas.toDataURL('image/png');
-
-        overlay.appendChild(downloadButton);
-        overlay.addEventListener(isMobile ? 'touchend' : 'click', ()=> {
-            document.body.removeChild(overlay);
+        img.addEventListener(isMobile ? 'touchend' : 'click', ()=> {
+            document.body.removeChild(img);
         }, false);
-        document.body.appendChild(overlay);
+        document.body.appendChild(img);
     }
 
     _getDistance(from, to) {

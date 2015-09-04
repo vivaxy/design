@@ -73,8 +73,6 @@ var Canvas = (function () {
     }, {
         key: '_bindEvents',
         value: function _bindEvents() {
-            var _this2 = this;
-
             var _this = this;
 
             var canvas = this.canvas;
@@ -89,8 +87,8 @@ var Canvas = (function () {
             var moveHandler = function moveHandler(e) {
                 e.preventDefault();
                 var position = (0, _getTouchPositionJs2['default'])(e);
-                _this2.dip.paint(lastPosition, position);
-                if (_getDistance(position, lastPosition) > 10) {
+                _this.dip.paint(lastPosition, position);
+                if (_this._getDistance(position, lastPosition) > 10) {
                     clearTimeout(saveTimeout);
                 }
                 lastPosition = position;
@@ -120,38 +118,22 @@ var Canvas = (function () {
         value: function _saveCanvas() {
             var canvas = this.canvas;
 
-            var overlay = document.createElement('div');
-            (0, _setStyleJs2['default'])(overlay, {
+            var img = document.createElement('img');
+            (0, _setStyleJs2['default'])(img, {
                 position: 'absolute',
+                display: 'block',
                 width: '100%',
                 height: '100%',
                 top: 0,
                 left: 0,
                 background: 'rgba(0, 0, 0, 0.8)'
             });
+            img.src = canvas.toDataURL('image/png');
 
-            var downloadButton = document.createElement('a');
-            (0, _setStyleJs2['default'])(downloadButton, {
-                margin: '40% 5% 0',
-                background: '#fff',
-                borderRadius: '2px',
-                display: 'block',
-                height: '60px',
-                lineHeight: '60px',
-                color: '#000',
-                textDecoration: 'none',
-                textAlign: 'center'
-            });
-            downloadButton.textContent = 'download `ink.png`';
-            downloadButton.target = '_blank';
-            downloadButton.download = 'ink.png';
-            downloadButton.href = canvas.toDataURL('image/png');
-
-            overlay.appendChild(downloadButton);
-            overlay.addEventListener(_isMobileJs2['default'] ? 'touchend' : 'click', function () {
-                document.body.removeChild(overlay);
+            img.addEventListener(_isMobileJs2['default'] ? 'touchend' : 'click', function () {
+                document.body.removeChild(img);
             }, false);
-            document.body.appendChild(overlay);
+            document.body.appendChild(img);
         }
     }, {
         key: '_getDistance',
