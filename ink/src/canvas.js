@@ -60,8 +60,10 @@ class Canvas {
             e.preventDefault();
             let position = getTouchPosition(e);
             this.dip.paint(lastPosition, position);
+            if (_getDistance(position, lastPosition) > 10) {
+                clearTimeout(saveTimeout);
+            }
             lastPosition = position;
-            clearTimeout(saveTimeout);
         };
 
         let endHandler = (e) => {
@@ -86,7 +88,7 @@ class Canvas {
 
     _saveCanvas() {
         let canvas = this.canvas;
-        
+
         let overlay = document.createElement('div');
         setStyle(overlay, {
             position: 'absolute',
@@ -96,7 +98,7 @@ class Canvas {
             left: 0,
             background: 'rgba(0, 0, 0, 0.8)'
         });
-        
+
         let downloadButton = document.createElement('a');
         setStyle(downloadButton, {
             margin: '40% 5% 0',
@@ -113,12 +115,19 @@ class Canvas {
         downloadButton.target = '_blank';
         downloadButton.download = 'ink.png';
         downloadButton.href = canvas.toDataURL('image/png');
-        
+
         overlay.appendChild(downloadButton);
         overlay.addEventListener(isMobile ? 'touchend' : 'click', ()=> {
             document.body.removeChild(overlay);
         }, false);
         document.body.appendChild(overlay);
+    }
+
+    _getDistance(from, to) {
+        let square = function (a, b) {
+            return Math.pow(a - b, 2);
+        };
+        return Math.sqrt(square(from.x - to.x) + square(from.y - to.y));
     }
 }
 

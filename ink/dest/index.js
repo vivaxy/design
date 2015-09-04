@@ -90,8 +90,10 @@ var Canvas = (function () {
                 e.preventDefault();
                 var position = (0, _getTouchPositionJs2['default'])(e);
                 _this2.dip.paint(lastPosition, position);
+                if (_getDistance(position, lastPosition) > 10) {
+                    clearTimeout(saveTimeout);
+                }
                 lastPosition = position;
-                clearTimeout(saveTimeout);
             };
 
             var endHandler = function endHandler(e) {
@@ -150,6 +152,14 @@ var Canvas = (function () {
                 document.body.removeChild(overlay);
             }, false);
             document.body.appendChild(overlay);
+        }
+    }, {
+        key: '_getDistance',
+        value: function _getDistance(from, to) {
+            var square = function square(a, b) {
+                return Math.pow(a - b, 2);
+            };
+            return Math.sqrt(square(from.x - to.x) + square(from.y - to.y));
         }
     }]);
 
