@@ -11,13 +11,17 @@ class Range extends EventEmitter {
         super();
         this.top = 40;
         this.totalHeight = 60; // 60;
-        this.count = 4;
+        this.count = 5;
         this.height = this.totalHeight / this.count;
         this._initialize();
     }
 
     _initialize() {
-        this._addRangeInput(0, 'r', '#f00')._addRangeInput(1, 'g', '#0f0')._addRangeInput(2, 'b', '#00f')._addRangeInput(3, 'a', '#000');
+        this._addRangeInput(0, 'r', '#f00')
+            ._addRangeInput(1, 'g', '#0f0')
+            ._addRangeInput(2, 'b', '#00f')
+            ._addRangeInput(3, 'a', '#000')
+            ._addRangeInput(4, 'greyscale', '#999', 0, 100, 0);
         return this;
     }
 
@@ -26,14 +30,19 @@ class Range extends EventEmitter {
      * @param index - from 0
      * @param type
      * @param color
+     * @param min
+     * @param max
+     * @param initial
      * @returns {Range}
      * @private
      */
-    _addRangeInput(index, type, color) {
+    _addRangeInput(index, type, color, min, max, initial) {
         let height = this.height;
         let input = document.createElement('input');
         input.type = 'range';
-        input.max = '200';
+        input.min = min === undefined ? 0 : min;
+        input.max = max === undefined ? 200 : max;
+        input.value = initial === undefined ? 100 : initial;
         setStyle(input, {
             width: '100%',
             height: height + '%',

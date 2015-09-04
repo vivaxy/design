@@ -255,15 +255,20 @@ var _canvasJs = require('./canvas.js');
 
 var _canvasJs2 = _interopRequireDefault(_canvasJs);
 
-var savedChanges = [100, 100, 100, 100];
+var savedColorChanges = [100, 100, 100, 100, 0];
 
 var canvas = new _canvasJs2['default']();
 
 var range = new _rangeJs2['default']().on('change', function (e) {
-    savedChanges[e.index] = e.value;
+    savedColorChanges[e.index] = e.value;
     var imageData = imageCanvas.getColorMap();
-    var map = Array.prototype.map.call(imageData.data, function (v, i) {
-        return v * savedChanges[i % 4] / 100;
+    var map = Array.prototype.map.call(imageData.data, function (v, i, array) {
+        var anotherValue = v * savedColorChanges[i % 4] / 100;
+        var colorStart = i - i % 4;
+        var color = Array.prototype.slice.call(array, colorStart, colorStart + 4);
+        var averageColor = (color[0] + color[1] + color[2]) * color[3] / 3 / 255;
+        var colorDiff = averageColor - anotherValue;
+        return anotherValue + colorDiff * savedColorChanges[4] / 100;
     });
     canvas.draw(map, imageData.width, imageData.height);
 });
@@ -311,7 +316,7 @@ var Range = (function (_EventEmitter) {
         _get(Object.getPrototypeOf(Range.prototype), 'constructor', this).call(this);
         this.top = 40;
         this.totalHeight = 60; // 60;
-        this.count = 4;
+        this.count = 5;
         this.height = this.totalHeight / this.count;
         this._initialize();
     }
@@ -319,7 +324,7 @@ var Range = (function (_EventEmitter) {
     _createClass(Range, [{
         key: '_initialize',
         value: function _initialize() {
-            this._addRangeInput(0, 'r', '#f00')._addRangeInput(1, 'g', '#0f0')._addRangeInput(2, 'b', '#00f')._addRangeInput(3, 'a', '#000');
+            this._addRangeInput(0, 'r', '#f00')._addRangeInput(1, 'g', '#0f0')._addRangeInput(2, 'b', '#00f')._addRangeInput(3, 'a', '#000')._addRangeInput(4, 'greyscale', '#999', 0, 100, 0);
             return this;
         }
 
@@ -328,18 +333,23 @@ var Range = (function (_EventEmitter) {
          * @param index - from 0
          * @param type
          * @param color
+         * @param min
+         * @param max
+         * @param initial
          * @returns {Range}
          * @private
          */
     }, {
         key: '_addRangeInput',
-        value: function _addRangeInput(index, type, color) {
+        value: function _addRangeInput(index, type, color, min, max, initial) {
             var _this = this;
 
             var height = this.height;
             var input = document.createElement('input');
             input.type = 'range';
-            input.max = '200';
+            input.min = min === undefined ? 0 : min;
+            input.max = max === undefined ? 200 : max;
+            input.value = initial === undefined ? 100 : initial;
             (0, _setStyleJs2['default'])(input, {
                 width: '100%',
                 height: height + '%',

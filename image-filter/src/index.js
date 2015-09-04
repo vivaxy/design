@@ -7,21 +7,28 @@ import Range from './range.js';
 import ImageCanvas from './image-canvas.js';
 import Canvas from './canvas.js';
 
-let savedChanges = [100, 100, 100, 100];
+let savedColorChanges = [100, 100, 100, 100, 0];
 
 let canvas = new Canvas();
 
-let range = new Range().on('change', (e) => {
-    savedChanges[e.index] = e.value;
-    let imageData = imageCanvas.getColorMap();
-    let map = Array.prototype.map.call(imageData.data, function (v, i) {
-        return v * savedChanges[i % 4] / 100;
+let range = new Range()
+    .on('change', (e) => {
+        savedColorChanges[e.index] = e.value;
+        let imageData = imageCanvas.getColorMap();
+        let map = Array.prototype.map.call(imageData.data, function (v, i, array) {
+            let anotherValue = v * savedColorChanges[i % 4] / 100;
+            let colorStart = i - i % 4;
+            let color = Array.prototype.slice.call(array, colorStart, colorStart + 4);
+            let averageColor = (color[0] + color[1] + color[2]) * color[3] / 3 / 255;
+            let colorDiff = averageColor - anotherValue;
+            return anotherValue + colorDiff * savedColorChanges[4] / 100;
+        });
+        canvas.draw(map, imageData.width, imageData.height);
     });
-    canvas.draw(map, imageData.width, imageData.height);
-});
 
 let imageCanvas = new ImageCanvas({
     src: './index.jpg'
-}).on('load', () => {
+})
+    .on('load', () => {
         range.emit('change', {});
     });
