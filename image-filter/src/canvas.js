@@ -7,17 +7,18 @@ import setStyle from './set-style.js';
 
 class Canvas {
     constructor() {
+        this.height = 40; // 40%
         this._createCanvas();
     }
 
     _createCanvas() {
         let canvas = document.createElement('canvas');
         canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight * 0.4; // style.height = 40%
+        canvas.height = window.innerHeight * this.height / 100; // style.height = 40%
         setStyle(canvas, {
             display: 'block',
             width: '100%',
-            height: '40%',
+            height: this.height + '%',
             position: 'absolute',
             top: 0,
             left: 0
@@ -28,10 +29,14 @@ class Canvas {
         return this;
     }
 
-    setImage(image) {
-        let canvas = this.canvas;
+    draw(map, width, height) {
         let ctx = this.ctx;
-        ctx.drawImage(image, 0, 0, image.width, image.height, 0, 0, canvas.width, canvas.height);
+        let imageData = ctx.createImageData(width, height);
+        map.forEach(function (value, index) {
+            imageData.data[index] = value;
+        });
+        this.ctx.putImageData(imageData, 0, 0);
+        return this;
     }
 }
 

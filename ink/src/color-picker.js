@@ -11,17 +11,18 @@ import getTouchPosition from './get-touch-position.js';
 class ColorPicker extends EventEmitter {
     constructor() {
         super();
+        this.height = 10; // 10%
         this._createCanvas()._addColor()._bindEvent();
     }
 
     _createCanvas() {
         let canvas = document.createElement('canvas');
         canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight * 0.1; // style.height = 10%
+        canvas.height = window.innerHeight * this.height / 100; // style.height = 10%
         setStyle(canvas, {
             position: 'absolute',
             width: '100%',
-            height: '10%',
+            height: this.height + '%',
             bottom: 0,
             left: 0
         });

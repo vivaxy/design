@@ -9,3 +9,34 @@
 body {
     margin: 0;
 }
+
+input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 36px;
+    width: 16px;
+    border-radius: 3px;
+    background: #fff;
+    cursor: pointer;
+    margin: 0;
+    position: relative;
+}
+
+input::-webkit-slider-thumb:before {
+    content: '';
+    width: 1px;
+    height: 16px;
+    background: #ccc;
+    position: absolute;
+    top: 10px;
+    left: 6px;
+}
+
+input::-webkit-slider-thumb:after {
+    content: '';
+    width: 1px;
+    height: 16px;
+    background: #ccc;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}

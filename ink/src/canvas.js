@@ -10,6 +10,7 @@ import getTouchPosition from './get-touch-position.js';
 
 class Canvas {
     constructor() {
+        this.height = 90; // 90%
         this._createCanvas().setDip({
             r: 255,
             g: 0,
@@ -21,11 +22,11 @@ class Canvas {
     _createCanvas() {
         let canvas = document.createElement('canvas');
         canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight * 0.9; // style.height = 90%
+        canvas.height = window.innerHeight * this.height / 100; // style.height = 90%
         setStyle(canvas, {
             display: 'block',
             width: '100%',
-            height: '90%',
+            height: this.height + '%',
             position: 'absolute',
             top: 0,
             left: 0

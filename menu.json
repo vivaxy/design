@@ -62,5 +62,9 @@
     {
         "name": "ink",
         "link": "ink"
+    },
+    {
+        "name": "image filter",
+        "link": "image-filter"
     }
 ]

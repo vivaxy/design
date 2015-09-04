@@ -34,6 +34,7 @@ var Canvas = (function () {
     function Canvas() {
         _classCallCheck(this, Canvas);
 
+        this.height = 90; // 90%
         this._createCanvas().setDip({
             r: 255,
             g: 0,
@@ -47,11 +48,11 @@ var Canvas = (function () {
         value: function _createCanvas() {
             var canvas = document.createElement('canvas');
             canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight * 0.9; // style.height = 90%
+            canvas.height = window.innerHeight * this.height / 100; // style.height = 90%
             (0, _setStyleJs2['default'])(canvas, {
                 display: 'block',
                 width: '100%',
-                height: '90%',
+                height: this.height + '%',
                 position: 'absolute',
                 top: 0,
                 left: 0
@@ -196,6 +197,7 @@ var ColorPicker = (function (_EventEmitter) {
         _classCallCheck(this, ColorPicker);
 
         _get(Object.getPrototypeOf(ColorPicker.prototype), 'constructor', this).call(this);
+        this.height = 10; // 10%
         this._createCanvas()._addColor()._bindEvent();
     }
 
@@ -204,11 +206,11 @@ var ColorPicker = (function (_EventEmitter) {
         value: function _createCanvas() {
             var canvas = document.createElement('canvas');
             canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight * 0.1; // style.height = 10%
+            canvas.height = window.innerHeight * this.height / 100; // style.height = 10%
             (0, _setStyleJs2['default'])(canvas, {
                 position: 'absolute',
                 width: '100%',
-                height: '10%',
+                height: this.height + '%',
                 bottom: 0,
                 left: 0
             });

@@ -1,4 +1,4 @@
-./dest/index.js: ./dest ./build/event-emitter.js ./build/set-style.js ./build/canvas.js ./build/range.js ./build/index.js
+./dest/index.js: ./dest ./build/event-emitter.js ./build/set-style.js ./build/range.js ./build/image-canvas.js ./build/canvas.js ./build/index.js
 	./node_modules/.bin/browserify ./build/index.js > ./dest/index.js
 
 ./build/event-emitter.js: ./build ./event-emitter/src/event-emitter.js
@@ -9,6 +9,9 @@
 
 ./build/range.js: ./build ./src/range.js
 	./node_modules/.bin/babel ./src/range.js -o ./build/range.js --module-id Range
+
+./build/image-canvas.js: ./build ./src/image-canvas.js
+	./node_modules/.bin/babel ./src/image-canvas.js -o ./build/image-canvas.js --module-id ImageCanvas
 
 ./build/canvas.js: ./build ./src/canvas.js
 	./node_modules/.bin/babel ./src/canvas.js -o ./build/canvas.js --module-id Canvas
