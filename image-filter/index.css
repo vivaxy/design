@@ -15,6 +15,7 @@ input::-webkit-slider-thumb {
     height: 36px;
     width: 16px;
     border-radius: 3px;
+    border: none;
     background: #fff;
     cursor: pointer;
     margin: 0;

@@ -41,6 +41,8 @@ class Range extends EventEmitter {
             top: this.top + height * index + '%',
             left: 0,
             margin: 0,
+            border: 'none',
+            borderRadius: 0,
             webkitAppearance: 'none',
             display: 'block',
             background: color
