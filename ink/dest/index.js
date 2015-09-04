@@ -51,7 +51,7 @@ var Canvas = (function () {
             (0, _setStyleJs2['default'])(canvas, {
                 display: 'block',
                 width: '100%',
-                height: '100%',
+                height: '90%',
                 position: 'absolute',
                 top: 0,
                 left: 0
@@ -73,6 +73,8 @@ var Canvas = (function () {
     }, {
         key: '_bindEvents',
         value: function _bindEvents() {
+            var _this2 = this;
+
             var _this = this;
 
             var canvas = this.canvas;
@@ -82,30 +84,72 @@ var Canvas = (function () {
             var cancelEvent = _isMobileJs2['default'] ? 'touchcancel' : 'mouseout';
 
             var lastPosition = {};
+            var saveTimeout = null;
 
             var moveHandler = function moveHandler(e) {
                 e.preventDefault();
                 var position = (0, _getTouchPositionJs2['default'])(e);
-                _this.dip.paint(lastPosition, position);
+                _this2.dip.paint(lastPosition, position);
                 lastPosition = position;
+                clearTimeout(saveTimeout);
             };
 
             var endHandler = function endHandler(e) {
                 e.preventDefault();
                 lastPosition = (0, _getTouchPositionJs2['default'])(e);
                 canvas.removeEventListener(moveEvent, moveHandler, false);
+                clearTimeout(saveTimeout);
             };
 
             var startHandler = function startHandler(e) {
                 e.preventDefault();
                 lastPosition = (0, _getTouchPositionJs2['default'])(e);
                 canvas.addEventListener(moveEvent, moveHandler, false);
+                saveTimeout = setTimeout(_this._saveCanvas.bind(_this), 1000);
             };
 
             canvas.addEventListener(startEvent, startHandler, false);
             canvas.addEventListener(endEvent, endHandler, false);
             canvas.addEventListener(cancelEvent, endHandler, false);
             return this;
+        }
+    }, {
+        key: '_saveCanvas',
+        value: function _saveCanvas() {
+            var canvas = this.canvas;
+
+            var overlay = document.createElement('div');
+            (0, _setStyleJs2['default'])(overlay, {
+                position: 'absolute',
+                width: '100%',
+                height: '100%',
+                top: 0,
+                left: 0,
+                background: 'rgba(0, 0, 0, 0.8)'
+            });
+
+            var downloadButton = document.createElement('a');
+            (0, _setStyleJs2['default'])(downloadButton, {
+                margin: '40% 5% 0',
+                background: '#fff',
+                borderRadius: '2px',
+                display: 'block',
+                height: '60px',
+                lineHeight: '60px',
+                color: '#000',
+                textDecoration: 'none',
+                textAlign: 'center'
+            });
+            downloadButton.textContent = 'download `ink.png`';
+            downloadButton.target = '_blank';
+            downloadButton.download = 'ink.png';
+            downloadButton.href = canvas.toDataURL('image/png');
+
+            overlay.appendChild(downloadButton);
+            overlay.addEventListener(_isMobileJs2['default'] ? 'touchend' : 'click', function () {
+                document.body.removeChild(overlay);
+            }, false);
+            document.body.appendChild(overlay);
         }
     }]);
 
@@ -205,7 +249,6 @@ var ColorPicker = (function (_EventEmitter) {
             var ctx = this.ctx;
             var event = _isMobileJs2['default'] ? 'touchend' : 'click';
             canvas.addEventListener(event, function (e) {
-                e.stopPropagation(); // should not effects canvas
                 e.preventDefault();
                 var position = (0, _getTouchPositionJs2['default'])(e);
                 var imageData = ctx.getImageData(position.x, 0, 1, 1);
