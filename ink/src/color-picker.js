@@ -52,8 +52,7 @@ class ColorPicker extends EventEmitter {
         let _this = this;
         let canvas = this.canvas;
         let ctx = this.ctx;
-        let event = isMobile ? 'touchend' : 'click';
-        canvas.addEventListener(event, (e) => {
+        canvas.addEventListener(isMobile ? 'touchend' : 'click', (e) => {
             e.preventDefault();
             let position = getTouchPosition(e);
             let imageData = ctx.getImageData(position.x, 0, 1, 1);
@@ -68,6 +67,10 @@ class ColorPicker extends EventEmitter {
                 b: b,
                 a: a
             });
+        }, false);
+        // prevent default page scroll
+        canvas.addEventListener('touchmove', (e) => {
+            e.preventDefault();
         }, false);
         return this;
     }

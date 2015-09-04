@@ -90,7 +90,7 @@ var Canvas = (function () {
                 var position = (0, _getTouchPositionJs2['default'])(e);
                 _this.dip.paint(lastPosition, position);
                 lastPosition = position;
-                if (_this._getDistance(firstPosition, position) > 20) {
+                if (_this._getDistance(firstPosition, position) > 10) {
                     clearTimeout(saveTimeout);
                 }
             };
@@ -241,8 +241,7 @@ var ColorPicker = (function (_EventEmitter) {
             var _this = this;
             var canvas = this.canvas;
             var ctx = this.ctx;
-            var event = _isMobileJs2['default'] ? 'touchend' : 'click';
-            canvas.addEventListener(event, function (e) {
+            canvas.addEventListener(_isMobileJs2['default'] ? 'touchend' : 'click', function (e) {
                 e.preventDefault();
                 var position = (0, _getTouchPositionJs2['default'])(e);
                 var imageData = ctx.getImageData(position.x, 0, 1, 1);
@@ -257,6 +256,10 @@ var ColorPicker = (function (_EventEmitter) {
                     b: b,
                     a: a
                 });
+            }, false);
+            // prevent default page scroll
+            canvas.addEventListener('touchmove', function (e) {
+                e.preventDefault();
             }, false);
             return this;
         }

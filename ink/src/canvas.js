@@ -62,7 +62,7 @@ class Canvas {
             let position = getTouchPosition(e);
             _this.dip.paint(lastPosition, position);
             lastPosition = position;
-            if (_this._getDistance(firstPosition, position) > 20) {
+            if (_this._getDistance(firstPosition, position) > 10) {
                 clearTimeout(saveTimeout);
             }
         };
