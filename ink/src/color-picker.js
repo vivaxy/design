@@ -17,7 +17,7 @@ class ColorPicker extends EventEmitter {
     _createCanvas() {
         let canvas = document.createElement('canvas');
         canvas.width = window.innerWidth;
-        canvas.height = 1;
+        canvas.height = window.innerHeight * 0.1; // style.height = 10%
         setStyle(canvas, {
             position: 'absolute',
             width: '100%',
@@ -49,7 +49,6 @@ class ColorPicker extends EventEmitter {
     }
 
     _bindEvent() {
-        let _this = this;
         let canvas = this.canvas;
         let ctx = this.ctx;
         canvas.addEventListener(isMobile ? 'touchend' : 'click', (e) => {
@@ -57,7 +56,7 @@ class ColorPicker extends EventEmitter {
             let position = getTouchPosition(e);
             let imageData = ctx.getImageData(position.x, 0, 1, 1);
             let color = imageData.data;
-            _this.emit('pick', {
+            this.emit('pick', {
                 r: color[0],
                 g: color[1],
                 b: color[2],

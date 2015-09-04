@@ -21,7 +21,7 @@ class Canvas {
     _createCanvas() {
         let canvas = document.createElement('canvas');
         canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        canvas.height = window.innerHeight * 0.9; // style.height = 90%
         setStyle(canvas, {
             display: 'block',
             width: '100%',
@@ -45,8 +45,6 @@ class Canvas {
     }
 
     _bindEvents() {
-        let _this = this;
-
         let canvas = this.canvas;
         let startEvent = isMobile ? 'touchstart' : 'mousedown';
         let moveEvent = isMobile ? 'touchmove' : 'mousemove';
@@ -60,9 +58,9 @@ class Canvas {
         let moveHandler = (e) => {
             e.preventDefault();
             let position = getTouchPosition(e);
-            _this.dip.paint(lastPosition, position);
+            this.dip.paint(lastPosition, position);
             lastPosition = position;
-            if (_this._getDistance(firstPosition, position) > 10) {
+            if (this._getDistance(firstPosition, position) > 10) {
                 clearTimeout(saveTimeout);
             }
         };
@@ -79,7 +77,7 @@ class Canvas {
             lastPosition = getTouchPosition(e);
             firstPosition = getTouchPosition(e);
             canvas.addEventListener(moveEvent, moveHandler, false);
-            saveTimeout = setTimeout(_this._saveCanvas.bind(_this), 1000);
+            saveTimeout = setTimeout(this._saveCanvas.bind(this), 1000);
         };
 
         canvas.addEventListener(startEvent, startHandler, false);

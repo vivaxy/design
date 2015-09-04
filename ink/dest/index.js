@@ -47,7 +47,7 @@ var Canvas = (function () {
         value: function _createCanvas() {
             var canvas = document.createElement('canvas');
             canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+            canvas.height = window.innerHeight * 0.9; // style.height = 90%
             (0, _setStyleJs2['default'])(canvas, {
                 display: 'block',
                 width: '100%',
@@ -204,7 +204,7 @@ var ColorPicker = (function (_EventEmitter) {
         value: function _createCanvas() {
             var canvas = document.createElement('canvas');
             canvas.width = window.innerWidth;
-            canvas.height = 1;
+            canvas.height = window.innerHeight * 0.1; // style.height = 10%
             (0, _setStyleJs2['default'])(canvas, {
                 position: 'absolute',
                 width: '100%',
@@ -239,23 +239,19 @@ var ColorPicker = (function (_EventEmitter) {
         key: '_bindEvent',
         value: function _bindEvent() {
             var _this = this;
+
             var canvas = this.canvas;
             var ctx = this.ctx;
             canvas.addEventListener(_isMobileJs2['default'] ? 'touchend' : 'click', function (e) {
                 e.preventDefault();
                 var position = (0, _getTouchPositionJs2['default'])(e);
-                console.log(position);
                 var imageData = ctx.getImageData(position.x, 0, 1, 1);
                 var color = imageData.data;
-                var r = color[0];
-                var g = color[1];
-                var b = color[2];
-                var a = color[3] / 256; // 0 ~ 255
                 _this.emit('pick', {
-                    r: r,
-                    g: g,
-                    b: b,
-                    a: a
+                    r: color[0],
+                    g: color[1],
+                    b: color[2],
+                    a: color[3] / 256 // 0 ~ 255
                 });
             }, false);
             // prevent default page scroll
