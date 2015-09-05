@@ -53,7 +53,8 @@ class Range extends EventEmitter {
             borderRadius: 0,
             webkitAppearance: 'none',
             display: 'block',
-            background: color
+            background: color,
+            outline: 'none'
         });
         input.addEventListener('change', (e)=> {
             this.emit('change', {

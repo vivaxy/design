@@ -371,7 +371,8 @@ var Range = (function (_EventEmitter) {
                 borderRadius: 0,
                 webkitAppearance: 'none',
                 display: 'block',
-                background: color
+                background: color,
+                outline: 'none'
             });
             input.addEventListener('change', function (e) {
                 _this.emit('change', {
