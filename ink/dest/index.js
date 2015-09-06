@@ -121,22 +121,41 @@ var Canvas = (function () {
         value: function _saveCanvas() {
             var canvas = this.canvas;
 
+            var hint = document.createElement('div');
+            (0, _setStyleJs2['default'])(hint, {
+                position: 'absolute',
+                width: '100%',
+                height: 100 - this.height + '%',
+                bottom: 0,
+                left: 0,
+                background: '#fff',
+                color: '#000',
+                textAlign: 'center'
+            });
+            hint.textContent = 'tap and hold the image to save';
+
             var img = document.createElement('img');
             (0, _setStyleJs2['default'])(img, {
                 position: 'absolute',
                 display: 'block',
                 width: '100%',
-                height: '100%',
+                height: this.height + '%',
                 top: 0,
                 left: 0,
                 background: '#fff'
             });
             img.src = canvas.toDataURL('image/png');
 
-            img.addEventListener(_isMobileJs2['default'] ? 'touchend' : 'click', function () {
-                document.body.removeChild(img);
-            }, false);
-            document.body.appendChild(img);
+            var elementList = [hint, img];
+
+            elementList.forEach(function (ele) {
+                ele.addEventListener(_isMobileJs2['default'] ? 'touchend' : 'click', function () {
+                    elementList.forEach(function (e) {
+                        document.body.removeChild(e);
+                    });
+                }, false);
+                document.body.appendChild(ele);
+            });
         }
     }, {
         key: '_getDistance',

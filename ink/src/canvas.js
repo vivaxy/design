@@ -90,22 +90,41 @@ class Canvas {
     _saveCanvas() {
         let canvas = this.canvas;
 
+        let hint = document.createElement('div');
+        setStyle(hint, {
+            position: 'absolute',
+            width: '100%',
+            height: (100 - this.height) + '%',
+            bottom: 0,
+            left: 0,
+            background: '#fff',
+            color: '#000',
+            textAlign: 'center'
+        });
+        hint.textContent = 'tap and hold the image to save';
+
         let img = document.createElement('img');
         setStyle(img, {
             position: 'absolute',
             display: 'block',
             width: '100%',
-            height: '100%',
+            height: this.height + '%',
             top: 0,
             left: 0,
             background: '#fff'
         });
         img.src = canvas.toDataURL('image/png');
-
-        img.addEventListener(isMobile ? 'touchend' : 'click', ()=> {
-            document.body.removeChild(img);
-        }, false);
-        document.body.appendChild(img);
+        
+        let elementList = [hint, img];
+        
+        elementList.forEach((ele) => {
+            ele.addEventListener(isMobile ? 'touchend' : 'click', ()=> {
+                elementList.forEach((e) =>{
+                    document.body.removeChild(e);
+                });
+            }, false);
+            document.body.appendChild(ele);
+        });
     }
 
     _getDistance(from, to) {
