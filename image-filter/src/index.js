@@ -4,15 +4,18 @@
  */
 'use strict';
 import Range from './range.js';
-import ImageCanvas from './image-canvas.js';
 import Canvas from './canvas.js';
+import Loading from './loading.js';
+import ImageCanvas from './image-canvas.js';
 
 let savedColorChanges = [100, 100, 100, 255, 0];
 
 let canvas = new Canvas();
+let loading = new Loading();
 
 let range = new Range()
     .on('change', (e) => {
+        loading.show();
         savedColorChanges[e.index] = e.value;
         let imageData = imageCanvas.getColorMap();
         let map = Array.prototype.map.call(imageData.data, function (v, i) {
@@ -26,6 +29,7 @@ let range = new Range()
             let colorDiff = averageColor - v;
             return v + colorDiff * savedColorChanges[4] / 100;
         }), imageData.width, imageData.height);
+        loading.hide();
     });
 
 let imageCanvas = new ImageCanvas({

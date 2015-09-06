@@ -1,4 +1,4 @@
-./dest/index.js: ./dest ./build/event-emitter.js ./build/set-style.js ./build/range.js ./build/image-canvas.js ./build/canvas.js ./build/index.js
+./dest/index.js: ./dest ./build/event-emitter.js ./build/set-style.js ./build/range.js ./build/image-canvas.js ./build/canvas.js ./build/index.js ./build/loading.js
 	./node_modules/.bin/browserify ./build/index.js > ./dest/index.js
 
 ./build/event-emitter.js: ./build ./event-emitter/src/event-emitter.js
@@ -6,6 +6,9 @@
 
 ./build/set-style.js: ./build ./src/set-style.js
 	./node_modules/.bin/babel ./src/set-style.js -o ./build/set-style.js
+
+./build/loading.js: ./build ./src/loading.js
+	./node_modules/.bin/babel ./src/loading.js -o ./build/loading.js --module-id Loading
 
 ./build/range.js: ./build ./src/range.js
 	./node_modules/.bin/babel ./src/range.js -o ./build/range.js --module-id Range

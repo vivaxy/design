@@ -64,7 +64,7 @@ var Canvas = (function () {
 exports['default'] = Canvas;
 module.exports = exports['default'];
 
-},{"./set-style.js":6}],2:[function(require,module,exports){
+},{"./set-style.js":7}],2:[function(require,module,exports){
 /**
  * @since 15-09-02 10:25
  * @author vivaxy
@@ -234,7 +234,7 @@ var ImageCanvas = (function (_EventEmitter) {
 exports['default'] = ImageCanvas;
 module.exports = exports['default'];
 
-},{"./event-emitter.js":2,"./set-style.js":6}],4:[function(require,module,exports){
+},{"./event-emitter.js":2,"./set-style.js":7}],4:[function(require,module,exports){
 /**
  * @since 15-09-04 12:26
  * @author vivaxy
@@ -247,19 +247,25 @@ var _rangeJs = require('./range.js');
 
 var _rangeJs2 = _interopRequireDefault(_rangeJs);
 
-var _imageCanvasJs = require('./image-canvas.js');
-
-var _imageCanvasJs2 = _interopRequireDefault(_imageCanvasJs);
-
 var _canvasJs = require('./canvas.js');
 
 var _canvasJs2 = _interopRequireDefault(_canvasJs);
 
+var _loadingJs = require('./loading.js');
+
+var _loadingJs2 = _interopRequireDefault(_loadingJs);
+
+var _imageCanvasJs = require('./image-canvas.js');
+
+var _imageCanvasJs2 = _interopRequireDefault(_imageCanvasJs);
+
 var savedColorChanges = [100, 100, 100, 255, 0];
 
 var canvas = new _canvasJs2['default']();
+var loading = new _loadingJs2['default']();
 
 var range = new _rangeJs2['default']().on('change', function (e) {
+    loading.show();
     savedColorChanges[e.index] = e.value;
     var imageData = imageCanvas.getColorMap();
     var map = Array.prototype.map.call(imageData.data, function (v, i) {
@@ -273,6 +279,7 @@ var range = new _rangeJs2['default']().on('change', function (e) {
         var colorDiff = averageColor - v;
         return v + colorDiff * savedColorChanges[4] / 100;
     }), imageData.width, imageData.height);
+    loading.hide();
 });
 
 var imageCanvas = new _imageCanvasJs2['default']({
@@ -281,7 +288,48 @@ var imageCanvas = new _imageCanvasJs2['default']({
     range.emit('change', {});
 });
 
-},{"./canvas.js":1,"./image-canvas.js":3,"./range.js":5}],5:[function(require,module,exports){
+},{"./canvas.js":1,"./image-canvas.js":3,"./loading.js":5,"./range.js":6}],5:[function(require,module,exports){
+/**
+ * @since 15-09-06 09:28
+ * @author vivaxy
+ */
+'use strict';
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+var Loading = (function () {
+    function Loading() {
+        var container = arguments.length <= 0 || arguments[0] === undefined ? document.querySelector('loading') : arguments[0];
+
+        _classCallCheck(this, Loading);
+
+        this.container = container;
+    }
+
+    _createClass(Loading, [{
+        key: 'show',
+        value: function show() {
+            this.container.classList.remove('hide');
+        }
+    }, {
+        key: 'hide',
+        value: function hide() {
+            this.container.classList.add('hide');
+        }
+    }]);
+
+    return Loading;
+})();
+
+exports['default'] = Loading;
+module.exports = exports['default'];
+
+},{}],6:[function(require,module,exports){
 /**
  * @since 15-09-04 13:58
  * @author vivaxy
@@ -391,7 +439,7 @@ var Range = (function (_EventEmitter) {
 exports['default'] = Range;
 module.exports = exports['default'];
 
-},{"./event-emitter.js":2,"./set-style.js":6}],6:[function(require,module,exports){
+},{"./event-emitter.js":2,"./set-style.js":7}],7:[function(require,module,exports){
 /**
  * @since 15-09-03 12:11
  * @author vivaxy
