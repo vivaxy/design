@@ -263,7 +263,7 @@ var savedColorChanges = [100, 100, 100, 255, 0];
 
 var canvas = new _canvasJs2['default']();
 var loading = new _loadingJs2['default']();
-var worker = new Worker('./build/worker.js');
+var worker = new Worker('./dest/worker.js');
 
 worker.addEventListener('message', function (e) {
     var data = e.data;

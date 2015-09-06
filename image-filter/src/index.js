@@ -12,7 +12,7 @@ let savedColorChanges = [100, 100, 100, 255, 0];
 
 let canvas = new Canvas();
 let loading = new Loading();
-let worker = new Worker('./build/worker.js');
+let worker = new Worker('./dest/worker.js');
 
 worker.addEventListener('message', (e) => {
     let data = e.data;
