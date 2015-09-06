@@ -12,24 +12,23 @@ let savedColorChanges = [100, 100, 100, 255, 0];
 
 let canvas = new Canvas();
 let loading = new Loading();
+let worker = new Worker('./build/worker.js');
+
+worker.addEventListener('message', (e) => {
+    let data = e.data;
+    canvas.draw(data.imageData, data.width, data.height);
+    loading.hide();
+}, false);
 
 let range = new Range()
     .on('change', (e) => {
         loading.show();
         savedColorChanges[e.index] = e.value;
         let imageData = imageCanvas.getColorMap();
-        let map = Array.prototype.map.call(imageData.data, function (v, i) {
-            return v * savedColorChanges[i % 4] / 100;
+        worker.postMessage({
+            savedColorChanges: savedColorChanges,
+            imageData: imageData
         });
-        // grey scale
-        canvas.draw(map.map((v, i, array) => {
-            let colorStart = i - i % 4;
-            let color = Array.prototype.slice.call(array, colorStart, colorStart + 4);
-            let averageColor = (color[0] + color[1] + color[2]) * color[3] / 3 / 255;
-            let colorDiff = averageColor - v;
-            return v + colorDiff * savedColorChanges[4] / 100;
-        }), imageData.width, imageData.height);
-        loading.hide();
     });
 
 let imageCanvas = new ImageCanvas({

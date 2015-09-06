@@ -263,23 +263,22 @@ var savedColorChanges = [100, 100, 100, 255, 0];
 
 var canvas = new _canvasJs2['default']();
 var loading = new _loadingJs2['default']();
+var worker = new Worker('./build/worker.js');
+
+worker.addEventListener('message', function (e) {
+    var data = e.data;
+    canvas.draw(data.imageData, data.width, data.height);
+    loading.hide();
+}, false);
 
 var range = new _rangeJs2['default']().on('change', function (e) {
     loading.show();
     savedColorChanges[e.index] = e.value;
     var imageData = imageCanvas.getColorMap();
-    var map = Array.prototype.map.call(imageData.data, function (v, i) {
-        return v * savedColorChanges[i % 4] / 100;
+    worker.postMessage({
+        savedColorChanges: savedColorChanges,
+        imageData: imageData
     });
-    // grey scale
-    canvas.draw(map.map(function (v, i, array) {
-        var colorStart = i - i % 4;
-        var color = Array.prototype.slice.call(array, colorStart, colorStart + 4);
-        var averageColor = (color[0] + color[1] + color[2]) * color[3] / 3 / 255;
-        var colorDiff = averageColor - v;
-        return v + colorDiff * savedColorChanges[4] / 100;
-    }), imageData.width, imageData.height);
-    loading.hide();
 });
 
 var imageCanvas = new _imageCanvasJs2['default']({

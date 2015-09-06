@@ -1,3 +1,8 @@
+build-dest: ./dest/worker.js ./dest/index.js
+
+./dest/worker.js: ./dest ./build/worker.js
+	./node_modules/.bin/browserify ./build/worker.js > ./dest/worker.js
+
 ./dest/index.js: ./dest ./build/event-emitter.js ./build/set-style.js ./build/range.js ./build/image-canvas.js ./build/canvas.js ./build/index.js ./build/loading.js
 	./node_modules/.bin/browserify ./build/index.js > ./dest/index.js
 
@@ -22,8 +27,13 @@
 ./build/index.js: ./build ./src/index.js
 	./node_modules/.bin/babel ./src/index.js -o ./build/index.js
 
+./build/worker.js: ./build ./src/worker.js
+	./node_modules/.bin/babel ./src/worker.js -o ./build/worker.js
+
 ./dest:
 	mkdir ./dest
 
 ./build:
 	mkdir ./build
+
+.PHONY: build-dest
