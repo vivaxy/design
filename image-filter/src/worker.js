@@ -8,7 +8,7 @@ self.addEventListener('message', function (e) {
     let data = e.data;
     let savedColorChanges = data.savedColorChanges;
     let imageData = data.imageData;
-    
+
     let map = Array.prototype.map.call(imageData.data, (v, i) => v * savedColorChanges[i % 4] / 100);
     let imageDataResult = map.map((v, i, array) => {
         let colorStart = i - i % 4;
