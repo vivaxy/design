@@ -47,8 +47,8 @@ var Canvas = (function () {
         key: '_createCanvas',
         value: function _createCanvas() {
             var canvas = document.createElement('canvas');
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight * this.height / 100; // style.height = 90%
+            canvas.width = document.body.clientWidth;
+            canvas.height = document.body.clientHeight * this.height / 100; // style.height = 90%
             (0, _setStyleJs2['default'])(canvas, {
                 display: 'block',
                 width: '100%',
@@ -224,8 +224,8 @@ var ColorPicker = (function (_EventEmitter) {
         key: '_createCanvas',
         value: function _createCanvas() {
             var canvas = document.createElement('canvas');
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight * this.height / 100; // style.height = 10%
+            canvas.width = document.body.clientWidth;
+            canvas.height = document.body.clientHeight * this.height / 100; // style.height = 10%
             (0, _setStyleJs2['default'])(canvas, {
                 position: 'absolute',
                 width: '100%',

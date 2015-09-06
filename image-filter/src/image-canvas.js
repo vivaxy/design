@@ -15,8 +15,8 @@ class ImageCanvas extends EventEmitter {
 
     _createCanvas() {
         let canvas = document.createElement('canvas');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight * this.height / 100; // style.height = 40%
+        canvas.width = document.body.clientWidth;
+        canvas.height = document.body.clientHeight * this.height / 100; // style.height = 40%
         setStyle(canvas, {
             display: 'none',
             width: '100%',

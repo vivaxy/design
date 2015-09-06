@@ -17,8 +17,8 @@ class ColorPicker extends EventEmitter {
 
     _createCanvas() {
         let canvas = document.createElement('canvas');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight * this.height / 100; // style.height = 10%
+        canvas.width = document.body.clientWidth;
+        canvas.height = document.body.clientHeight * this.height / 100; // style.height = 10%
         setStyle(canvas, {
             position: 'absolute',
             width: '100%',

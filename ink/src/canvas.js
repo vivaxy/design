@@ -21,8 +21,8 @@ class Canvas {
 
     _createCanvas() {
         let canvas = document.createElement('canvas');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight * this.height / 100; // style.height = 90%
+        canvas.width = document.body.clientWidth;
+        canvas.height = document.body.clientHeight * this.height / 100; // style.height = 90%
         setStyle(canvas, {
             display: 'block',
             width: '100%',
@@ -114,12 +114,12 @@ class Canvas {
             background: '#fff'
         });
         img.src = canvas.toDataURL('image/png');
-        
+
         let elementList = [hint, img];
-        
+
         elementList.forEach((ele) => {
             ele.addEventListener(isMobile ? 'touchend' : 'click', ()=> {
-                elementList.forEach((e) =>{
+                elementList.forEach((e) => {
                     document.body.removeChild(e);
                 });
             }, false);
