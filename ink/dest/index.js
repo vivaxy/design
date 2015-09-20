@@ -172,7 +172,6 @@ var Canvas = (function () {
 
 exports['default'] = Canvas;
 module.exports = exports['default'];
-
 },{"./dip.js":3,"./get-touch-position.js":5,"./is-mobile.js":7,"./set-style.js":8}],2:[function(require,module,exports){
 /**
  * @since 15-09-03 12:04
@@ -288,7 +287,6 @@ var ColorPicker = (function (_EventEmitter) {
 
 exports['default'] = ColorPicker;
 module.exports = exports['default'];
-
 },{"./event-emitter.js":4,"./get-touch-position.js":5,"./is-mobile.js":7,"./set-style.js":8}],3:[function(require,module,exports){
 /**
  * @since 15-09-03 11:07
@@ -378,7 +376,6 @@ var Dip = (function () {
 
 exports['default'] = Dip;
 module.exports = exports['default'];
-
 },{}],4:[function(require,module,exports){
 /**
  * @since 15-09-02 10:25
@@ -486,7 +483,6 @@ exports['default'] = function (e) {
 };
 
 module.exports = exports['default'];
-
 },{"./is-mobile.js":7}],6:[function(require,module,exports){
 /**
  * @since 15-09-03 10:06
@@ -510,7 +506,6 @@ var colorPicker = new _colorPickerJs2['default']();
 colorPicker.on('pick', function (color) {
   canvas.setDip(color);
 });
-
 },{"./canvas.js":1,"./color-picker.js":2}],7:[function(require,module,exports){
 /**
  * @since 15-09-03 10:54
@@ -530,7 +525,6 @@ exports['default'] = (function () {
 })();
 
 module.exports = exports['default'];
-
 },{}],8:[function(require,module,exports){
 /**
  * @since 15-09-03 12:11
@@ -550,5 +544,4 @@ exports['default'] = function (element, styleObject) {
 };
 
 module.exports = exports['default'];
-
 },{}]},{},[6]);
