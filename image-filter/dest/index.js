@@ -63,7 +63,6 @@ var Canvas = (function () {
 
 exports['default'] = Canvas;
 module.exports = exports['default'];
-
 },{"./set-style.js":7}],2:[function(require,module,exports){
 /**
  * @since 15-09-02 10:25
@@ -233,7 +232,6 @@ var ImageCanvas = (function (_EventEmitter) {
 
 exports['default'] = ImageCanvas;
 module.exports = exports['default'];
-
 },{"./event-emitter.js":2,"./set-style.js":7}],4:[function(require,module,exports){
 /**
  * @since 15-09-04 12:26
@@ -286,7 +284,6 @@ var imageCanvas = new _imageCanvasJs2['default']({
 }).on('load', function () {
     range.emit('change', {});
 });
-
 },{"./canvas.js":1,"./image-canvas.js":3,"./loading.js":5,"./range.js":6}],5:[function(require,module,exports){
 /**
  * @since 15-09-06 09:28
@@ -327,7 +324,6 @@ var Loading = (function () {
 
 exports['default'] = Loading;
 module.exports = exports['default'];
-
 },{}],6:[function(require,module,exports){
 /**
  * @since 15-09-04 13:58
@@ -437,7 +433,6 @@ var Range = (function (_EventEmitter) {
 
 exports['default'] = Range;
 module.exports = exports['default'];
-
 },{"./event-emitter.js":2,"./set-style.js":7}],7:[function(require,module,exports){
 /**
  * @since 15-09-03 12:11
@@ -457,5 +452,4 @@ exports['default'] = function (element, styleObject) {
 };
 
 module.exports = exports['default'];
-
 },{}]},{},[4]);

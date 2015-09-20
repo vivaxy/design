@@ -26,5 +26,4 @@ self.addEventListener('message', function (e) {
         height: imageData.height
     });
 }, false);
-
 },{}]},{},[1]);
