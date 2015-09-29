@@ -1,6 +1,11 @@
 .loading1 .inner {
-    position: relative;
-    top: 150px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 140px;
+    height: 140px;
+    margin-left: -70px;
+    margin-top: -70px;
     -webkit-transform: scale(0.25);
     transform: scale(0.25);
 }
@@ -9,10 +14,11 @@
     width: 140px;
     height: 140px;
     margin-left: -70px;
+    margin-top: -70px;
     border-radius: 70px;
     background: #29d;
     position: absolute;
-    top: 0;
+    top: 50%;
     left: 50%;
     z-index: 1911;
     -webkit-animation: pace-bounce 1s infinite;

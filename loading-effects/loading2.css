@@ -1,0 +1,16 @@
+/**
+ * @since 2015-09-29 14:24
+ * @author vivaxy
+ */
+.loading2 .inner {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -50px;
+    margin-left: -50px;
+    background-image: url(./loading2.svg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
