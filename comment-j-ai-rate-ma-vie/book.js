@@ -1,14 +1,9 @@
 $(document).ready(function () {
     $('#full-page').fullpage();
-});
-
-var $img = $('img');
-$img.ready(function () {
-    var width = $img.width(),
-        height = $img.height();
-    if (height / width > window.innerHeight / window.innerWidth) {
-        $img.height(window.innerHeight);
+    var $img = $('img');
+    if ($img.width() / $img.height() > window.innerWidth / window.innerHeight) {
+        $img.css('width', '100%');
     } else {
-        $img.width(window.innerWidth);
+        $img.css('height', '100%');
     }
 });
