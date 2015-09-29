@@ -3,13 +3,13 @@
  * @author vivaxy
  */
 .loading2 .inner {
-    width: 100px;
-    height: 100px;
+    width: 32px;
+    height: 32px;
     position: absolute;
     top: 50%;
     left: 50%;
-    margin-top: -50px;
-    margin-left: -50px;
+    margin-top: -16px;
+    margin-left: -16px;
     background-image: url(./loading2.svg);
     background-size: 100%;
     background-repeat: no-repeat;

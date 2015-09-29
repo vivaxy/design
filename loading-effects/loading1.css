@@ -20,7 +20,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    z-index: 1911;
+    z-index: 91;
     -webkit-animation: pace-bounce 1s infinite;
     -moz-animation: pace-bounce 1s infinite;
     -o-animation: pace-bounce 1s infinite;
@@ -33,7 +33,7 @@
     display: block;
     left: 50%;
     bottom: 0;
-    z-index: 1910;
+    z-index: 90;
     margin-left: -30px;
     width: 60px;
     height: 75px;
@@ -57,7 +57,8 @@
         top: 0;
         -webkit-animation-timing-function: ease-in;
     }
-    40% {}
+    40% {
+    }
     50% {
         top: 140px;
         height: 140px;
@@ -90,7 +91,8 @@
         top: 0;
         -moz-animation-timing-function: ease-in;
     }
-    40% {}
+    40% {
+    }
     50% {
         top: 140px;
         height: 140px;
@@ -106,12 +108,14 @@
         top: 120px;
         height: 140px;
         border-radius: 70px;
-        -moz-animation-timing-function: ease-out;}
+        -moz-animation-timing-function: ease-out;
+    }
     95% {
         top: 0;
         -moz-animation-timing-function: ease-in;
     }
-    100% {top: 0;
+    100% {
+        top: 0;
         -moz-animation-timing-function: ease-in;
     }
 }
