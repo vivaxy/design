@@ -66,5 +66,9 @@
     {
         "name": "image filter",
         "link": "image-filter"
+    },
+    {
+        "name": "switchery",
+        "link": "switchery"
     }
 ]

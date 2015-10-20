@@ -1,0 +1,66 @@
+/**
+ * @since 2015-10-20 11:21
+ * @author vivaxy
+ */
+* {
+    box-sizing: border-box;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    overflow: hidden;
+    height: 100%;
+}
+
+.switchery {
+    display: block;
+    position: relative;
+    -webkit-appearance: none;
+    outline: none;
+    width: 50px;
+    height: 30px;
+    border: 1px solid rgb(100, 189, 99);
+    border-radius: 20px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
+    box-sizing: content-box;
+    background-clip: content-box;
+    box-shadow: rgb(100, 189, 99) 0 0 0 16px inset;
+    transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;
+    background-color: rgb(100, 189, 99);
+}
+
+.switchery:checked {
+    border-color: rgb(223, 223, 223);
+    box-shadow: rgb(223, 223, 223) 0 0 0 0 inset;
+    background-color: rgb(255, 255, 255);
+    transition: border 0.4s, box-shadow 0.4s;
+}
+
+.switchery:before {
+    display: block;
+    content: '';
+    background-color: rgb(255, 255, 255);
+    left: 20px;
+    transition: background-color 0.4s, left 0.2s;
+    border-radius: 100%;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+    height: 30px;
+    position: absolute;
+    top: 0;
+    width: 30px;
+}
+
+.switchery:checked:before {
+    left: 0;
+}
+
+.switchery:disabled {
+    opacity: 0.5;
+}
