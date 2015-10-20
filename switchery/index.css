@@ -18,6 +18,10 @@ body {
 }
 
 .switchery {
+    margin: 30px;
+}
+
+.switchery {
     display: block;
     position: relative;
     -webkit-appearance: none;
