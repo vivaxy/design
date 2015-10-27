@@ -12,16 +12,8 @@
         "link": "snow"
     },
     {
-        "name": "common list",
-        "link": "common-list"
-    },
-    {
         "name": "checkbox",
         "link": "checkbox"
-    },
-    {
-        "name": "fixed bar",
-        "link": "fixed-bar"
     },
     {
         "name": "shuffling horizontal",
