@@ -1,0 +1,63 @@
+/**
+ * @since 2015-11-05 13:00
+ * @author vivaxy
+ */
+* {
+    box-sizing: border-box;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    overflow: hidden;
+    height: 100%;
+}
+
+input[type="radio"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    position: relative;
+    border: 2px solid #333;
+    cursor: pointer;
+}
+
+input[type="radio"]:hover {
+    border-color: #f63;
+}
+
+input[type="radio"]:checked:before {
+    content: '';
+    width: 12px;
+    height: 12px;
+    border-radius: 8px;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    background-color: #333;
+}
+
+input[type="radio"]:checked:hover:before {
+    background-color: #f63;
+}
+
+input[type="radio"]:disabled {
+    border-color: #999;
+    cursor: default;
+}
+
+input[type="radio"]:disabled:checked:before {
+    background-color: #999;
+}
+
+input {
+    margin: 20px;
+}

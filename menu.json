@@ -62,5 +62,9 @@
     {
         "name": "switchery",
         "link": "switchery"
+    },
+    {
+        "name": "radio",
+        "link": "radio"
     }
 ]

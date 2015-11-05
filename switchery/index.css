@@ -25,6 +25,7 @@ body {
     display: block;
     position: relative;
     -webkit-appearance: none;
+    -moz-appearance: none;
     appearance: none;
     outline: none;
     border-radius: 20px;
