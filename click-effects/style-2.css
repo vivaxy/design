@@ -1,4 +1,4 @@
-.click2 .button {
+.page[data-style="2"] .button {
     margin-top: -25px;
     margin-left: -50px;
     width: 100px;
@@ -10,7 +10,7 @@
     transition: all 0.3s;
 }
 
-.click2 .button.clicked {
+.page[data-style="2"] .button.clicked {
     box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
     -webkit-transform: translateY(3px);
     transform: translateY(3px);

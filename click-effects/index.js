@@ -2,7 +2,7 @@
  * @since 150501 16:44
  * @author vivaxy
  */
-Array.prototype.slice.call(document.querySelectorAll('.button')).forEach(function (button, index) {
+Array.prototype.forEach.call(document.querySelectorAll('.page[data-animation="class-name"] .button'), function (button) {
     button.addEventListener('click', function () {
         this.classList.add('clicked');
     });

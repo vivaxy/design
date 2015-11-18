@@ -1,5 +1,5 @@
 /* Sanja */
-.click1 .button {
+.page[data-style="1"] .button {
     margin-top: -15px;
     margin-left: -15px;
     border-radius: 50%;
@@ -10,7 +10,7 @@
     line-height: 30px;
 }
 
-.click1 .button::after {
+.page[data-style="1"] .button::after {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -24,7 +24,7 @@
     background: rgba(111, 148, 182, 0.1);
 }
 
-.click1 .button.clicked::after {
+.page[data-style="1"] .button.clicked::after {
     -webkit-animation: anim-effect-sanja 1s ease-out forwards;
     animation: anim-effect-sanja 1s ease-out forwards;
 }

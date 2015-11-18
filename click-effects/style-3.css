@@ -1,0 +1,10 @@
+.page[data-style="3"] .button {
+    margin-top: -25px;
+    margin-left: -50px;
+    width: 100px;
+    height: 50px;
+    background-color: rgb(255, 102, 51);
+    color: #fff;
+    line-height: 50px;
+    transition: all 0.3s;
+}
