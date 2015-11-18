@@ -34,14 +34,13 @@ var RippleButton = function (element) {
         element.appendChild(ripple);
 
         setTimeout(function () {
-            rippleStyle.transition = 'transform ' + animationDuration + 'ms, background-color ' + animationDuration + 'ms';
+            rippleStyle.transition = 'transform ' + animationDuration + 'ms ease-out, background-color ' + animationDuration + 'ms ease-out';
             rippleStyle.transform = 'scale(1)';
             rippleStyle.backgroundColor = 'rgba(0, 0, 0, 0)';
             setTimeout(function () {
                 element.removeChild(ripple);
             }, animationDuration);
         }, 0);
-
     });
 };
 
