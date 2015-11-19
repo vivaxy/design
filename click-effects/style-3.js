@@ -6,42 +6,58 @@
 var RippleButton = function (element) {
 
     element.style.overflow = 'hidden';
-    element.addEventListener('touchstart', function (e) {
+    var ripple = document.createElement('div');
+    var animationDuration = 400;
+
+    var startHandler = function (e) {
         e.stopPropagation();
         var rect = element.getBoundingClientRect();
-        var ripple = document.createElement('div');
         var rippleStyle = ripple.style;
-        var rippleRadius = rect.width;
-        if (rect.height > rect.width) {
-            rippleRadius = rect.height;
-        }
-        var animationDuration = 400;
+        var rippleRadius = Math.sqrt(rect.width * rect.width + rect.height * rect.height);
 
         rippleStyle.position = 'absolute';
         rippleStyle.width = rippleRadius * 2 + 'px';
         rippleStyle.height = rippleRadius * 2 + 'px';
         rippleStyle.borderRadius = '50%';
         rippleStyle.backgroundColor = 'rgba(0, 0, 0, 0.2)';
+        rippleStyle.opacity = '1';
         rippleStyle.transform = 'scale(0)';
 
-        var touches = e.touches;
-        var touch = touches[0];
-        var x = touch.offsetX || touch.clientX - rect.left;
-        var y = touch.offsetY || touch.clientY - rect.top;
+        var touch = e && e.touches && e.touches.length ? e.touches[0] : e;
+        var x = touch.clientX - rect.left;
+        var y = touch.clientY - rect.top;
         rippleStyle.left = x - rippleRadius + 'px';
         rippleStyle.top = y - rippleRadius + 'px';
 
         element.appendChild(ripple);
-
+        
         setTimeout(function () {
-            rippleStyle.transition = 'transform ' + animationDuration + 'ms ease-out, background-color ' + animationDuration + 'ms ease-out';
+            rippleStyle.transition = 'transform ' + animationDuration + 'ms ease-out, opacity ' + animationDuration + 'ms ease-out';
             rippleStyle.transform = 'scale(1)';
-            rippleStyle.backgroundColor = 'rgba(0, 0, 0, 0)';
-            setTimeout(function () {
-                element.removeChild(ripple);
-            }, animationDuration);
         }, 0);
-    });
+    };
+
+    element.addEventListener('touchstart', startHandler);
+    element.addEventListener('MSPointerDown', startHandler);
+    element.addEventListener('pointerdown', startHandler);
+    element.addEventListener('mousedown', startHandler);
+
+    var endHandler = function () {
+        ripple.style.opacity = '0';
+        setTimeout(function () {
+            if (~Array.prototype.indexOf.call(element.children, ripple)) {
+                element.removeChild(ripple);
+            }
+        }, animationDuration);
+    };
+
+    element.addEventListener('touchcancel', endHandler);
+    element.addEventListener('touchend', endHandler);
+    element.addEventListener('pointerup', endHandler);
+    element.addEventListener('MSPointerUp', endHandler);
+    element.addEventListener('mouseup', endHandler);
+    element.addEventListener('mouseout', endHandler);
+
 };
 
 new RippleButton(document.querySelector('.page[data-style="3"] .button'));
