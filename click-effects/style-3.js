@@ -19,7 +19,7 @@ var RippleButton = function (element) {
         rippleStyle.width = rippleRadius * 2 + 'px';
         rippleStyle.height = rippleRadius * 2 + 'px';
         rippleStyle.borderRadius = '50%';
-        rippleStyle.backgroundColor = 'rgba(0, 0, 0, 0.2)';
+        rippleStyle.backgroundColor = 'rgba(0, 0, 0, 0.1)';
         rippleStyle.opacity = '1';
         rippleStyle.transform = 'scale(0)';
 
@@ -30,7 +30,7 @@ var RippleButton = function (element) {
         rippleStyle.top = y - rippleRadius + 'px';
 
         element.appendChild(ripple);
-        
+
         setTimeout(function () {
             rippleStyle.transition = 'transform ' + animationDuration + 'ms ease-out, opacity ' + animationDuration + 'ms ease-out';
             rippleStyle.transform = 'scale(1)';
