@@ -66,5 +66,9 @@
     {
         "name": "radio",
         "link": "radio"
+    },
+    {
+        "name": "rainbow",
+        "link": "rainbow"
     }
 ]
