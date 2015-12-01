@@ -70,5 +70,9 @@
     {
         "name": "rainbow",
         "link": "rainbow"
+    },
+    {
+        "name": "kbd style",
+        "link": "kbd-style"
     }
 ]
