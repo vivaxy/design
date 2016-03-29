@@ -43,9 +43,9 @@ body {
 }
 
 .switchery:checked {
-    border-color: rgb(100, 189, 99);
-    background-color: rgb(100, 189, 99);
-    box-shadow: rgb(100, 189, 99) 0 0 0 16px inset;
+    border-color: rgb(76, 216, 100);
+    background-color: rgb(76, 216, 100);
+    box-shadow: rgb(76, 216, 100) 0 0 0 16px inset;
     transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;
 }
 
@@ -55,7 +55,7 @@ body {
     position: absolute;
     border-radius: 100%;
     background-color: rgb(255, 255, 255);
-    box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
     transition: background-color 0.4s, left 0.2s;
     width: 30px;
     height: 30px;
