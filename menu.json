@@ -74,5 +74,9 @@
     {
         "name": "kbd style",
         "link": "kbd-style"
+    },
+    {
+        "name": "range slider",
+        "link": "range-slider"
     }
 ]

@@ -1,0 +1,88 @@
+/**
+ * @since 2016-01-18 15:18
+ * @author vivaxy
+ */
+* {
+    box-sizing: border-box;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    overflow: hidden;
+    height: 100%;
+}
+
+.loading {
+    transform: scale(0.2);
+}
+
+.strawberry {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    animation: 6s linear outer-rotation infinite;
+    margin: 50px;
+}
+
+.strawberry .i {
+    width: 32px;
+    height: 38px;
+    background-image: url('./strawberry.png');
+    background-size: 100% 100%;
+    animation: 6s linear inner-rotation infinite;
+}
+
+.strawberry:nth-child(1), .strawberry:nth-child(1) .i {
+    animation-delay: 1s;
+}
+
+.strawberry:nth-child(2), .strawberry:nth-child(2) .i {
+    animation-delay: 2s;
+}
+
+.strawberry:nth-child(3), .strawberry:nth-child(3) .i {
+    animation-delay: 3s;
+}
+
+.strawberry:nth-child(4), .strawberry:nth-child(4) .i {
+    animation-delay: 4s;
+}
+
+.strawberry:nth-child(5), .strawberry:nth-child(5) .i {
+    animation-delay: 5s;
+}
+
+.strawberry:nth-child(6), .strawberry:nth-child(6) .i {
+    animation-delay: 6s;
+}
+
+.strawberry:nth-child(7), .strawberry:nth-child(7) .i {
+    animation-delay: 7s;
+}
+
+.strawberry:nth-child(8), .strawberry:nth-child(8) .i {
+    animation-delay: 8s;
+}
+
+@keyframes outer-rotation {
+    from {
+        transform: rotateZ(0deg);
+    }
+    to {
+        transform: rotateZ(360deg);
+    }
+}
+
+@keyframes inner-rotation {
+    from {
+        transform: scale(0) rotateZ(0deg);
+    }
+    to {
+        transform: scale(1) rotateZ(-360deg);
+    }
+}
