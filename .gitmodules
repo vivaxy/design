@@ -1,11 +1,9 @@
 [submodule "event-emitter"]
 	path = ink/event-emitter
 	url = https://github.com/vivaxy/event-emitter.git
-	branch = gh-pages
 [submodule "image-filter/event-emitter"]
 	path = image-filter/event-emitter
 	url = https://github.com/vivaxy/event-emitter.git
-	branch = gh-pages
 [submodule "cast/tween"]
 	path = cast/tween
 	url = https://github.com/vivaxy/tween.git
