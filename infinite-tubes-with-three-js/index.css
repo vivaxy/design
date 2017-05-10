@@ -1,0 +1,21 @@
+/**
+ * @since 2017-05-10 20:36:39
+ * @author vivaxy
+ */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    margin: 0;
+}
+
+canvas {
+    display: block;
+}
