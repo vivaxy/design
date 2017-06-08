@@ -2,10 +2,10 @@
  * @since 15-09-03 12:04
  * @author vivaxy
  */
-'use strict';
+
 import setStyle from './set-style.js';
 import isMobile from './is-mobile.js';
-import EventEmitter from './event-emitter.js';
+import EventEmitter from 'event-emitter/src/event-emitter';
 import getTouchPosition from './get-touch-position.js';
 
 class ColorPicker extends EventEmitter {

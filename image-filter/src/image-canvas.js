@@ -2,9 +2,9 @@
  * @since 15-09-04 14:50
  * @author vivaxy
  */
-'use strict';
+
 import setStyle from './set-style.js';
-import EventEmitter from './event-emitter.js';
+import EventEmitter from 'event-emitter/src/event-emitter.js';
 
 class ImageCanvas extends EventEmitter {
     constructor(options) {

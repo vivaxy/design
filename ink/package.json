@@ -1,15 +1,18 @@
 {
   "name": "ink",
   "version": "1.0.0",
-  "description": "",
+  "description": "ink",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack"
   },
   "author": "vivaxy",
   "license": "MIT",
-  "devDependencies": {
-    "babel": "^5.8.23",
-    "browserify": "^11.0.1"
+  "dependencies": {
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-preset-es2015": "^6.24.1",
+    "event-emitter": "git+https://github.com/vivaxy/event-emitter.git",
+    "webpack": "^2.6.1"
   }
 }

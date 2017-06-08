@@ -1,24 +1,97 @@
-(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// identity function for calling harmony imports with the correct context
+/******/ 	__webpack_require__.i = function(value) { return value; };
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, {
+/******/ 				configurable: false,
+/******/ 				enumerable: true,
+/******/ 				get: getter
+/******/ 			});
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 /**
  * @since 2015-09-29 15:03
  * @author vivaxy
  */
-'use strict';
-Object.defineProperty(exports, '__esModule', {
+
+
+Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+var _tween = __webpack_require__(2);
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+var _tween2 = _interopRequireDefault(_tween);
 
-var _tweenSrcTweenJs = require('../tween/src/tween.js');
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var _tweenSrcTweenJs2 = _interopRequireDefault(_tweenSrcTweenJs);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var Cast = (function () {
+var Cast = function () {
     function Cast(text) {
         _classCallCheck(this, Cast);
 
@@ -48,7 +121,7 @@ var Cast = (function () {
         value: function start() {
             var _this = this;
 
-            new _tweenSrcTweenJs2['default'](this.element).animate({
+            new _tween2.default(this.element).animate({
                 style: 'bottom',
                 from: -16,
                 to: 0,
@@ -57,7 +130,7 @@ var Cast = (function () {
                 },
                 duration: 500
             }).on('end', function () {
-                new _tweenSrcTweenJs2['default'](_this.element).animate({
+                new _tween2.default(_this.element).animate({
                     style: 'bottom',
                     from: 0,
                     to: 0,
@@ -66,7 +139,7 @@ var Cast = (function () {
                     },
                     duration: 500
                 }).on('end', function () {
-                    new _tweenSrcTweenJs2['default'](_this.element).animate({
+                    new _tween2.default(_this.element).animate({
                         style: 'letterSpacing',
                         from: 0,
                         to: 10,
@@ -75,7 +148,7 @@ var Cast = (function () {
                         },
                         duration: 500
                     }).start();
-                    new _tweenSrcTweenJs2['default'](_this.element).animate({
+                    new _tween2.default(_this.element).animate({
                         style: 'opacity',
                         from: 1,
                         to: 0,
@@ -100,56 +173,30 @@ var Cast = (function () {
     }]);
 
     return Cast;
-})();
+}();
 
-exports['default'] = Cast;
-module.exports = exports['default'];
+exports.default = Cast;
 
-},{"../tween/src/tween.js":4}],2:[function(require,module,exports){
-/**
- * @since 150425 18:30
- * @author vivaxy
- */
-'use strict';
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-var _castJs = require('./cast.js');
-
-var _castJs2 = _interopRequireDefault(_castJs);
-
-var data = ['author : vivaxy', 'date : 2015-04-25'];
-
-var callbackFactory = function callbackFactory(index, callback) {
-    return function () {
-        new _castJs2['default'](data[index]).end(callback);
-    };
-};
-
-var cb = function cb() {};
-
-data.forEach(function (value, index) {
-    cb = callbackFactory(data.length - index - 1, cb);
-});
-
-setInterval(cb, 5000);
-
-},{"./cast.js":1}],3:[function(require,module,exports){
+"use strict";
 /**
  * @since 15-09-02 10:25
  * @author vivaxy
  */
-'use strict';
 
-Object.defineProperty(exports, '__esModule', {
+
+Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var EventEmitter = (function () {
+var EventEmitter = function () {
     function EventEmitter() {
         _classCallCheck(this, EventEmitter);
 
@@ -162,6 +209,7 @@ var EventEmitter = (function () {
      * @param callback
      * @returns {EventEmitter}
      */
+
 
     _createClass(EventEmitter, [{
         key: 'on',
@@ -178,12 +226,13 @@ var EventEmitter = (function () {
          * @param event
          * @returns {EventEmitter}
          */
+
     }, {
         key: 'emit',
         value: function emit(event) {
-            var callbacks = this.events[event],
-                _this = this,
-                _arguments = arguments;
+            var _this = this;
+            var callbacks = this.events[event];
+            var _arguments = arguments;
             if (callbacks) {
                 callbacks.forEach(function (callback) {
                     callback.apply(_this, Array.prototype.slice.call(_arguments, 1));
@@ -198,6 +247,7 @@ var EventEmitter = (function () {
          * @param callback
          * @returns {EventEmitter}
          */
+
     }, {
         key: 'off',
         value: function off(event, callback) {
@@ -211,17 +261,20 @@ var EventEmitter = (function () {
     }]);
 
     return EventEmitter;
-})();
+}();
 
-exports['default'] = EventEmitter;
-module.exports = exports['default'];
+exports.default = EventEmitter;
 
-},{}],4:[function(require,module,exports){
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 /**
  * @since 15-09-02 16:25
  * @author vivaxy
  */
-'use strict';
+
 
 /**
  * usage:
@@ -245,37 +298,38 @@ module.exports = exports['default'];
  *     .start()
  *     .pause();
  */
-Object.defineProperty(exports, '__esModule', {
+
+Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+var _eventEmitter = __webpack_require__(1);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+var _eventEmitter2 = _interopRequireDefault(_eventEmitter);
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var _eventEmitterSrcEventEmitterJs = require('../event-emitter/src/event-emitter.js');
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-var _eventEmitterSrcEventEmitterJs2 = _interopRequireDefault(_eventEmitterSrcEventEmitterJs);
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 /**
  * @param {Object} element - target element
  * @constructor
  */
-
-var Tween = (function (_EventEmitter) {
+var Tween = function (_EventEmitter) {
     _inherits(Tween, _EventEmitter);
 
     function Tween(element) {
         _classCallCheck(this, Tween);
 
-        _get(Object.getPrototypeOf(Tween.prototype), 'constructor', this).call(this, arguments);
-        this.element = element;
+        var _this = _possibleConstructorReturn(this, (Tween.__proto__ || Object.getPrototypeOf(Tween)).call(this, arguments));
+
+        _this.element = element;
         // this.style = undefined;
         // this.from = undefined;
         // this.to = undefined;
@@ -283,8 +337,9 @@ var Tween = (function (_EventEmitter) {
         // this.getValue = undefined;
 
         // this._beginTime = 0;
-        this._events = {};
-        this._animating = false;
+        _this._events = {};
+        _this._animating = false;
+        return _this;
     }
 
     /**
@@ -292,6 +347,7 @@ var Tween = (function (_EventEmitter) {
      * @param options
      * @returns {Tween}
      */
+
 
     _createClass(Tween, [{
         key: 'animate',
@@ -310,6 +366,7 @@ var Tween = (function (_EventEmitter) {
          * play it
          * @returns {Tween}
          */
+
     }, {
         key: 'start',
         value: function start() {
@@ -326,6 +383,7 @@ var Tween = (function (_EventEmitter) {
          * @returns {Tween}
          * @private
          */
+
     }, {
         key: '_loop',
         value: function _loop() {
@@ -347,6 +405,7 @@ var Tween = (function (_EventEmitter) {
         /**
          * pause
          */
+
     }, {
         key: 'pause',
         value: function pause() {
@@ -359,9 +418,42 @@ var Tween = (function (_EventEmitter) {
     }]);
 
     return Tween;
-})(_eventEmitterSrcEventEmitterJs2['default']);
+}(_eventEmitter2.default);
 
-exports['default'] = Tween;
-module.exports = exports['default'];
+exports.default = Tween;
 
-},{"../event-emitter/src/event-emitter.js":3}]},{},[2]);
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * @since 150425 18:30
+ * @author vivaxy
+ */
+
+
+var _cast = __webpack_require__(0);
+
+var _cast2 = _interopRequireDefault(_cast);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var data = ['author : vivaxy', 'date : 2015-04-25'];
+
+var callbackFactory = function callbackFactory(index, callback) {
+    return function () {
+        new _cast2.default(data[index]).end(callback);
+    };
+};
+
+var cb = function cb() {};
+
+data.forEach(function (value, index) {
+    cb = callbackFactory(data.length - index - 1, cb);
+});
+
+setInterval(cb, 5000);
+
+/***/ })
+/******/ ]);

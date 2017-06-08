@@ -2,9 +2,9 @@
  * @since 15-09-04 13:58
  * @author vivaxy
  */
-'use strict';
+
 import setStyle from './set-style.js';
-import EventEmitter from './event-emitter.js';
+import EventEmitter from 'event-emitter/src/event-emitter.js';
 
 class Range extends EventEmitter {
     constructor() {

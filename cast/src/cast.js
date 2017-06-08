@@ -3,7 +3,7 @@
  * @author vivaxy
  */
 'use strict';
-import Tween from '../tween/src/tween.js';
+import Tween from 'tween/src/tween.js';
 
 class Cast {
     constructor(text) {
