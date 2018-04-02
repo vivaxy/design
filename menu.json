@@ -1,86 +1,90 @@
 [
-    {
-        "name": "infinite-tubes-with-three-js",
-        "link": "infinite-tubes-with-three-js/"
-    },
-    {
-        "name": "comment j ai rate ma vie",
-        "link": "comment-j-ai-rate-ma-vie/"
-    },
-    {
-        "name": "menu animation",
-        "link": "menu-animation/"
-    },
-    {
-        "name": "snow",
-        "link": "snow/"
-    },
-    {
-        "name": "checkbox",
-        "link": "checkbox/"
-    },
-    {
-        "name": "shuffling horizontal",
-        "link": "shuffling-horizontal/"
-    },
-    {
-        "name": "shuffling vertical",
-        "link": "shuffling-vertical/"
-    },
-    {
-        "name": "tween",
-        "link": "tween/"
-    },
-    {
-        "name": "cast",
-        "link": "cast/"
-    },
-    {
-        "name": "loading effects",
-        "link": "loading-effects/"
-    },
-    {
-        "name": "click effects",
-        "link": "click-effects/"
-    },
-    {
-        "name": "title effects",
-        "link": "title-effects/"
-    },
-    {
-        "name": "letter animation",
-        "link": "letter-animation/"
-    },
-    {
-        "name": "number animation",
-        "link": "number-animation/"
-    },
-    {
-        "name": "ink",
-        "link": "ink/"
-    },
-    {
-        "name": "image filter",
-        "link": "image-filter/"
-    },
-    {
-        "name": "switchery",
-        "link": "switchery/"
-    },
-    {
-        "name": "radio",
-        "link": "radio/"
-    },
-    {
-        "name": "rainbow",
-        "link": "rainbow/"
-    },
-    {
-        "name": "kbd style",
-        "link": "kbd-style/"
-    },
-    {
-        "name": "range slider",
-        "link": "range-slider/"
-    }
+  {
+    "name": "Colorful",
+    "link": "colorful/index.html"
+  },
+  {
+    "name": "infinite-tubes-with-three-js",
+    "link": "infinite-tubes-with-three-js/"
+  },
+  {
+    "name": "comment j ai rate ma vie",
+    "link": "comment-j-ai-rate-ma-vie/"
+  },
+  {
+    "name": "menu animation",
+    "link": "menu-animation/"
+  },
+  {
+    "name": "snow",
+    "link": "snow/"
+  },
+  {
+    "name": "checkbox",
+    "link": "checkbox/"
+  },
+  {
+    "name": "shuffling horizontal",
+    "link": "shuffling-horizontal/"
+  },
+  {
+    "name": "shuffling vertical",
+    "link": "shuffling-vertical/"
+  },
+  {
+    "name": "tween",
+    "link": "tween/"
+  },
+  {
+    "name": "cast",
+    "link": "cast/"
+  },
+  {
+    "name": "loading effects",
+    "link": "loading-effects/"
+  },
+  {
+    "name": "click effects",
+    "link": "click-effects/"
+  },
+  {
+    "name": "title effects",
+    "link": "title-effects/"
+  },
+  {
+    "name": "letter animation",
+    "link": "letter-animation/"
+  },
+  {
+    "name": "number animation",
+    "link": "number-animation/"
+  },
+  {
+    "name": "ink",
+    "link": "ink/"
+  },
+  {
+    "name": "image filter",
+    "link": "image-filter/"
+  },
+  {
+    "name": "switchery",
+    "link": "switchery/"
+  },
+  {
+    "name": "radio",
+    "link": "radio/"
+  },
+  {
+    "name": "rainbow",
+    "link": "rainbow/"
+  },
+  {
+    "name": "kbd style",
+    "link": "kbd-style/"
+  },
+  {
+    "name": "range slider",
+    "link": "range-slider/"
+  }
 ]
