@@ -3,26 +3,30 @@
  * @author vivaxy
  */
 
-const setBackgroundColor = (el, { r, g, b }) => {
-  el.style.background = `rgb(${r}, ${g}, ${b})`;
+const composeColor = ({ r, g, b }) => {
+  return `rgb(${r}, ${g}, ${b})`;
 };
 
-const createColorInput = ({ labelText, onChange }) => {
+const setBackgroundColor = (el, { r, g, b }) => {
+  el.style.background = composeColor({ r, g, b });
+};
+
+const createInput = ({ labelText, onChange }) => {
   const input = document.createElement('input');
   input.type = 'number';
   input.id = labelText;
-  let previousValue = '0';
+  let previousValue = colors[labelText.toLowerCase()];
   input.addEventListener('change', () => {
-    const value = input.value;
+    const value = Number(input.value);
     if (value < 0 || value > 255) {
-      input.value = previousValue;
+      input.value = String(previousValue);
     }
-    if (input.value !== previousValue) {
-      previousValue = input.value;
+    if (value !== previousValue) {
+      previousValue = value;
       onChange(previousValue);
     }
   });
-  input.value = previousValue;
+  input.value = String(previousValue);
 
   const label = document.createElement('label');
   label.textContent = labelText;
@@ -35,7 +39,7 @@ const createColorInput = ({ labelText, onChange }) => {
   return container;
 };
 
-const saveColors = (key, value) => {
+const save = (key, value) => {
   localStorage.setItem(key, JSON.stringify(value));
 };
 
@@ -45,36 +49,83 @@ const getColor = () => {
   if (storedColors) {
     return storedColors;
   }
-  saveColors('colors', defaultColors);
+  save('colors', defaultColors);
   return defaultColors;
+};
+
+const getDimensions = () => {
+  const defaultDimensions = { width: 1024, height: 1024 };
+  const storedDimensions = JSON.parse(localStorage.getItem('dimensions'));
+  if (storedDimensions) {
+    return storedDimensions;
+  }
+  save('dimensions', defaultDimensions);
+  return defaultDimensions;
 };
 
 const body = document.body;
 let colors = getColor();
+let dimensions = getDimensions();
 
 const updateBodyBackgroundColor = (data) => {
   colors = { ...colors, ...data };
-  saveColors('colors', colors);
+  save('colors', colors);
   setBackgroundColor(body, colors);
 };
 
+const updateDimensions = (data) => {
+  dimensions = { ...dimensions, ...data };
+  save('dimensions', dimensions);
+};
+
 const appendInput = () => {
-  body.appendChild(createColorInput({
+  body.appendChild(createInput({
     labelText: 'R', onChange: (r) => {
       updateBodyBackgroundColor({ r });
     }
   }));
-  body.appendChild(createColorInput({
+  body.appendChild(createInput({
     labelText: 'G', onChange: (g) => {
       updateBodyBackgroundColor({ g });
     }
   }));
-  body.appendChild(createColorInput({
+  body.appendChild(createInput({
     labelText: 'B', onChange: (b) => {
       updateBodyBackgroundColor({ b });
     }
   }));
+  body.appendChild(createInput({
+    labelText: 'Width', onChange: (width) => {
+      updateDimensions({ width });
+    }
+  }));
+  body.appendChild(createInput({
+    labelText: 'Height', onChange: (height) => {
+      updateDimensions({ height });
+    }
+  }));
+};
+
+const appendDownload = () => {
+  const download = document.createElement('button');
+  download.textContent = 'Download';
+  download.addEventListener('click', () => {
+    const canvas = document.createElement('canvas');
+    canvas.width = dimensions.width;
+    canvas.height = dimensions.height;
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle = composeColor(colors);
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    const image = document.createElement('img');
+    image.src = canvas.toDataURL('image/png');
+    image.addEventListener('click', () => {
+      body.removeChild(image);
+    });
+    body.appendChild(image);
+  });
+  body.appendChild(download);
 };
 
 appendInput();
+appendDownload();
 setBackgroundColor(body, colors);
