@@ -12,52 +12,73 @@ body {
   margin: 0;
 }
 
-label {
-  display: block;
-  font-size: 24px;
-  line-height: 30px;
-  width: 100px;
-  color: #333333;
-}
-
-input {
-  display: block;
-  border: 0;
-  font-size: 24px;
-  line-height: 30px;
-  text-align: right;
-  height: 30px;
-  padding: 0;
-  border-radius: 0;
-  width: 100px;
-  color: #333333;
-}
-
-.color-input-c {
-  height: 30px;
-  width: 200px;
+.number-input-container {
+  height: 46px;
+  width: 100%;
   background: #fff;
   display: flex;
   border: 1px solid #eeeeee;
-  box-sizing: content-box;
+  box-sizing: border-box;
+  padding: 8px;
 }
 
-button {
-  width: 200px;
-  height: 30px;
+.number-input-label {
   display: block;
+  font-size: 14px;
+  line-height: 30px;
+  width: 120px;
+  color: #666666;
+  text-align: right;
+  flex: 0 0 auto;
+}
+
+.number-input-input {
+  display: block;
+  border: 0;
+  font-size: 14px;
+  line-height: 30px;
+  text-align: right;
+  padding: 0;
   border-radius: 0;
-  font-size: 24px;
+  width: 100px;
+  color: #333333;
+  flex: 1 1 auto;
+  box-sizing: border-box;
+  border-bottom: 1px solid #cccccc;
+}
+
+.number-input-button {
+  display: block;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  margin: 0 8px;
+  box-sizing: border-box;
+  border: 1px solid #cccccc;
+  border-radius: 50%;
+  line-height: 18px;
+  font-size: 14px;
+  background: #ffffff;
+  flex: 0 0 auto;
+  color: #666666;
+}
+
+.download-button {
+  width: 100%;
+  height: 46px;
+  display: block;
+  font-size: 14px;
   line-height: 30px;
   border: 1px solid #eeeeee;
-  box-sizing: content-box;
   background: #ffffff;
   padding: 0;
-  margin: 0;
-  color: #333333;
+  margin: 8px 0 0 0;
+  color: #666666;
+  box-sizing: border-box;
+  border-radius: 24px;
 }
 
-img {
+.download-image {
   position: fixed;
   top: 0;
   left: 0;

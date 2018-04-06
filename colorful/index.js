@@ -11,14 +11,15 @@ const setBackgroundColor = (el, { r, g, b }) => {
   el.style.background = composeColor({ r, g, b });
 };
 
-const createInput = ({ labelText, onChange }) => {
+const createInput = ({ labelText, defaultValue, onChange, validator }) => {
   const input = document.createElement('input');
   input.type = 'number';
   input.id = labelText;
-  let previousValue = colors[labelText.toLowerCase()];
+  input.value = defaultValue;
+  let previousValue = defaultValue;
   input.addEventListener('change', () => {
     const value = Number(input.value);
-    if (value < 0 || value > 255) {
+    if (!validator(value)) {
       input.value = String(previousValue);
     }
     if (value !== previousValue) {
@@ -26,16 +27,42 @@ const createInput = ({ labelText, onChange }) => {
       onChange(previousValue);
     }
   });
-  input.value = String(previousValue);
+  input.value = String(defaultValue);
+  input.classList.add('number-input-input');
 
   const label = document.createElement('label');
   label.textContent = labelText;
   label.for = labelText;
+  label.classList.add('number-input-label');
+
+  const minusButton = document.createElement('button');
+  minusButton.addEventListener('click', () => {
+    const v = Number(input.value) - 1;
+    if (validator(v)) {
+      previousValue = v;
+      input.value = String(v);
+    }
+  });
+  minusButton.classList.add('number-input-button');
+  minusButton.textContent = '-';
+
+  const plusButton = document.createElement('button');
+  plusButton.addEventListener('click', () => {
+    const v = Number(input.value) + 1;
+    if (validator(v)) {
+      previousValue = v;
+      input.value = String(v);
+    }
+  });
+  plusButton.classList.add('number-input-button');
+  plusButton.textContent = '+';
 
   const container = document.createElement('div');
   container.appendChild(label);
+  container.appendChild(minusButton);
   container.appendChild(input);
-  container.classList.add('color-input-c');
+  container.appendChild(plusButton);
+  container.classList.add('number-input-container');
   return container;
 };
 
@@ -79,30 +106,51 @@ const updateDimensions = (data) => {
 };
 
 const appendInput = () => {
+  const colorValidator = (v) => {
+    return v >= 0 && v <= 255 && parseInt(v) === v;
+  };
+  const dimensionValidator = (v) => {
+    return v > 0 && parseInt(v) === v;
+  };
   body.appendChild(createInput({
-    labelText: 'R', onChange: (r) => {
+    labelText: 'R',
+    onChange: (r) => {
       updateBodyBackgroundColor({ r });
-    }
+    },
+    validator: colorValidator,
+    defaultValue: colors.r,
   }));
   body.appendChild(createInput({
-    labelText: 'G', onChange: (g) => {
+    labelText: 'G',
+    onChange: (g) => {
       updateBodyBackgroundColor({ g });
-    }
+    },
+    validator: colorValidator,
+    defaultValue: colors.g,
   }));
   body.appendChild(createInput({
-    labelText: 'B', onChange: (b) => {
+    labelText: 'B',
+    onChange: (b) => {
       updateBodyBackgroundColor({ b });
-    }
+    },
+    validator: colorValidator,
+    defaultValue: colors.b,
   }));
   body.appendChild(createInput({
-    labelText: 'Width', onChange: (width) => {
+    labelText: 'Width',
+    onChange: (width) => {
       updateDimensions({ width });
-    }
+    },
+    validator: dimensionValidator,
+    defaultValue: dimensions.width,
   }));
   body.appendChild(createInput({
-    labelText: 'Height', onChange: (height) => {
+    labelText: 'Height',
+    onChange: (height) => {
       updateDimensions({ height });
-    }
+    },
+    validator: dimensionValidator,
+    defaultValue: dimensions.height,
   }));
 };
 
@@ -118,11 +166,14 @@ const appendDownload = () => {
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     const image = document.createElement('img');
     image.src = canvas.toDataURL('image/png');
+    image.classList.add('download-image');
     image.addEventListener('click', () => {
       body.removeChild(image);
     });
     body.appendChild(image);
   });
+  download.classList.add('download-button');
+
   body.appendChild(download);
 };
 
