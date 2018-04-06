@@ -41,6 +41,7 @@ const createInput = ({ labelText, defaultValue, onChange, validator }) => {
     if (validator(v)) {
       previousValue = v;
       input.value = String(v);
+      onChange(v);
     }
   });
   minusButton.classList.add('number-input-button');
@@ -52,6 +53,7 @@ const createInput = ({ labelText, defaultValue, onChange, validator }) => {
     if (validator(v)) {
       previousValue = v;
       input.value = String(v);
+      onChange(v);
     }
   });
   plusButton.classList.add('number-input-button');
