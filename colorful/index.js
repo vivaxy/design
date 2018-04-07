@@ -11,11 +11,64 @@ const setBackgroundColor = (el, { r, g, b }) => {
   el.style.background = composeColor({ r, g, b });
 };
 
+const createButton = ({ defaultValue, validator, onChange, buttonText, action, input }) => {
+
+  const button = document.createElement('button');
+  button.classList.add('number-input-button');
+  button.textContent = buttonText;
+
+  let previousValue = defaultValue;
+  let timeout = null;
+  let interval = null;
+  const doAction = () => {
+    const v = action(Number(input.value));
+    if (validator(v)) {
+      previousValue = v;
+      input.value = String(v);
+      onChange(v);
+    }
+  };
+  const touchStartHandler = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (timeout) {
+      clearTimeout(timeout);
+      timeout = null;
+    }
+    timeout = setTimeout(() => {
+      interval = setInterval(() => {
+        doAction();
+      }, 50);
+    }, 100);
+  };
+  const touchEndHandler = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (timeout) {
+      clearTimeout(timeout);
+      timeout = null;
+    }
+    if (interval) {
+      clearInterval(interval);
+      interval = null;
+    }
+    doAction();
+  };
+  button.addEventListener('touchstart', touchStartHandler);
+  button.addEventListener('touchend', touchEndHandler);
+  button.addEventListener('touchcancel', touchEndHandler);
+  return button;
+};
+
 const createInput = ({ labelText, defaultValue, onChange, validator }) => {
   const input = document.createElement('input');
   input.type = 'number';
+  input.inputmode = 'numeric';
   input.id = labelText;
   input.value = defaultValue;
+  input.value = String(defaultValue);
+  input.classList.add('number-input-input');
+
   let previousValue = defaultValue;
   input.addEventListener('change', () => {
     const value = Number(input.value);
@@ -27,37 +80,38 @@ const createInput = ({ labelText, defaultValue, onChange, validator }) => {
       onChange(previousValue);
     }
   });
-  input.value = String(defaultValue);
-  input.classList.add('number-input-input');
+  input.addEventListener('focus', () => {
+    setTimeout(() => {
+      input.select();
+    }, 0);
+  });
 
   const label = document.createElement('label');
   label.textContent = labelText;
   label.for = labelText;
   label.classList.add('number-input-label');
 
-  const minusButton = document.createElement('button');
-  minusButton.addEventListener('click', () => {
-    const v = Number(input.value) - 1;
-    if (validator(v)) {
-      previousValue = v;
-      input.value = String(v);
-      onChange(v);
-    }
+  const minusButton = createButton({
+    defaultValue,
+    validator,
+    onChange,
+    action: (v) => {
+      return v - 1;
+    },
+    buttonText: '-',
+    input,
   });
-  minusButton.classList.add('number-input-button');
-  minusButton.textContent = '-';
 
-  const plusButton = document.createElement('button');
-  plusButton.addEventListener('click', () => {
-    const v = Number(input.value) + 1;
-    if (validator(v)) {
-      previousValue = v;
-      input.value = String(v);
-      onChange(v);
-    }
+  const plusButton = createButton({
+    defaultValue,
+    validator,
+    onChange,
+    action: (v) => {
+      return v + 1;
+    },
+    buttonText: '+',
+    input,
   });
-  plusButton.classList.add('number-input-button');
-  plusButton.textContent = '+';
 
   const container = document.createElement('div');
   container.appendChild(label);
@@ -83,7 +137,7 @@ const getColor = () => {
 };
 
 const getDimensions = () => {
-  const defaultDimensions = { width: 1024, height: 1024 };
+  const defaultDimensions = { width: 1280, height: 1280 };
   const storedDimensions = JSON.parse(localStorage.getItem('dimensions'));
   if (storedDimensions) {
     return storedDimensions;

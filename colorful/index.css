@@ -12,6 +12,11 @@ body {
   margin: 0;
 }
 
+* {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
 .number-input-container {
   height: 46px;
   width: 100%;
@@ -25,10 +30,11 @@ body {
   display: block;
   font-size: 14px;
   line-height: 30px;
-  width: 120px;
+  width: 80px;
   color: #666666;
   text-align: right;
   flex: 0 0 auto;
+  margin: 0 8px;
 }
 
 .number-input-input {
@@ -38,6 +44,7 @@ body {
   line-height: 30px;
   text-align: right;
   padding: 0;
+  margin: 0 8px;
   border-radius: 0;
   width: 100px;
   color: #333333;
@@ -63,7 +70,7 @@ body {
 }
 
 .download-button {
-  width: 100%;
+  width: calc(100% - 16px);
   height: 46px;
   display: block;
   font-size: 14px;
@@ -71,7 +78,7 @@ body {
   border: 1px solid #eeeeee;
   background: #ffffff;
   padding: 0;
-  margin: 8px 0 0 0;
+  margin: 8px;
   color: #666666;
   box-sizing: border-box;
   border-radius: 24px;
