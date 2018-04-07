@@ -31,6 +31,7 @@ const createButton = ({ defaultValue, validator, onChange, buttonText, action, i
   const touchStartHandler = (e) => {
     e.preventDefault();
     e.stopPropagation();
+    button.focus();
     if (timeout) {
       clearTimeout(timeout);
       timeout = null;
@@ -54,9 +55,10 @@ const createButton = ({ defaultValue, validator, onChange, buttonText, action, i
     }
     doAction();
   };
-  button.addEventListener('touchstart', touchStartHandler);
-  button.addEventListener('touchend', touchEndHandler);
-  button.addEventListener('touchcancel', touchEndHandler);
+  const handlerOptions = { passive: false };
+  button.addEventListener('touchstart', touchStartHandler, handlerOptions);
+  button.addEventListener('touchend', touchEndHandler, handlerOptions);
+  button.addEventListener('touchcancel', touchEndHandler, handlerOptions);
   return button;
 };
 
@@ -74,6 +76,7 @@ const createInput = ({ labelText, defaultValue, onChange, validator }) => {
     const value = Number(input.value);
     if (!validator(value)) {
       input.value = String(previousValue);
+      return;
     }
     if (value !== previousValue) {
       previousValue = value;
@@ -82,7 +85,9 @@ const createInput = ({ labelText, defaultValue, onChange, validator }) => {
   });
   input.addEventListener('focus', () => {
     setTimeout(() => {
-      input.select();
+      input.type = 'text';
+      input.setSelectionRange(0, input.value.length);
+      input.type = 'number';
     }, 0);
   });
 
