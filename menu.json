@@ -86,5 +86,9 @@
   {
     "name": "range slider",
     "link": "range-slider/"
+  },
+  {
+    "name": "3D Tag Cloud",
+    "link": "3d-tag-cloud/index.html"
   }
 ]
