@@ -90,5 +90,9 @@
   {
     "name": "3D Tag Cloud",
     "link": "3d-tag-cloud/index.html"
+  },
+  {
+    "name": "Bezier Painter",
+    "link": "bezier-painter/index.html"
   }
 ]
