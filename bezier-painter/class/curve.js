@@ -9,12 +9,12 @@ import * as layerFunctions from '../enums/layer-functions.js';
 import * as layerProperties from '../enums/layer-properties.js';
 
 const curveLineWidth = 2;
-const pointRadius = 4;
+const pointRadius = 3;
 const curveColor = '#333';
 const activeCurveColor = '#f63';
-const pointColor = '#333';
-const controlPointColor = '#333';
-const activePointColor = '#0ff';
+const controlLineColor = '#333';
+const controlLineWidth = 1;
+const activePointColor = '#08c';
 const activeControlPointColor = '#08c';
 const inCurveThreshold = 4;
 
@@ -145,10 +145,30 @@ export default class Curve {
         func: layerFunctions.STROKE,
         params: [],
       },
+      {
+        type: layerActions.FUNCTION,
+        func: layerFunctions.CLOSE_PATH,
+        params: [],
+      },
     ];
     if (this.active) {
       return actions.concat(
         // draw control line 1
+        {
+          type: layerActions.PROPERTY,
+          prop: layerProperties.STROKE_STYLE,
+          value: controlLineColor,
+        },
+        {
+          type: layerActions.PROPERTY,
+          prop: layerProperties.LINE_WIDTH,
+          value: controlLineWidth,
+        },
+        {
+          type: layerActions.FUNCTION,
+          func: layerFunctions.BEGIN_PATH,
+          params: [],
+        },
         {
           type: layerActions.FUNCTION,
           func: layerFunctions.MOVE_TO,
@@ -164,8 +184,28 @@ export default class Curve {
           func: layerFunctions.STROKE,
           params: [],
         },
+        {
+          type: layerActions.FUNCTION,
+          func: layerFunctions.CLOSE_PATH,
+          params: [],
+        },
 
         // draw control line 2
+        {
+          type: layerActions.PROPERTY,
+          prop: layerProperties.STROKE_STYLE,
+          value: controlLineColor,
+        },
+        {
+          type: layerActions.PROPERTY,
+          prop: layerProperties.LINE_WIDTH,
+          value: controlLineWidth,
+        },
+        {
+          type: layerActions.FUNCTION,
+          func: layerFunctions.BEGIN_PATH,
+          params: [],
+        },
         {
           type: layerActions.FUNCTION,
           func: layerFunctions.MOVE_TO,
@@ -181,12 +221,17 @@ export default class Curve {
           func: layerFunctions.STROKE,
           params: [],
         },
+        {
+          type: layerActions.FUNCTION,
+          func: layerFunctions.CLOSE_PATH,
+          params: [],
+        },
 
         // draw point
         {
           type: layerActions.PROPERTY,
           prop: layerProperties.FILL_STYLE,
-          value: this.active ? activePointColor : pointColor,
+          value: activePointColor,
         },
         {
           type: layerActions.FUNCTION,
@@ -226,6 +271,11 @@ export default class Curve {
           params: [],
         },
         {
+          type: layerActions.FUNCTION,
+          func: layerFunctions.CLOSE_PATH,
+          params: [],
+        },
+        {
           type: layerActions.PROPERTY,
           prop: layerProperties.FILL_STYLE,
           value: activeControlPointColor,
@@ -244,7 +294,12 @@ export default class Curve {
           type: layerActions.FUNCTION,
           func: layerFunctions.FILL,
           params: [],
-        }
+        },
+        {
+          type: layerActions.FUNCTION,
+          func: layerFunctions.CLOSE_PATH,
+          params: [],
+        },
       );
     }
     return actions;

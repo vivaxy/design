@@ -8,6 +8,7 @@ import * as layerFunctions from '../enums/layer-functions.js';
 import * as layerProperties from '../enums/layer-properties.js';
 
 const iconPadding = 4;
+const borderWidth = 1;
 
 export default class Button {
   constructor({ label, top, left, width, height, image }) {
@@ -30,7 +31,7 @@ export default class Button {
       {
         type: layerActions.PROPERTY,
         prop: layerProperties.LINE_WIDTH,
-        value: 2,
+        value: borderWidth,
       },
       {
         type: layerActions.FUNCTION,
@@ -45,12 +46,12 @@ export default class Button {
       {
         type: layerActions.FUNCTION,
         func: layerFunctions.FILL_RECT,
-        params: [this.left, this.top, this.width, this.height],
+        params: [this.left + borderWidth, this.top + borderWidth, this.width - borderWidth * 2, this.height - borderWidth * 2],
       },
       {
         type: layerActions.FUNCTION,
         func: layerFunctions.DRAW_IMAGE,
-        params: [this.image, this.left + iconPadding, this.top + iconPadding, this.width - iconPadding * 2, this.height - iconPadding * 2],
+        params: [this.image, this.left + iconPadding + borderWidth, this.top + iconPadding + borderWidth, this.width - iconPadding * 2 - borderWidth * 2, this.height - iconPadding * 2 - borderWidth * 2],
       },
     ];
   }
