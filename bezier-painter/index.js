@@ -7,17 +7,17 @@ import './debug/assert.js';
 import * as eventTypes from './enums/event-types.js';
 import EventEmitter from '../_framework/class/event-emitter.js';
 
-import hotkeys from './service/hotkeys.js';
-import baseCanvas from './service/base-canvas.js';
-import canvasDpr from './service/canvas-dpr.js';
+import hotkeys from './services/hotkeys.js';
+import baseCanvas from './services/base-canvas.js';
+import canvasDpr from './services/canvas-dpr.js';
 
-import layerRenderer from './service/layer-renderer.js';
-import sortRenderLayer from './service/sort-render-layer.js';
+import layerRenderer from './services/layer-renderer.js';
+import sortRenderLayer from './services/sort-render-layer.js';
 
-import buttons from './service/buttons.js';
-import curves from './service/curves.js';
+import buttons from './services/buttons.js';
+import curves from './services/curves.js';
 
-import drag from './service/drag.js';
+import drag from './services/drag.js';
 
 const events = new EventEmitter();
 

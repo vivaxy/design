@@ -14,7 +14,7 @@ const curveColor = '#333';
 const activeCurveColor = '#f63';
 const controlLineColor = '#333';
 const controlLineWidth = 1;
-const activePointColor = '#08c';
+const activePointColor = '#333';
 const activeControlPointColor = '#08c';
 const inCurveThreshold = 4;
 
@@ -230,22 +230,22 @@ export default class Curve {
         // draw point
         {
           type: layerActions.PROPERTY,
-          prop: layerProperties.FILL_STYLE,
+          prop: layerProperties.STROKE_STYLE,
           value: activePointColor,
         },
         {
           type: layerActions.FUNCTION,
-          func: layerFunctions.FILL_RECT,
+          func: layerFunctions.STROKE_RECT,
           params: [this.p1.x - pointRadius, this.p1.y - pointRadius, pointRadius * 2, pointRadius * 2],
         },
         {
           type: layerActions.PROPERTY,
-          prop: layerProperties.FILL_STYLE,
+          prop: layerProperties.STROKE_STYLE,
           value: activePointColor,
         },
         {
           type: layerActions.FUNCTION,
-          func: layerFunctions.FILL_RECT,
+          func: layerFunctions.STROKE_RECT,
           params: [this.p2.x - pointRadius, this.p2.y - pointRadius, pointRadius * 2, pointRadius * 2],
         },
 
