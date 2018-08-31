@@ -72,32 +72,33 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+
+
 /**
  * @since 15-09-06 09:42
  * @author vivaxy
  */
 
-
 self.addEventListener('message', function (e) {
-    var data = e.data;
-    var savedColorChanges = data.savedColorChanges;
-    var imageData = data.imageData;
+  var data = e.data;
+  var savedColorChanges = data.savedColorChanges;
+  var imageData = data.imageData;
 
-    var map = Array.prototype.map.call(imageData.data, function (v, i) {
-        return v * savedColorChanges[i % 4] / 100;
-    });
-    var imageDataResult = map.map(function (v, i, array) {
-        var colorStart = i - i % 4;
-        var color = Array.prototype.slice.call(array, colorStart, colorStart + 4);
-        var averageColor = (color[0] + color[1] + color[2]) * color[3] / 3 / 255;
-        var colorDiff = averageColor - v;
-        return v + colorDiff * savedColorChanges[4] / 100;
-    });
-    self.postMessage({
-        imageData: imageDataResult,
-        width: imageData.width,
-        height: imageData.height
-    });
+  var map = Array.prototype.map.call(imageData.data, function (v, i) {
+    return v * savedColorChanges[i % 4] / 100;
+  });
+  var imageDataResult = map.map(function (v, i, array) {
+    var colorStart = i - i % 4;
+    var color = Array.prototype.slice.call(array, colorStart, colorStart + 4);
+    var averageColor = (color[0] + color[1] + color[2]) * color[3] / 3 / 255;
+    var colorDiff = averageColor - v;
+    return v + colorDiff * savedColorChanges[4] / 100;
+  });
+  self.postMessage({
+    imageData: imageDataResult,
+    width: imageData.width,
+    height: imageData.height
+  });
 }, false);
 
 /***/ })

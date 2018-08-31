@@ -71,22 +71,23 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
 /**
  * @since 15-09-03 12:11
  * @author vivaxy
  */
 
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
 exports.default = function (element, styleObject) {
-    for (var key in styleObject) {
-        if (styleObject.hasOwnProperty(key)) {
-            element.style[key] = styleObject[key];
-        }
+  for (var key in styleObject) {
+    if (styleObject.hasOwnProperty(key)) {
+      element.style[key] = styleObject[key];
     }
+  }
 };
 
 /***/ }),
@@ -101,7 +102,7 @@ exports.default = function (element, styleObject) {
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -109,10 +110,48 @@ var _createClass = function () { function defineProperties(target, props) { for 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var EventEmitter = function () {
-    function EventEmitter() {
-        _classCallCheck(this, EventEmitter);
+  function EventEmitter() {
+    _classCallCheck(this, EventEmitter);
 
-        this.events = {};
+    this.events = {};
+  }
+
+  /**
+   *
+   * @param event
+   * @param callback
+   * @returns {EventEmitter}
+   */
+
+
+  _createClass(EventEmitter, [{
+    key: 'on',
+    value: function on(event, callback) {
+      if (!this.events[event]) {
+        this.events[event] = [];
+      }
+      this.events[event].push(callback);
+      return this;
+    }
+
+    /**
+     *
+     * @param event
+     * @returns {EventEmitter}
+     */
+
+  }, {
+    key: 'emit',
+    value: function emit(event) {
+      var _this = this;
+      var callbacks = this.events[event];
+      var _arguments = arguments;
+      if (callbacks) {
+        callbacks.forEach(function (callback) {
+          callback.apply(_this, Array.prototype.slice.call(_arguments, 1));
+        });
+      }
+      return this;
     }
 
     /**
@@ -122,57 +161,19 @@ var EventEmitter = function () {
      * @returns {EventEmitter}
      */
 
+  }, {
+    key: 'off',
+    value: function off(event, callback) {
+      if (this.events[event] && callback) {
+        this.events[event].splice(this.events[event].indexOf(callback), 1);
+      } else {
+        this.events[event] = [];
+      }
+      return this;
+    }
+  }]);
 
-    _createClass(EventEmitter, [{
-        key: 'on',
-        value: function on(event, callback) {
-            if (!this.events[event]) {
-                this.events[event] = [];
-            }
-            this.events[event].push(callback);
-            return this;
-        }
-
-        /**
-         *
-         * @param event
-         * @returns {EventEmitter}
-         */
-
-    }, {
-        key: 'emit',
-        value: function emit(event) {
-            var _this = this;
-            var callbacks = this.events[event];
-            var _arguments = arguments;
-            if (callbacks) {
-                callbacks.forEach(function (callback) {
-                    callback.apply(_this, Array.prototype.slice.call(_arguments, 1));
-                });
-            }
-            return this;
-        }
-
-        /**
-         *
-         * @param event
-         * @param callback
-         * @returns {EventEmitter}
-         */
-
-    }, {
-        key: 'off',
-        value: function off(event, callback) {
-            if (this.events[event] && callback) {
-                this.events[event].splice(this.events[event].indexOf(callback), 1);
-            } else {
-                this.events[event] = [];
-            }
-            return this;
-        }
-    }]);
-
-    return EventEmitter;
+  return EventEmitter;
 }();
 
 exports.default = EventEmitter;
@@ -182,17 +183,16 @@ exports.default = EventEmitter;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * @since 15-09-04 13:47
- * @author vivaxy
- */
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @since 15-09-04 13:47
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @author vivaxy
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
 
 var _setStyle = __webpack_require__(0);
 
@@ -203,46 +203,46 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var Canvas = function () {
-    function Canvas() {
-        _classCallCheck(this, Canvas);
+  function Canvas() {
+    _classCallCheck(this, Canvas);
 
-        this.height = 40; // 40%
-        this._createCanvas();
+    this.height = 40; // 40%
+    this._createCanvas();
+  }
+
+  _createClass(Canvas, [{
+    key: '_createCanvas',
+    value: function _createCanvas() {
+      var canvas = document.createElement('canvas');
+      canvas.width = document.body.clientWidth;
+      canvas.height = document.body.clientHeight * this.height / 100; // style.height = 40%
+      (0, _setStyle2.default)(canvas, {
+        display: 'block',
+        width: '100%',
+        height: this.height + '%',
+        position: 'absolute',
+        top: 0,
+        left: 0
+      });
+      document.body.appendChild(canvas);
+      this.canvas = canvas;
+      this.ctx = canvas.getContext('2d');
+      return this;
     }
+  }, {
+    key: 'draw',
+    value: function draw(map, width, height) {
+      var ctx = this.ctx;
+      var imageData = ctx.createImageData(width, height);
+      map.forEach(function (value, index) {
+        imageData.data[index] = value;
+      });
+      this.ctx.putImageData(imageData, 0, 0);
+      return this;
+    }
+  }]);
 
-    _createClass(Canvas, [{
-        key: '_createCanvas',
-        value: function _createCanvas() {
-            var canvas = document.createElement('canvas');
-            canvas.width = document.body.clientWidth;
-            canvas.height = document.body.clientHeight * this.height / 100; // style.height = 40%
-            (0, _setStyle2.default)(canvas, {
-                display: 'block',
-                width: '100%',
-                height: this.height + '%',
-                position: 'absolute',
-                top: 0,
-                left: 0
-            });
-            document.body.appendChild(canvas);
-            this.canvas = canvas;
-            this.ctx = canvas.getContext('2d');
-            return this;
-        }
-    }, {
-        key: 'draw',
-        value: function draw(map, width, height) {
-            var ctx = this.ctx;
-            var imageData = ctx.createImageData(width, height);
-            map.forEach(function (value, index) {
-                imageData.data[index] = value;
-            });
-            this.ctx.putImageData(imageData, 0, 0);
-            return this;
-        }
-    }]);
-
-    return Canvas;
+  return Canvas;
 }();
 
 exports.default = Canvas;
@@ -255,7 +255,7 @@ exports.default = Canvas;
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -280,62 +280,62 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 */
 
 var ImageCanvas = function (_EventEmitter) {
-    _inherits(ImageCanvas, _EventEmitter);
+  _inherits(ImageCanvas, _EventEmitter);
 
-    function ImageCanvas(options) {
-        _classCallCheck(this, ImageCanvas);
+  function ImageCanvas(options) {
+    _classCallCheck(this, ImageCanvas);
 
-        var _this = _possibleConstructorReturn(this, (ImageCanvas.__proto__ || Object.getPrototypeOf(ImageCanvas)).call(this));
+    var _this = _possibleConstructorReturn(this, (ImageCanvas.__proto__ || Object.getPrototypeOf(ImageCanvas)).call(this));
 
-        _this.height = 40; // 40%
-        _this._createCanvas().setImage(options.src);
-        return _this;
+    _this.height = 40; // 40%
+    _this._createCanvas().setImage(options.src);
+    return _this;
+  }
+
+  _createClass(ImageCanvas, [{
+    key: '_createCanvas',
+    value: function _createCanvas() {
+      var canvas = document.createElement('canvas');
+      canvas.width = document.body.clientWidth;
+      canvas.height = document.body.clientHeight * this.height / 100; // style.height = 40%
+      (0, _setStyle2.default)(canvas, {
+        display: 'none',
+        width: '100%',
+        height: this.height + '%',
+        position: 'absolute',
+        top: 0,
+        left: 0
+      });
+      document.body.appendChild(canvas);
+      this.canvas = canvas;
+      this.ctx = canvas.getContext('2d');
+      return this;
     }
+  }, {
+    key: 'setImage',
+    value: function setImage(src) {
+      var _this2 = this;
 
-    _createClass(ImageCanvas, [{
-        key: '_createCanvas',
-        value: function _createCanvas() {
-            var canvas = document.createElement('canvas');
-            canvas.width = document.body.clientWidth;
-            canvas.height = document.body.clientHeight * this.height / 100; // style.height = 40%
-            (0, _setStyle2.default)(canvas, {
-                display: 'none',
-                width: '100%',
-                height: this.height + '%',
-                position: 'absolute',
-                top: 0,
-                left: 0
-            });
-            document.body.appendChild(canvas);
-            this.canvas = canvas;
-            this.ctx = canvas.getContext('2d');
-            return this;
-        }
-    }, {
-        key: 'setImage',
-        value: function setImage(src) {
-            var _this2 = this;
+      var canvas = this.canvas;
+      var ctx = this.ctx;
+      var image = new Image();
+      image.src = src;
+      image.addEventListener('load', function () {
+        ctx.drawImage(image, 0, 0, image.width, image.height, 0, 0, canvas.width, canvas.height);
+        _this2.emit('load');
+      }, false);
+      return this;
+    }
+  }, {
+    key: 'getColorMap',
+    value: function getColorMap() {
+      var canvas = this.canvas;
+      var ctx = this.ctx;
+      return ctx.getImageData(0, 0, canvas.width, canvas.height);
+    }
+  }]);
 
-            var canvas = this.canvas;
-            var ctx = this.ctx;
-            var image = new Image();
-            image.src = src;
-            image.addEventListener('load', function () {
-                ctx.drawImage(image, 0, 0, image.width, image.height, 0, 0, canvas.width, canvas.height);
-                _this2.emit('load');
-            }, false);
-            return this;
-        }
-    }, {
-        key: 'getColorMap',
-        value: function getColorMap() {
-            var canvas = this.canvas;
-            var ctx = this.ctx;
-            return ctx.getImageData(0, 0, canvas.width, canvas.height);
-        }
-    }]);
-
-    return ImageCanvas;
+  return ImageCanvas;
 }(_eventEmitter2.default);
 
 exports.default = ImageCanvas;
@@ -345,42 +345,43 @@ exports.default = ImageCanvas;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * @since 15-09-06 09:28
- * @author vivaxy
- */
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+/**
+ * @since 15-09-06 09:28
+ * @author vivaxy
+ */
+
 var Loading = function () {
-    function Loading() {
-        var container = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : document.querySelector('loading');
+  function Loading() {
+    var container = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : document.querySelector('loading');
 
-        _classCallCheck(this, Loading);
+    _classCallCheck(this, Loading);
 
-        this.container = container;
+    this.container = container;
+  }
+
+  _createClass(Loading, [{
+    key: 'show',
+    value: function show() {
+      this.container.classList.remove('hide');
     }
+  }, {
+    key: 'hide',
+    value: function hide() {
+      this.container.classList.add('hide');
+    }
+  }]);
 
-    _createClass(Loading, [{
-        key: 'show',
-        value: function show() {
-            this.container.classList.remove('hide');
-        }
-    }, {
-        key: 'hide',
-        value: function hide() {
-            this.container.classList.add('hide');
-        }
-    }]);
-
-    return Loading;
+  return Loading;
 }();
 
 exports.default = Loading;
@@ -393,7 +394,7 @@ exports.default = Loading;
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -418,85 +419,85 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 */
 
 var Range = function (_EventEmitter) {
-    _inherits(Range, _EventEmitter);
+  _inherits(Range, _EventEmitter);
 
-    function Range() {
-        _classCallCheck(this, Range);
+  function Range() {
+    _classCallCheck(this, Range);
 
-        var _this = _possibleConstructorReturn(this, (Range.__proto__ || Object.getPrototypeOf(Range)).call(this));
+    var _this = _possibleConstructorReturn(this, (Range.__proto__ || Object.getPrototypeOf(Range)).call(this));
 
-        _this.top = 40;
-        _this.totalHeight = 60; // 60;
-        _this.count = 5;
-        _this.height = _this.totalHeight / _this.count;
-        _this._initialize();
-        return _this;
+    _this.top = 40;
+    _this.totalHeight = 60; // 60;
+    _this.count = 5;
+    _this.height = _this.totalHeight / _this.count;
+    _this._initialize();
+    return _this;
+  }
+
+  _createClass(Range, [{
+    key: '_initialize',
+    value: function _initialize() {
+      this._addRangeInput(0, '#f00', 0, 200, 100) // red
+      ._addRangeInput(1, '#0f0', 0, 200, 100) // green
+      ._addRangeInput(2, '#00f', 0, 200, 100) // blue
+      ._addRangeInput(3, '#000', 0, 100, 100) // opacity
+      ._addRangeInput(4, '#999'); // grey scale
+      return this;
     }
 
-    _createClass(Range, [{
-        key: '_initialize',
-        value: function _initialize() {
-            this._addRangeInput(0, '#f00', 0, 200, 100 // red
-            )._addRangeInput(1, '#0f0', 0, 200, 100 // green
-            )._addRangeInput(2, '#00f', 0, 200, 100 // blue
-            )._addRangeInput(3, '#000', 0, 100, 100 // opacity
-            )._addRangeInput(4, '#999'); // grey scale
-            return this;
-        }
+    /**
+     *
+     * @param index - from 0
+     * @param color
+     * @param min
+     * @param max
+     * @param initial
+     * @returns {Range}
+     * @private
+     */
 
-        /**
-         *
-         * @param index - from 0
-         * @param color
-         * @param min
-         * @param max
-         * @param initial
-         * @returns {Range}
-         * @private
-         */
+  }, {
+    key: '_addRangeInput',
+    value: function _addRangeInput(index, color) {
+      var min = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
 
-    }, {
-        key: '_addRangeInput',
-        value: function _addRangeInput(index, color) {
-            var min = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
+      var _this2 = this;
 
-            var _this2 = this;
+      var max = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 100;
+      var initial = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 0;
 
-            var max = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 100;
-            var initial = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 0;
+      var height = this.height;
+      var input = document.createElement('input');
+      input.type = 'range';
+      input.min = min;
+      input.max = max;
+      input.value = initial;
+      (0, _setStyle2.default)(input, {
+        width: '100%',
+        height: height + '%',
+        position: 'absolute',
+        top: this.top + height * index + '%',
+        left: 0,
+        margin: 0,
+        border: 'none',
+        borderRadius: 0,
+        webkitAppearance: 'none',
+        display: 'block',
+        background: color,
+        outline: 'none'
+      });
+      input.addEventListener('change', function (e) {
+        _this2.emit('change', {
+          index: index,
+          value: parseInt(e.target.value) // 0 ~ 200
+        });
+      }, false);
+      document.body.appendChild(input);
+      return this;
+    }
+  }]);
 
-            var height = this.height;
-            var input = document.createElement('input');
-            input.type = 'range';
-            input.min = min;
-            input.max = max;
-            input.value = initial;
-            (0, _setStyle2.default)(input, {
-                width: '100%',
-                height: height + '%',
-                position: 'absolute',
-                top: this.top + height * index + '%',
-                left: 0,
-                margin: 0,
-                border: 'none',
-                borderRadius: 0,
-                webkitAppearance: 'none',
-                display: 'block',
-                background: color,
-                outline: 'none'
-            });
-            input.addEventListener('change', function (e) {
-                _this2.emit('change', {
-                    index: index,
-                    value: parseInt(e.target.value // 0 ~ 200
-                    ) });
-            }, false);
-            document.body.appendChild(input);
-            return this;
-        }
-    }]);
-
-    return Range;
+  return Range;
 }(_eventEmitter2.default);
 
 exports.default = Range;
@@ -506,10 +507,6 @@ exports.default = Range;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * @since 15-09-04 12:26
- * @author vivaxy
- */
 
 
 var _range = __webpack_require__(5);
@@ -530,6 +527,11 @@ var _imageCanvas2 = _interopRequireDefault(_imageCanvas);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+/**
+ * @since 15-09-04 12:26
+ * @author vivaxy
+ */
+
 var savedColorChanges = [100, 100, 100, 255, 0];
 
 var canvas = new _canvas2.default();
@@ -537,25 +539,25 @@ var loading = new _loading2.default();
 var worker = new Worker('./dist/worker.js');
 
 worker.addEventListener('message', function (e) {
-    var data = e.data;
-    canvas.draw(data.imageData, data.width, data.height);
-    loading.hide();
+  var data = e.data;
+  canvas.draw(data.imageData, data.width, data.height);
+  loading.hide();
 }, false);
 
 var range = new _range2.default().on('change', function (e) {
-    loading.show();
-    savedColorChanges[e.index] = e.value;
-    var imageData = imageCanvas.getColorMap();
-    worker.postMessage({
-        savedColorChanges: savedColorChanges,
-        imageData: imageData
-    });
+  loading.show();
+  savedColorChanges[e.index] = e.value;
+  var imageData = imageCanvas.getColorMap();
+  worker.postMessage({
+    savedColorChanges: savedColorChanges,
+    imageData: imageData
+  });
 });
 
 var imageCanvas = new _imageCanvas2.default({
-    src: './index.jpg'
+  src: './index.jpg'
 }).on('load', function () {
-    range.emit('change', {});
+  range.emit('change', {});
 });
 
 /***/ })

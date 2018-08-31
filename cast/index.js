@@ -71,17 +71,16 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * @since 2015-09-29 15:03
- * @author vivaxy
- */
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @since 2015-09-29 15:03
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @author vivaxy
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
 
 var _tween = __webpack_require__(2);
 
@@ -92,87 +91,87 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var Cast = function () {
-    function Cast(text) {
-        _classCallCheck(this, Cast);
+  function Cast(text) {
+    _classCallCheck(this, Cast);
 
-        this.text = text;
-        this.parent = document.body;
-        this.render().start();
+    this.text = text;
+    this.parent = document.body;
+    this.render().start();
+  }
+
+  _createClass(Cast, [{
+    key: 'render',
+    value: function render() {
+      var element = document.createElement('div');
+      var style = element.style;
+      element.innerText = this.text;
+      style.position = 'fixed';
+      style.height = '16px';
+      style.lineHeight = '16px';
+      style.width = '100%';
+      style.textAlign = 'center';
+      style.bottom = '-16px';
+      this.parent.appendChild(element);
+      this.element = element;
+      return this;
     }
+  }, {
+    key: 'start',
+    value: function start() {
+      var _this = this;
 
-    _createClass(Cast, [{
-        key: 'render',
-        value: function render() {
-            var element = document.createElement('div');
-            var style = element.style;
-            element.innerText = this.text;
-            style.position = 'fixed';
-            style.height = '16px';
-            style.lineHeight = '16px';
-            style.width = '100%';
-            style.textAlign = 'center';
-            style.bottom = '-16px';
-            this.parent.appendChild(element);
-            this.element = element;
-            return this;
-        }
-    }, {
-        key: 'start',
-        value: function start() {
-            var _this = this;
+      new _tween2.default(this.element).animate({
+        style: 'bottom',
+        from: -16,
+        to: 0,
+        getValue: function getValue(v) {
+          return v + 'px';
+        },
+        duration: 500
+      }).on('end', function () {
+        new _tween2.default(_this.element).animate({
+          style: 'bottom',
+          from: 0,
+          to: 0,
+          getValue: function getValue(v) {
+            return v + 'px';
+          },
+          duration: 500
+        }).on('end', function () {
+          new _tween2.default(_this.element).animate({
+            style: 'letterSpacing',
+            from: 0,
+            to: 10,
+            getValue: function getValue(v) {
+              return v + 'px';
+            },
+            duration: 500
+          }).start();
+          new _tween2.default(_this.element).animate({
+            style: 'opacity',
+            from: 1,
+            to: 0,
+            getValue: function getValue(v) {
+              return v;
+            },
+            duration: 500
+          }).on('end', function () {
+            _this.parent.removeChild(_this.element);
+            _this.callback();
+          }).start();
+        }).start();
+      }).start();
+      return this;
+    }
+  }, {
+    key: 'end',
+    value: function end(callback) {
+      this.callback = callback;
+      return this;
+    }
+  }]);
 
-            new _tween2.default(this.element).animate({
-                style: 'bottom',
-                from: -16,
-                to: 0,
-                getValue: function getValue(v) {
-                    return v + 'px';
-                },
-                duration: 500
-            }).on('end', function () {
-                new _tween2.default(_this.element).animate({
-                    style: 'bottom',
-                    from: 0,
-                    to: 0,
-                    getValue: function getValue(v) {
-                        return v + 'px';
-                    },
-                    duration: 500
-                }).on('end', function () {
-                    new _tween2.default(_this.element).animate({
-                        style: 'letterSpacing',
-                        from: 0,
-                        to: 10,
-                        getValue: function getValue(v) {
-                            return v + 'px';
-                        },
-                        duration: 500
-                    }).start();
-                    new _tween2.default(_this.element).animate({
-                        style: 'opacity',
-                        from: 1,
-                        to: 0,
-                        getValue: function getValue(v) {
-                            return v;
-                        },
-                        duration: 500
-                    }).on('end', function () {
-                        _this.parent.removeChild(_this.element);
-                        _this.callback();
-                    }).start();
-                }).start();
-            }).start();
-            return this;
-        }
-    }, {
-        key: 'end',
-        value: function end(callback) {
-            this.callback = callback;
-            return this;
-        }
-    }]);
-
-    return Cast;
+  return Cast;
 }();
 
 exports.default = Cast;
@@ -189,7 +188,7 @@ exports.default = Cast;
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -197,10 +196,48 @@ var _createClass = function () { function defineProperties(target, props) { for 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var EventEmitter = function () {
-    function EventEmitter() {
-        _classCallCheck(this, EventEmitter);
+  function EventEmitter() {
+    _classCallCheck(this, EventEmitter);
 
-        this.events = {};
+    this.events = {};
+  }
+
+  /**
+   *
+   * @param event
+   * @param callback
+   * @returns {EventEmitter}
+   */
+
+
+  _createClass(EventEmitter, [{
+    key: 'on',
+    value: function on(event, callback) {
+      if (!this.events[event]) {
+        this.events[event] = [];
+      }
+      this.events[event].push(callback);
+      return this;
+    }
+
+    /**
+     *
+     * @param event
+     * @returns {EventEmitter}
+     */
+
+  }, {
+    key: 'emit',
+    value: function emit(event) {
+      var _this = this;
+      var callbacks = this.events[event];
+      var _arguments = arguments;
+      if (callbacks) {
+        callbacks.forEach(function (callback) {
+          callback.apply(_this, Array.prototype.slice.call(_arguments, 1));
+        });
+      }
+      return this;
     }
 
     /**
@@ -210,57 +247,19 @@ var EventEmitter = function () {
      * @returns {EventEmitter}
      */
 
+  }, {
+    key: 'off',
+    value: function off(event, callback) {
+      if (this.events[event] && callback) {
+        this.events[event].splice(this.events[event].indexOf(callback), 1);
+      } else {
+        this.events[event] = [];
+      }
+      return this;
+    }
+  }]);
 
-    _createClass(EventEmitter, [{
-        key: 'on',
-        value: function on(event, callback) {
-            if (!this.events[event]) {
-                this.events[event] = [];
-            }
-            this.events[event].push(callback);
-            return this;
-        }
-
-        /**
-         *
-         * @param event
-         * @returns {EventEmitter}
-         */
-
-    }, {
-        key: 'emit',
-        value: function emit(event) {
-            var _this = this;
-            var callbacks = this.events[event];
-            var _arguments = arguments;
-            if (callbacks) {
-                callbacks.forEach(function (callback) {
-                    callback.apply(_this, Array.prototype.slice.call(_arguments, 1));
-                });
-            }
-            return this;
-        }
-
-        /**
-         *
-         * @param event
-         * @param callback
-         * @returns {EventEmitter}
-         */
-
-    }, {
-        key: 'off',
-        value: function off(event, callback) {
-            if (this.events[event] && callback) {
-                this.events[event].splice(this.events[event].indexOf(callback), 1);
-            } else {
-                this.events[event] = [];
-            }
-            return this;
-        }
-    }]);
-
-    return EventEmitter;
+  return EventEmitter;
 }();
 
 exports.default = EventEmitter;
@@ -300,7 +299,7 @@ exports.default = EventEmitter;
  */
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -322,102 +321,102 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * @constructor
  */
 var Tween = function (_EventEmitter) {
-    _inherits(Tween, _EventEmitter);
+  _inherits(Tween, _EventEmitter);
 
-    function Tween(element) {
-        _classCallCheck(this, Tween);
+  function Tween(element) {
+    _classCallCheck(this, Tween);
 
-        var _this = _possibleConstructorReturn(this, (Tween.__proto__ || Object.getPrototypeOf(Tween)).call(this, arguments));
+    var _this = _possibleConstructorReturn(this, (Tween.__proto__ || Object.getPrototypeOf(Tween)).call(this, arguments));
 
-        _this.element = element;
-        // this.style = undefined;
-        // this.from = undefined;
-        // this.to = undefined;
-        // this.duration = undefined;
-        // this.getValue = undefined;
+    _this.element = element;
+    // this.style = undefined;
+    // this.from = undefined;
+    // this.to = undefined;
+    // this.duration = undefined;
+    // this.getValue = undefined;
 
-        // this._beginTime = 0;
-        _this._events = {};
-        _this._animating = false;
-        return _this;
+    // this._beginTime = 0;
+    _this._events = {};
+    _this._animating = false;
+    return _this;
+  }
+
+  /**
+   *
+   * @param options
+   * @returns {Tween}
+   */
+
+
+  _createClass(Tween, [{
+    key: 'animate',
+    value: function animate(options) {
+      this.style = options.style;
+      this.from = options.from;
+      this.to = options.to;
+      this.duration = options.duration;
+      this.getValue = options.getValue || function (v) {
+        return v;
+      };
+      return this;
+    }
+
+    /**
+     * play it
+     * @returns {Tween}
+     */
+
+  }, {
+    key: 'start',
+    value: function start() {
+      if (!this._animating) {
+        this._animating = true;
+        this._beginTime = new Date().getTime();
+        this._loop();
+      }
+      return this;
     }
 
     /**
      *
-     * @param options
      * @returns {Tween}
+     * @private
      */
 
-
-    _createClass(Tween, [{
-        key: 'animate',
-        value: function animate(options) {
-            this.style = options.style;
-            this.from = options.from;
-            this.to = options.to;
-            this.duration = options.duration;
-            this.getValue = options.getValue || function (v) {
-                return v;
-            };
-            return this;
+  }, {
+    key: '_loop',
+    value: function _loop() {
+      var now = new Date().getTime();
+      if (this._animating) {
+        if (now < this._beginTime + this.duration) {
+          var value = this.from + (this.to - this.from) * (now - this._beginTime) / this.duration;
+          this.element.style[this.style] = this.getValue(value);
+          this.emit('frame', value);
+          window.requestAnimationFrame(this._loop.bind(this));
+        } else {
+          // make sure final style
+          this.element.style[this.style] = this.getValue(this.to);
+          this.emit('end');
         }
+      }
+    }
 
-        /**
-         * play it
-         * @returns {Tween}
-         */
+    /**
+     * pause
+     */
 
-    }, {
-        key: 'start',
-        value: function start() {
-            if (!this._animating) {
-                this._animating = true;
-                this._beginTime = new Date().getTime();
-                this._loop();
-            }
-            return this;
-        }
+  }, {
+    key: 'pause',
+    value: function pause() {
+      this._animating = false;
+      var elapsed = new Date().getTime() - this._beginTime;
+      this.from = this.from + (this.to - this.from) * elapsed / this.duration;
+      this.duration = this.duration - elapsed;
+      return this;
+    }
+  }]);
 
-        /**
-         *
-         * @returns {Tween}
-         * @private
-         */
-
-    }, {
-        key: '_loop',
-        value: function _loop() {
-            var now = new Date().getTime();
-            if (this._animating) {
-                if (now < this._beginTime + this.duration) {
-                    var value = this.from + (this.to - this.from) * (now - this._beginTime) / this.duration;
-                    this.element.style[this.style] = this.getValue(value);
-                    this.emit('frame', value);
-                    window.requestAnimationFrame(this._loop.bind(this));
-                } else {
-                    // make sure final style
-                    this.element.style[this.style] = this.getValue(this.to);
-                    this.emit('end');
-                }
-            }
-        }
-
-        /**
-         * pause
-         */
-
-    }, {
-        key: 'pause',
-        value: function pause() {
-            this._animating = false;
-            var elapsed = new Date().getTime() - this._beginTime;
-            this.from = this.from + (this.to - this.from) * elapsed / this.duration;
-            this.duration = this.duration - elapsed;
-            return this;
-        }
-    }]);
-
-    return Tween;
+  return Tween;
 }(_eventEmitter2.default);
 
 exports.default = Tween;
@@ -427,10 +426,6 @@ exports.default = Tween;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
- * @since 150425 18:30
- * @author vivaxy
- */
 
 
 var _cast = __webpack_require__(0);
@@ -439,18 +434,21 @@ var _cast2 = _interopRequireDefault(_cast);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var data = ['author : vivaxy', 'date : 2015-04-25'];
+var data = ['author : vivaxy', 'date : 2015-04-25']; /**
+                                                      * @since 150425 18:30
+                                                      * @author vivaxy
+                                                      */
 
 var callbackFactory = function callbackFactory(index, callback) {
-    return function () {
-        new _cast2.default(data[index]).end(callback);
-    };
+  return function () {
+    new _cast2.default(data[index]).end(callback);
+  };
 };
 
 var cb = function cb() {};
 
 data.forEach(function (value, index) {
-    cb = callbackFactory(data.length - index - 1, cb);
+  cb = callbackFactory(data.length - index - 1, cb);
 });
 
 setInterval(cb, 5000);

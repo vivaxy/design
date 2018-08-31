@@ -2,19 +2,19 @@
  * @since 15-09-06 09:28
  * @author vivaxy
  */
-'use strict';
+
 class Loading {
-    constructor(container = document.querySelector('loading')) {
-        this.container = container;
-    }
+  constructor(container = document.querySelector('loading')) {
+    this.container = container;
+  }
 
-    show() {
-        this.container.classList.remove('hide');
-    }
+  show() {
+    this.container.classList.remove('hide');
+  }
 
-    hide() {
-        this.container.classList.add('hide');
-    }
+  hide() {
+    this.container.classList.add('hide');
+  }
 }
 
 export default Loading;

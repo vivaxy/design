@@ -4,16 +4,16 @@
  */
 
 module.exports = {
-    entry: './src/index.js',
-    output: {
-        filename: './dist/index.js',
-    },
-    module: {
-        rules: [
-            {
-                test: /\.js$/,
-                loader: 'babel-loader',
-            },
-        ],
-    },
+  entry: './src/index.js',
+  output: {
+    filename: './dist/index.js',
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        loader: 'babel-loader',
+      },
+    ],
+  },
 };
