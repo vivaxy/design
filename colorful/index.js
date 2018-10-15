@@ -132,7 +132,7 @@ const save = (key, value) => {
 };
 
 const getColor = () => {
-  const defaultColors = { r: 0, g: 0, b: 0 };
+  const defaultColors = { r: 255, g: 93, b: 107 };
   const storedColors = JSON.parse(localStorage.getItem('colors'));
   if (storedColors) {
     return storedColors;
