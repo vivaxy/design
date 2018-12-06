@@ -5,7 +5,7 @@
 
 import './debug/assert.js';
 import * as eventTypes from './enums/event-types.js';
-import EventEmitter from '../_framework/class/event-emitter.js';
+import EventEmitter from '../event-based-framework/class/event-emitter.js';
 
 import hotkeys from './services/hotkeys.js';
 import baseCanvas from './services/base-canvas.js';
