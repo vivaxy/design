@@ -94,5 +94,9 @@
   {
     "name": "Bezier Painter",
     "link": "bezier-painter/index.html"
+  },
+  {
+    "name": "Scroll Timeline",
+    "link": "scroll-timeline/index.html"
   }
 ]
