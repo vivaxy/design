@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+  <link type="image/png" rel="shortcut icon" href="/vivaxy.icon.png">
+  <title>Title Effects: Wavy</title>
+</head>
+<body>
+<script>
+  function loop() {
+    var i, n, s = '';
+
+    for (i = 0; i < 10; i++) {
+      n = Math.floor(Math.sin((Date.now() / 200) + (i / 2)) * 4) + 4;
+
+      s += String.fromCharCode(0x2581 + n);
+    }
+
+    document.title = s;
+
+    setTimeout(loop, 50);
+  }
+
+  loop();
+</script>
+<script type="text/javascript" charset="utf-8" src="/ba.js"></script>
+</body>
+</html>

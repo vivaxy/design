@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
-    <link type="image/png" rel="shortcut icon" href="/vivaxy.icon.png">
-    <title>flash</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+  <link type="image/png" rel="shortcut icon" href="/vivaxy.icon.png">
+  <title>Title Effects: Flash</title>
 </head>
 <body>
 <script>
-    var title = document.title;
-    setInterval(function () {
-        document.title = document.title === title ? '\u00A0' : title;
-    }, 200);
+  var title = document.title;
+  setInterval(function() {
+    document.title = document.title === title ? '\u200b' : title;
+  }, 200);
 </script>
 <script type="text/javascript" src="/ba.js"></script>
 </body>
