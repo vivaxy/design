@@ -2,6 +2,12 @@
   "name": "design",
   "version": "0.0.0",
   "description": "Design demos",
+  "keywords": [
+    "vivaxy",
+    "design",
+    "github",
+    "demo"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vivaxy/design.git"
@@ -34,12 +40,6 @@
     ]
   },
   "gds": {
-    "keywords": [
-      "vivaxy",
-      "design",
-      "github",
-      "demo"
-    ],
     "readme": "# [Design](https://vivaxy.github.io/design/)",
     "link-prefix": "https://vivaxy.github.io/design/"
   }
