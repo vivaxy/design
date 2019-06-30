@@ -15,6 +15,7 @@
   "devDependencies": {
     "@commitlint/cli": "^8.0.0",
     "@commitlint/config-conventional": "^8.0.0",
+    "@vivaxy/github-demo-scripts": "^0.1.0",
     "husky": "^2.7.0",
     "lint-staged": "^8.2.1",
     "prettier": "^1.18.2",
@@ -22,7 +23,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged",
+      "pre-commit": "gds && git add README.md && lint-staged",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
@@ -31,5 +32,15 @@
       "prettier --write",
       "git add"
     ]
+  },
+  "gds": {
+    "keywords": [
+      "vivaxy",
+      "design",
+      "github",
+      "demo"
+    ],
+    "readme": "# [Design](https://vivaxy.github.io/design/)",
+    "link-prefix": "https://vivaxy.github.io/design/"
   }
 }
