@@ -1,0 +1,35 @@
+{
+  "name": "design",
+  "version": "0.0.0",
+  "description": "Design demos",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vivaxy/design.git"
+  },
+  "author": "vivaxy <xyxuye2007@126.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vivaxy/design/issues"
+  },
+  "homepage": "https://github.com/vivaxy/design#readme",
+  "devDependencies": {
+    "@commitlint/cli": "^8.0.0",
+    "@commitlint/config-conventional": "^8.0.0",
+    "husky": "^2.7.0",
+    "lint-staged": "^8.2.1",
+    "prettier": "^1.18.2",
+    "standard-version": "^6.0.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts,css,less,json,md,html,yml,yaml,pcss,jsx,tsx}": [
+      "prettier --write",
+      "git add"
+    ]
+  }
+}
