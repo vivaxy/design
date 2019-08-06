@@ -24,7 +24,7 @@
   "devDependencies": {
     "@commitlint/cli": "^8.0.0",
     "@commitlint/config-conventional": "^8.0.0",
-    "@vivaxy/github-demo-scripts": "^0.3.0",
+    "@vivaxy/github-demo-scripts": "^0.5.0",
     "husky": "^2.7.0",
     "lint-staged": "^8.2.1",
     "prettier": "^1.18.2",
@@ -43,7 +43,7 @@
     ]
   },
   "gds": {
-    "readme": "# [Design](https://vivaxy.github.io/design/)",
+    "readme-prefix": "# [Design](https://vivaxy.github.io/design/)",
     "link-prefix": "https://vivaxy.github.io/design/"
   }
 }

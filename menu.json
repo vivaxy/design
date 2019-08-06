@@ -1,102 +1,106 @@
 [
   {
     "name": "Colorful",
-    "link": "colorful/index.html"
+    "link": "colorful/"
   },
   {
     "name": "Infinite Tubes With Three.jss",
-    "link": "infinite-tubes-with-three-js/index.html"
+    "link": "infinite-tubes-with-three-js/"
   },
   {
     "name": "Comment j'ai rate ma vie",
-    "link": "comment-j-ai-rate-ma-vie/index.html"
+    "link": "comment-j-ai-rate-ma-vie/"
   },
   {
     "name": "Menu Animation",
-    "link": "menu-animation/index.html"
+    "link": "menu-animation/"
   },
   {
     "name": "Snow",
-    "link": "snow/index.html"
+    "link": "snow/"
   },
   {
     "name": "Checkbox",
-    "link": "checkbox/index.html"
+    "link": "checkbox/"
   },
   {
     "name": "Shuffling Horizontal",
-    "link": "shuffling-horizontal/index.html"
+    "link": "shuffling-horizontal/"
   },
   {
     "name": "Shuffling Vertical",
-    "link": "shuffling-vertical/index.html"
+    "link": "shuffling-vertical/"
   },
   {
     "name": "Tween",
-    "link": "tween/index.html"
+    "link": "tween/"
   },
   {
     "name": "Cast",
-    "link": "cast/index.html"
+    "link": "cast/"
   },
   {
     "name": "Loading Effects",
-    "link": "loading-effects/index.html"
+    "link": "loading-effects/"
   },
   {
     "name": "Click Effects",
-    "link": "click-effects/index.html"
+    "link": "click-effects/"
   },
   {
     "name": "Title Effects",
-    "link": "title-effects/index.html"
+    "link": "title-effects/"
   },
   {
     "name": "Letter Animation",
-    "link": "letter-animation/index.html"
+    "link": "letter-animation/"
   },
   {
     "name": "Number Animation",
-    "link": "number-animation/index.html"
+    "link": "number-animation/"
   },
   {
     "name": "Ink",
-    "link": "ink/index.html"
+    "link": "ink/"
   },
   {
     "name": "Image Filter",
-    "link": "image-filter/index.html"
+    "link": "image-filter/"
   },
   {
     "name": "Switchery",
-    "link": "switchery/index.html"
+    "link": "switchery/"
   },
   {
     "name": "Radio",
-    "link": "radio/index.html"
+    "link": "radio/"
   },
   {
     "name": "Rainbow",
-    "link": "rainbow/index.html"
+    "link": "rainbow/"
   },
   {
     "name": "KBD Style",
-    "link": "kbd-style/index.html"
+    "link": "kbd-style/"
   },
   {
     "name": "Range Slider",
-    "link": "range-slider/index.html"
+    "link": "range-slider/"
   },
   {
     "name": "3D Tag Cloud",
-    "link": "3d-tag-cloud/index.html"
+    "link": "3d-tag-cloud/"
   },
   {
     "name": "Bezier Painter",
-    "link": "bezier-painter/index.html"
+    "link": "bezier-painter/"
   },
   {
     "name": "Scroll Timeline",
-    "link": "scroll-timeline/index.html"
+    "link": "scroll-timeline/"
+  },
+  {
+    "name": "Polygon Painter",
+    "link": "polygon-painter/"
   }
 ]
