@@ -1,0 +1,114 @@
+/**
+ * @since 2014/10/20 12:38
+ * @author vivaxy
+ */
+
+body {
+  margin: 0;
+  overflow: hidden;
+}
+
+.actions {
+  height: 60px;
+  padding: 0 15px;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.actions .action-row {
+  height: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.actions .action-row .input-label {
+  flex: 0 0 auto;
+  margin-right: 4px;
+  font-size: 14px;
+  display: block;
+}
+
+.actions .action-row #fInput {
+  flex: 1;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  display: block;
+  border-bottom: 1px rgb(0, 0, 0) solid;
+  height: 18px;
+  font-size: 14px;
+}
+
+.actions .action-row #fButton {
+  flex: 0 0 auto;
+  display: block;
+  margin-left: 4px;
+  font-size: 14px;
+  height: 18px;
+}
+
+.actions .action-row #fShowGrid {
+  display: block;
+  flex: 0 0 auto;
+  font-size: 14px;
+  height: 18px;
+}
+
+.actions .action-row #fShowCoordinate {
+  display: block;
+  flex: 0 0 auto;
+  font-size: 14px;
+  height: 18px;
+  margin-left: 4px;
+}
+
+.actions .action-row .speed-label {
+  flex: 0 0 auto;
+  font-size: 14px;
+  height: 18px;
+  margin-left: 4px;
+  display: block;
+}
+
+.actions .action-row #fRatioChange {
+  padding: 0;
+  display: block;
+  flex: 0 0 auto;
+  font-size: 14px;
+  height: 18px;
+}
+
+.actions .action-row .size-label {
+  flex: 0 0 auto;
+  font-size: 14px;
+  height: 18px;
+  margin-left: 4px;
+}
+
+.actions .action-row #fGrid {
+  flex: 0 0 auto;
+  font-size: 12px;
+  height: 14px;
+  line-height: 14px;
+  margin-left: 2px;
+}
+
+.actions .action-row .coordinate-label {
+  flex: 0 0 auto;
+  font-size: 14px;
+  height: 18px;
+  margin-left: 4px;
+}
+
+.actions .action-row #fCoordinate {
+  flex: 0 0 auto;
+  font-size: 12px;
+  height: 14px;
+  line-height: 14px;
+  margin-left: 2px;
+}
+
+#canvas {
+  display: block;
+  cursor: url("assets/openhand.cur"), auto;
+}

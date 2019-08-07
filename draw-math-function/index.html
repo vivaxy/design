@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"
+    />
+    <meta name="description" content="Draw math function" />
+    <meta
+      name="keywords"
+      content="math,draw-math-function,vivaxy,math-function,draw-function,design,github,demo,test,playground,codrops"
+    />
+    <meta name="author" content="vivaxy" />
+    <link rel="shortcut icon" href="/vivaxy.icon.png" />
+    <link type="text/css" rel="stylesheet" href="index.css" />
+    <title>Draw Math Function</title>
+  </head>
+  <body>
+    <div class="actions">
+      <div class="action-row">
+        <label class="input-label" for="fInput">f(x) =</label>
+        <input type="text" id="fInput" value="Math.sin(x)" />
+        <input type="button" id="fButton" class="button" value="Draw" />
+      </div>
+      <div class="action-row">
+        <input type="button" id="fShowGrid" class="button" value="Gird" />
+        <input type="button" id="fShowCoordinate" class="button" value="Axis" />
+        <label class="speed-label" for="fRatioChange">Speed:</label>
+        <input
+          type="range"
+          id="fRatioChange"
+          min="1.01"
+          max="2"
+          step="0.01"
+          value="1.1"
+        />
+        <div class="size-label">Size:</div>
+        <div id="fGrid"></div>
+        <div class="coordinate-label">Coordinate:</div>
+        <div id="fCoordinate"></div>
+      </div>
+    </div>
+    <canvas id="canvas"></canvas>
+    <script type="text/javascript" charset="utf-8" src="index.js"></script>
+
+    <script type="text/javascript" charset="utf-8" src="/ba.js"></script>
+  </body>
+</html>

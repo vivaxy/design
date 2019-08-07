@@ -10,6 +10,7 @@ Table of contents
 * [Click Effects](https://vivaxy.github.io/design/click-effects/) Click Effects
 * [Colorful](https://vivaxy.github.io/design/colorful/) Colorful
 * [Comment j'ai raté ma vie](https://vivaxy.github.io/design/comment-j-ai-rate-ma-vie/) Comment j'ai raté ma vie
+* [Draw Math Function](https://vivaxy.github.io/design/draw-math-function/) Draw math function
 * [Image Filter](https://vivaxy.github.io/design/image-filter/) Image Filter
 * [Infinite Tubes With Three.js](https://vivaxy.github.io/design/infinite-tubes-with-three-js/) Infinite Tubes With Three.js
 * [Ink](https://vivaxy.github.io/design/ink/) Ink
