@@ -2,7 +2,7 @@
  * @since 20180613 21:23
  * @author vivaxy
  */
-
+import ASSERT from 'https://unpkg.com/event-based-framework/utils/assert.js';
 import * as eventTypes from '../enums/event-types.js';
 import * as actionTypes from '../enums/layer-actions.js';
 import * as layerProperties from '../enums/layer-properties.js';
@@ -68,9 +68,7 @@ function init(events) {
         });
       }
     });
-
   }
-
 }
 
 export default { init };
