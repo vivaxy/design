@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"
+    />
+    <meta name="description" content="Watermark" />
+    <meta
+      name="keywords"
+      content="vivaxy,course,github,demo,playground,test,Watermark"
+    />
+    <meta name="author" content="vivaxy" />
+    <link type="image/png" rel="shortcut icon" href="/vivaxy.icon.png" />
+    <link type="text/css" rel="stylesheet" href="index.css" />
+    <link rel="manifest" href="manifest.json">
+    <title>Watermark</title>
+  </head>
+  <body>
+    <canvas id="output" class="output"></canvas>
+    <div class="row">
+      <label for="upload-image">Upload Image</label>
+      <input id="upload-image" type="file" accept="image/*" />
+    </div>
+    <div class="row">
+      <label for="upload-watermark">Upload Watermark</label>
+      <input id="upload-watermark" type="file" accept="image/*" />
+      <img id="preview-watermark" src="__previous_watermark__.png" />
+    </div>
+    <div class="row">
+      <label for="select-position-x">Position X</label>
+      <select id="select-position-x">
+        <option>Left</option>
+        <option>Center</option>
+        <option>Right</option>
+      </select>
+      <label for="set-position-x-offset">Offset</label>
+      <input id="set-position-x-offset" value="0" type="number" />
+    </div>
+    <div class="row">
+      <label for="select-position-y">Position Y</label>
+      <select id="select-position-y">
+        <option>Top</option>
+        <option>Center</option>
+        <option>Bottom</option>
+      </select>
+      <label for="set-position-y-offset">Offset</label>
+      <input id="set-position-y-offset" value="0" type="number" />
+    </div>
+    <div class="row">
+        <label for="select-size">Size</label>
+        <select id="select-size">
+          <option>Area</option>
+          <option>Width</option>
+          <option>Height</option>
+        </select>
+        <label for="set-size">Ratio</label>
+        <input id="set-size" value="0.02" type="number" />
+      </div>
+    <div class="row">
+      <label for="set-opacity">Opacity</label>
+      <input id="set-opacity" value="0" type="number" />
+    </div>
+    <script type="module" src="index.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/ba.js"></script>
+  </body>
+</html>

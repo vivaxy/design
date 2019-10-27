@@ -1,0 +1,16 @@
+{
+  "name": "Watermark - vivaxy",
+  "short_name": "Watermark",
+  "start_url": "./?utm_source=web_app_manifest",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "description": "Add Watermark to Your Images",
+  "icons": [
+    {
+      "src": "/vivaxy.icon.png",
+      "sizes": "48x48",
+      "type": "image/png"
+    }
+  ]
+}

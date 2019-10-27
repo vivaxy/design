@@ -1,0 +1,42 @@
+/**
+ * @since 2019-10-27 03:18
+ * @author vivaxy
+ */
+body {
+  margin: 0;
+}
+
+.output {
+  display: block;
+  width: 100%;
+  height: 300px;
+}
+
+.row {
+  display: flex;
+}
+
+label {
+  display: block;
+  width: 120px;
+  font-size: 12px;
+  flex: none;
+}
+
+input {
+  display: block;
+  flex: 1 1 auto;
+  width: 0;
+}
+
+select {
+  display: block;
+  flex: 1 1 auto;
+  width: 0;
+}
+
+img {
+  display: block;
+  flex: 1 1 auto;
+  width: 0;
+}
