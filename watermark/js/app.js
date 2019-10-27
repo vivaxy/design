@@ -1,6 +1,7 @@
 /**
  * @since 2019-10-27 04:23
  * @author vivaxy
+ * TODO: save
  */
 const $output = document.getElementById('output');
 const $uploadImage = document.getElementById('upload-image');
@@ -18,17 +19,14 @@ const $setSizeRatio = document.getElementById('set-size-ratio');
 
 const $setOpacity = document.getElementById('set-opacity');
 
-const state = {
-  image: null,
-  watermark: null,
-  xAnchor: $selectXAnchor.value,
-  xOffset: Number($setXOffset.value),
-  yAnchor: $selectYAnchor.value,
-  yOffset: Number($setYOffset.value),
-  sizeAnchor: $selectSizeAnchor.value,
-  sizeRatio: Number($setSizeRatio.value),
-  opacity: Number($setOpacity.value),
-};
+let state = null;
+loadState();
+renderState();
+
+$previewWatermark.addEventListener('load', function() {
+  state.watermark = $previewWatermark;
+  updateOutput();
+});
 
 $uploadImage.addEventListener('change', async function(e) {
   const dataURL = await getDataURLFromFile(e.target.files[0]);
@@ -39,8 +37,6 @@ $uploadImage.addEventListener('change', async function(e) {
 $uploadWatermark.addEventListener('change', async function(e) {
   const dataURL = await getDataURLFromFile(e.target.files[0]);
   $previewWatermark.src = dataURL;
-  state.watermark = await getImageFromDataURL(dataURL);
-  updateOutput();
 });
 
 $selectXAnchor.addEventListener('change', function(e) {
@@ -98,7 +94,51 @@ function getImageFromDataURL(dataURL) {
   });
 }
 
+function loadState() {
+  const data = localStorage.getItem(location.pathname);
+  if (data) {
+    try {
+      state = JSON.parse(data);
+    } catch (e) {
+      setDefaultState();
+    }
+  } else {
+    setDefaultState();
+  }
+}
+
+function setDefaultState() {
+  state = {
+    image: null,
+    watermark: null,
+    xAnchor: $selectXAnchor.value,
+    xOffset: Number($setXOffset.value),
+    yAnchor: $selectYAnchor.value,
+    yOffset: Number($setYOffset.value),
+    sizeAnchor: $selectSizeAnchor.value,
+    sizeRatio: Number($setSizeRatio.value),
+    opacity: Number($setOpacity.value),
+  };
+}
+
+function renderState() {
+  // TODO: sync state to html
+}
+
+function saveState() {
+  localStorage.setItem(
+    location.pathname,
+    JSON.stringify({
+      ...state,
+      image: state.image.src,
+      watermark: state.watermark.src,
+    }),
+  );
+}
+
 function updateOutput() {
+  saveState();
+
   if (!state.image) {
     return;
   }
