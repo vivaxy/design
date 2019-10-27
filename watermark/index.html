@@ -29,38 +29,38 @@
       <img id="preview-watermark" src="__previous_watermark__.png" />
     </div>
     <div class="row">
-      <label for="select-position-x">Position X</label>
-      <select id="select-position-x">
+      <label for="select-x-anchor">Position X</label>
+      <select id="select-x-anchor">
         <option>Left</option>
         <option>Center</option>
         <option selected>Right</option>
       </select>
-      <label for="set-position-x-offset">Offset</label>
-      <input id="set-position-x-offset" value="0" type="number" />
+      <label for="set-x-offset">Offset</label>
+      <input id="set-x-offset" value="0" type="number" step="1" />
     </div>
     <div class="row">
-      <label for="select-position-y">Position Y</label>
-      <select id="select-position-y">
+      <label for="select-y-anchor">Position Y</label>
+      <select id="select-y-anchor">
         <option>Top</option>
         <option>Center</option>
         <option selected>Bottom</option>
       </select>
-      <label for="set-position-y-offset">Offset</label>
-      <input id="set-position-y-offset" value="0" type="number" />
+      <label for="set-y-offset">Offset</label>
+      <input id="set-y-offset" value="0" type="number" step="1" />
     </div>
     <div class="row">
-        <label for="select-size">Size</label>
-        <select id="select-size">
+        <label for="select-size-anchor">Size</label>
+        <select id="select-size-anchor">
           <option selected>Area</option>
           <option>Width</option>
           <option>Height</option>
         </select>
-        <label for="set-size">Ratio</label>
-        <input id="set-size" value="0.02" type="number" />
+        <label for="set-size-ratio">Ratio</label>
+        <input id="set-size-ratio" value="0.02" type="number" step="0.1" max="1" min="0" />
       </div>
     <div class="row">
       <label for="set-opacity">Opacity</label>
-      <input id="set-opacity" value="0" type="number" />
+      <input id="set-opacity" value="1" type="number" step="0.1" max="1" min="0" />
     </div>
     <script type="module" src="index.js"></script>
     <script type="text/javascript" charset="utf-8" src="/ba.js"></script>

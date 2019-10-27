@@ -7,26 +7,26 @@ const $uploadImage = document.getElementById('upload-image');
 const $uploadWatermark = document.getElementById('upload-watermark');
 const $previewWatermark = document.getElementById('preview-watermark');
 
-const $selectPositionX = document.getElementById('select-position-x');
-const $setPositionXOffset = document.getElementById('set-position-x-offset');
+const $selectXAnchor = document.getElementById('select-x-anchor');
+const $setXOffset = document.getElementById('set-x-offset');
 
-const $selectPositionY = document.getElementById('select-position-y');
-const $setPositionYOffset = document.getElementById('set-position-y-offset');
+const $selectYAnchor = document.getElementById('select-y-anchor');
+const $setYOffset = document.getElementById('set-y-offset');
 
-const $selectSize = document.getElementById('select-size');
-const $setSize = document.getElementById('set-size');
+const $selectSizeAnchor = document.getElementById('select-size-anchor');
+const $setSizeRatio = document.getElementById('set-size-ratio');
 
 const $setOpacity = document.getElementById('set-opacity');
 
 const state = {
   image: null,
   watermark: null,
-  x: $selectPositionX.value,
-  xOffset: Number($setPositionXOffset.value),
-  y: $selectPositionY.value,
-  yOffset: Number($setPositionYOffset.value),
-  size: $selectSize.value,
-  sizeRatio: Number($setSize.value),
+  xAnchor: $selectXAnchor.value,
+  xOffset: Number($setXOffset.value),
+  yAnchor: $selectYAnchor.value,
+  yOffset: Number($setYOffset.value),
+  sizeAnchor: $selectSizeAnchor.value,
+  sizeRatio: Number($setSizeRatio.value),
   opacity: Number($setOpacity.value),
 };
 
@@ -40,6 +40,41 @@ $uploadWatermark.addEventListener('change', async function(e) {
   const dataURL = await getDataURLFromFile(e.target.files[0]);
   $previewWatermark.src = dataURL;
   state.watermark = await getImageFromDataURL(dataURL);
+  updateOutput();
+});
+
+$selectXAnchor.addEventListener('change', function(e) {
+  state.xAnchor = e.target.value;
+  updateOutput();
+});
+
+$setXOffset.addEventListener('change', function(e) {
+  state.xOffset = Number(e.target.value);
+  updateOutput();
+});
+
+$setYOffset.addEventListener('change', function(e) {
+  state.yAnchor = e.target.value;
+  updateOutput();
+});
+
+$setYOffset.addEventListener('change', function(e) {
+  state.yOffset = Number(e.target.value);
+  updateOutput();
+});
+
+$selectSizeAnchor.addEventListener('change', function(e) {
+  state.sizeAnchor = e.target.value;
+  updateOutput();
+});
+
+$setSizeRatio.addEventListener('change', function(e) {
+  state.sizeRatio = Number(e.target.value);
+  updateOutput();
+});
+
+$setOpacity.addEventListener('change', function(e) {
+  state.opacity = Number(e.target.value);
   updateOutput();
 });
 
@@ -64,8 +99,21 @@ function getImageFromDataURL(dataURL) {
 }
 
 function updateOutput() {
+  if (!state.image) {
+    return;
+  }
   const ctx = $output.getContext('2d');
-  const { image, watermark, size, sizeRatio, x, xOffset, y, yOffset } = state;
+  const {
+    image,
+    watermark,
+    sizeAnchor,
+    sizeRatio,
+    xAnchor,
+    xOffset,
+    yAnchor,
+    yOffset,
+    opacity,
+  } = state;
   $output.width = image.width;
   $output.height = image.height;
   $output.style.height =
@@ -73,54 +121,61 @@ function updateOutput() {
   ctx.drawImage(image, 0, 0);
 
   if (watermark) {
-    const { x: x0, y: y0, width, height } = getWatermarkDrawParams(
+    const { x, y, w, h } = getWatermarkDrawParams(
       image,
       watermark,
-      size,
+      sizeAnchor,
       sizeRatio,
-      x,
+      xAnchor,
       xOffset,
-      y,
+      yAnchor,
       yOffset,
     );
-    ctx.drawImage(watermark, x0, y0, width, height);
+    ctx.globalAlpha = opacity;
+    ctx.drawImage(watermark, x, y, w, h);
+    ctx.globalAlpha = 1;
   }
 }
 
 function getWatermarkDrawParams(
   image,
   watermark,
-  size,
+  sizeAnchor,
   sizeRatio,
-  x,
+  xAnchor,
   xOffset,
-  y,
+  yAnchor,
   yOffset,
 ) {
   const watermarkScaledSize = getWatermarkScaledSize(
     image,
     watermark,
-    size,
+    sizeAnchor,
     sizeRatio,
   );
   return {
-    x: getWatermarkX(image, watermarkScaledSize, x, xOffset),
-    y: getWatermarkY(image, watermarkScaledSize, y, yOffset),
-    width: watermarkScaledSize.width,
-    height: watermarkScaledSize.height,
+    x: getWatermarkX(image, watermarkScaledSize, xAnchor, xOffset),
+    y: getWatermarkY(image, watermarkScaledSize, yAnchor, yOffset),
+    w: watermarkScaledSize.width,
+    h: watermarkScaledSize.height,
   };
 }
 
-function getWatermarkScaledSize(image, watermark, size, sizeRatio) {
-  const watermarkScale = getWatermarkScale(image, watermark, size, sizeRatio);
+function getWatermarkScaledSize(image, watermark, sizeAnchor, sizeRatio) {
+  const watermarkScale = getWatermarkScale(
+    image,
+    watermark,
+    sizeAnchor,
+    sizeRatio,
+  );
   return {
     width: watermark.width * watermarkScale,
     height: watermark.height * watermarkScale,
   };
 }
 
-function getWatermarkScale(image, watermark, size, sizeRatio) {
-  switch (size) {
+function getWatermarkScale(image, watermark, sizeAnchor, sizeRatio) {
+  switch (sizeAnchor) {
     case 'Area':
       return Math.sqrt(
         (image.width * image.height * sizeRatio) /
@@ -132,12 +187,12 @@ function getWatermarkScale(image, watermark, size, sizeRatio) {
     case 'Height':
       return (image.height * sizeRatio) / watermark.height;
     default:
-      throw new Error('Unexpected size: ' + size);
+      throw new Error('Unexpected sizeAnchor: ' + sizeAnchor);
   }
 }
 
-function getWatermarkX(image, watermarkScaledSize, x, xOffset) {
-  switch (x) {
+function getWatermarkX(image, watermarkScaledSize, xAnchor, xOffset) {
+  switch (xAnchor) {
     case 'Left':
       return xOffset;
     case 'Center':
@@ -145,12 +200,12 @@ function getWatermarkX(image, watermarkScaledSize, x, xOffset) {
     case 'Right':
       return image.width - watermarkScaledSize.width - xOffset;
     default:
-      throw new Error('Unexpected x: ' + x);
+      throw new Error('Unexpected xAnchor: ' + xAnchor);
   }
 }
 
-function getWatermarkY(image, watermarkScaledSize, y, yOffset) {
-  switch (y) {
+function getWatermarkY(image, watermarkScaledSize, yAnchor, yOffset) {
+  switch (yAnchor) {
     case 'Top':
       return yOffset;
     case 'Center':
@@ -158,6 +213,6 @@ function getWatermarkY(image, watermarkScaledSize, y, yOffset) {
     case 'Bottom':
       return image.height - watermarkScaledSize.height - yOffset;
     default:
-      throw new Error('Unexpected y: ' + y);
+      throw new Error('Unexpected yAnchor: ' + yAnchor);
   }
 }
