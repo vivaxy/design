@@ -40,6 +40,7 @@ $uploadWatermark.addEventListener('change', async function(e) {
   const dataURL = await getDataURLFromFile(e.target.files[0]);
   $previewWatermark.src = dataURL;
   state.watermark = await getImageFromDataURL(dataURL);
+  updateOutput();
 });
 
 function getDataURLFromFile(file) {
@@ -64,7 +65,7 @@ function getImageFromDataURL(dataURL) {
 
 function updateOutput() {
   const ctx = $output.getContext('2d');
-  const { image, watermark } = state;
+  const { image, watermark, size, sizeRatio, x, xOffset, y, yOffset } = state;
   $output.width = image.width;
   $output.height = image.height;
   $output.style.height =
@@ -72,6 +73,91 @@ function updateOutput() {
   ctx.drawImage(image, 0, 0);
 
   if (watermark) {
-    ctx.drawImage(watermark, left, top, width, height);
+    const { x: x0, y: y0, width, height } = getWatermarkDrawParams(
+      image,
+      watermark,
+      size,
+      sizeRatio,
+      x,
+      xOffset,
+      y,
+      yOffset,
+    );
+    ctx.drawImage(watermark, x0, y0, width, height);
+  }
+}
+
+function getWatermarkDrawParams(
+  image,
+  watermark,
+  size,
+  sizeRatio,
+  x,
+  xOffset,
+  y,
+  yOffset,
+) {
+  const watermarkScaledSize = getWatermarkScaledSize(
+    image,
+    watermark,
+    size,
+    sizeRatio,
+  );
+  return {
+    x: getWatermarkX(image, watermarkScaledSize, x, xOffset),
+    y: getWatermarkY(image, watermarkScaledSize, y, yOffset),
+    width: watermarkScaledSize.width,
+    height: watermarkScaledSize.height,
+  };
+}
+
+function getWatermarkScaledSize(image, watermark, size, sizeRatio) {
+  const watermarkScale = getWatermarkScale(image, watermark, size, sizeRatio);
+  return {
+    width: watermark.width * watermarkScale,
+    height: watermark.height * watermarkScale,
+  };
+}
+
+function getWatermarkScale(image, watermark, size, sizeRatio) {
+  switch (size) {
+    case 'Area':
+      return Math.sqrt(
+        (image.width * image.height * sizeRatio) /
+          watermark.width /
+          watermark.height,
+      );
+    case 'Width':
+      return (image.width * sizeRatio) / watermark.width;
+    case 'Height':
+      return (image.height * sizeRatio) / watermark.height;
+    default:
+      throw new Error('Unexpected size: ' + size);
+  }
+}
+
+function getWatermarkX(image, watermarkScaledSize, x, xOffset) {
+  switch (x) {
+    case 'Left':
+      return xOffset;
+    case 'Center':
+      return xOffset + image.width / 2 - watermarkScaledSize.width / 2;
+    case 'Right':
+      return image.width - watermarkScaledSize.width - xOffset;
+    default:
+      throw new Error('Unexpected x: ' + x);
+  }
+}
+
+function getWatermarkY(image, watermarkScaledSize, y, yOffset) {
+  switch (y) {
+    case 'Top':
+      return yOffset;
+    case 'Center':
+      return yOffset + image.height / 2 - watermarkScaledSize.height / 2;
+    case 'Bottom':
+      return image.height - watermarkScaledSize.height - yOffset;
+    default:
+      throw new Error('Unexpected y: ' + y);
   }
 }
