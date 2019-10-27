@@ -3,4 +3,4 @@
  * @author vivaxy
  */
 import './js/app.js';
-// import './js/register-service-worker.js';
+import './js/register-service-worker.js';
