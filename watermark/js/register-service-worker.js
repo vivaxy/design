@@ -7,5 +7,5 @@ if ('serviceWorker' in navigator) {
 }
 
 async function register() {
-  await navigator.serviceWorker.register('../service-worker.js');
+  await navigator.serviceWorker.register('./service-worker.js');
 }
