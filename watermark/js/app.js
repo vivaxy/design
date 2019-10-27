@@ -1,7 +1,6 @@
 /**
  * @since 2019-10-27 04:23
  * @author vivaxy
- * TODO: save
  */
 const $output = document.getElementById('output');
 const $uploadImage = document.getElementById('upload-image');
@@ -20,17 +19,20 @@ const $setSizeRatio = document.getElementById('set-size-ratio');
 const $setOpacity = document.getElementById('set-opacity');
 
 let state = null;
-loadState();
-renderState();
+loadState().then(function() {
+  renderState();
+});
 
 $previewWatermark.addEventListener('load', function() {
   state.watermark = $previewWatermark;
+  saveState();
   updateOutput();
 });
 
 $uploadImage.addEventListener('change', async function(e) {
   const dataURL = await getDataURLFromFile(e.target.files[0]);
   state.image = await getImageFromDataURL(dataURL);
+  saveState();
   updateOutput();
 });
 
@@ -41,36 +43,43 @@ $uploadWatermark.addEventListener('change', async function(e) {
 
 $selectXAnchor.addEventListener('change', function(e) {
   state.xAnchor = e.target.value;
+  saveState();
   updateOutput();
 });
 
 $setXOffset.addEventListener('change', function(e) {
   state.xOffset = Number(e.target.value);
+  saveState();
   updateOutput();
 });
 
-$setYOffset.addEventListener('change', function(e) {
+$selectYAnchor.addEventListener('change', function(e) {
   state.yAnchor = e.target.value;
+  saveState();
   updateOutput();
 });
 
 $setYOffset.addEventListener('change', function(e) {
   state.yOffset = Number(e.target.value);
+  saveState();
   updateOutput();
 });
 
 $selectSizeAnchor.addEventListener('change', function(e) {
   state.sizeAnchor = e.target.value;
+  saveState();
   updateOutput();
 });
 
 $setSizeRatio.addEventListener('change', function(e) {
   state.sizeRatio = Number(e.target.value);
+  saveState();
   updateOutput();
 });
 
 $setOpacity.addEventListener('change', function(e) {
   state.opacity = Number(e.target.value);
+  saveState();
   updateOutput();
 });
 
@@ -94,11 +103,17 @@ function getImageFromDataURL(dataURL) {
   });
 }
 
-function loadState() {
+async function loadState() {
   const data = localStorage.getItem(location.pathname);
   if (data) {
     try {
       state = JSON.parse(data);
+      if (state.image) {
+        state.image = await getImageFromDataURL(state.image);
+      }
+      if (state.watermark) {
+        state.watermark = await getImageFromDataURL(state.watermark);
+      }
     } catch (e) {
       setDefaultState();
     }
@@ -122,7 +137,16 @@ function setDefaultState() {
 }
 
 function renderState() {
-  // TODO: sync state to html
+  if (state.watermark) {
+    $previewWatermark.src = state.watermark.src;
+  }
+  $selectXAnchor.value = state.xAnchor;
+  $setXOffset.value = state.xOffset;
+  $selectYAnchor.value = state.yAnchor;
+  $setYOffset.value = state.yOffset;
+  $selectSizeAnchor.value = state.sizeAnchor;
+  $setSizeRatio.value = state.sizeRatio;
+  $setOpacity.value = state.opacity;
 }
 
 function saveState() {
@@ -130,15 +154,13 @@ function saveState() {
     location.pathname,
     JSON.stringify({
       ...state,
-      image: state.image.src,
-      watermark: state.watermark.src,
+      image: state.image ? state.image.src : null,
+      watermark: state.watermark ? state.watermark.src : null,
     }),
   );
 }
 
 function updateOutput() {
-  saveState();
-
   if (!state.image) {
     return;
   }
