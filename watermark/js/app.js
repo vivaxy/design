@@ -200,7 +200,7 @@ function updateOutput() {
   }
 
   const downloadImageSrc = $output.toDataURL('image/png');
-  $downloadImage.src = downloadImageSrc;
+  $downloadImage.setAttribute('src', downloadImageSrc);
   $downloadImage.style.display = 'block';
 }
 
