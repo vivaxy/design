@@ -3,7 +3,6 @@
  * @author vivaxy
  */
 const $output = document.getElementById('output');
-const $downloadImage = document.getElementById('download-image');
 const $uploadImage = document.getElementById('upload-image');
 const $uploadWatermark = document.getElementById('upload-watermark');
 const $previewWatermark = document.getElementById('preview-watermark');
@@ -22,6 +21,16 @@ const $setOpacity = document.getElementById('set-opacity');
 let state = null;
 loadState().then(function() {
   renderState();
+});
+
+// @see https://github.com/eligrey/FileSaver.js/blob/master/src/FileSaver.js
+$output.addEventListener('click', function() {
+  const imageData = $output
+    .getContext('2d')
+    .getImageData(0, 0, $output.width, $output.height);
+  const png = pngEncode(imageData);
+  const blob = new Blob([png], { type: 'image/png' });
+  location.href = URL.createObjectURL(blob);
 });
 
 $previewWatermark.addEventListener('load', function() {
@@ -198,10 +207,6 @@ function updateOutput() {
     ctx.drawImage(watermark, x, y, w, h);
     ctx.globalAlpha = 1;
   }
-
-  const downloadImageSrc = $output.toDataURL('image/png');
-  $downloadImage.setAttribute('src', downloadImageSrc);
-  $downloadImage.style.display = 'block';
 }
 
 function getWatermarkDrawParams(
