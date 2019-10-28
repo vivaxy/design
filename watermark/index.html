@@ -18,7 +18,11 @@
     <title>Watermark</title>
   </head>
   <body>
-    <canvas id="output" class="output"></canvas>
+    <div class="output-row">
+      <canvas id="output" class="output"></canvas>
+      <canvas id="output" class="output"></canvas>
+      <img id="download-image" class="download-image" />
+    </div>
     <div class="row">
       <label for="upload-image">Upload Image</label>
       <input id="upload-image" type="file" accept="image/*" />
