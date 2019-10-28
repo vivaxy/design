@@ -14,11 +14,14 @@
     <meta name="author" content="vivaxy" />
     <link type="image/png" rel="shortcut icon" href="/vivaxy.icon.png" />
     <link type="text/css" rel="stylesheet" href="index.css" />
-    <link rel="manifest" href="manifest.json">
+    <link rel="manifest" href="manifest.json" />
     <title>Watermark</title>
   </head>
   <body>
-    <canvas id="output" class="output"></canvas>
+    <div class="output-row">
+      <canvas id="output" class="output"></canvas>
+      <img id="download-image" class="download-image">
+    </div>
     <div class="row">
       <label for="upload-image">Upload Image</label>
       <input id="upload-image" type="file" accept="image/*" />
@@ -36,7 +39,7 @@
         <option selected>Right</option>
       </select>
       <label for="set-x-offset">Offset</label>
-      <input id="set-x-offset" value="0" type="number" step="1" />
+      <input id="set-x-offset" value="40" type="number" step="1" />
     </div>
     <div class="row">
       <label for="select-y-anchor">Position Y</label>
@@ -46,21 +49,35 @@
         <option selected>Bottom</option>
       </select>
       <label for="set-y-offset">Offset</label>
-      <input id="set-y-offset" value="0" type="number" step="1" />
+      <input id="set-y-offset" value="40" type="number" step="1" />
     </div>
     <div class="row">
-        <label for="select-size-anchor">Size</label>
-        <select id="select-size-anchor">
-          <option selected>Area</option>
-          <option>Width</option>
-          <option>Height</option>
-        </select>
-        <label for="set-size-ratio">Ratio</label>
-        <input id="set-size-ratio" value="0.02" type="number" step="0.1" max="1" min="0" />
-      </div>
+      <label for="select-size-anchor">Size</label>
+      <select id="select-size-anchor">
+        <option selected>Area</option>
+        <option>Width</option>
+        <option>Height</option>
+      </select>
+      <label for="set-size-ratio">Ratio</label>
+      <input
+        id="set-size-ratio"
+        value="0.005"
+        type="number"
+        step="0.1"
+        max="1"
+        min="0"
+      />
+    </div>
     <div class="row">
       <label for="set-opacity">Opacity</label>
-      <input id="set-opacity" value="1" type="number" step="0.1" max="1" min="0" />
+      <input
+        id="set-opacity"
+        value="0.5"
+        type="number"
+        step="0.1"
+        max="1"
+        min="0"
+      />
     </div>
     <script type="module" src="index.js"></script>
     <script type="text/javascript" charset="utf-8" src="/ba.js"></script>

@@ -3,6 +3,7 @@
  * @author vivaxy
  */
 const $output = document.getElementById('output');
+const $downloadImage = document.getElementById('download-image');
 const $uploadImage = document.getElementById('upload-image');
 const $uploadWatermark = document.getElementById('upload-watermark');
 const $previewWatermark = document.getElementById('preview-watermark');
@@ -197,6 +198,10 @@ function updateOutput() {
     ctx.drawImage(watermark, x, y, w, h);
     ctx.globalAlpha = 1;
   }
+
+  const downloadImageSrc = $output.toDataURL('image/png');
+  $downloadImage.src = downloadImageSrc;
+  $downloadImage.style.display = 'block';
 }
 
 function getWatermarkDrawParams(
