@@ -2,7 +2,7 @@
  * @since 2019-10-27 04:11
  * @author vivaxy
  */
-var CACHE_NAME = 'watermark-v1.0.1';
+var CACHE_NAME = 'watermark-v1.1.0';
 
 // @see https://davidwalsh.name/service-worker-claim
 self.addEventListener('install', function() {

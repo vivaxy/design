@@ -3,7 +3,6 @@
  * @author vivaxy
  */
 const $output = document.getElementById('output');
-const $downloadImage = document.getElementById('download-image');
 const $uploadImage = document.getElementById('upload-image');
 const $uploadWatermark = document.getElementById('upload-watermark');
 const $previewWatermark = document.getElementById('preview-watermark');
@@ -28,6 +27,14 @@ $previewWatermark.addEventListener('load', function() {
   state.watermark = $previewWatermark;
   saveState();
   updateOutput();
+});
+
+$output.addEventListener('click', function() {
+  const link = document.createElement('a');
+  const dataURL = $output.toDataURL('image/png');
+  link.setAttribute('href', dataURL);
+  link.setAttribute('download', `watermark.${Date.now()}.png`);
+  link.click();
 });
 
 $uploadImage.addEventListener('change', async function(e) {
@@ -198,10 +205,6 @@ function updateOutput() {
     ctx.drawImage(watermark, x, y, w, h);
     ctx.globalAlpha = 1;
   }
-
-  const downloadImageSrc = $output.toDataURL('image/png');
-  $downloadImage.setAttribute('src', downloadImageSrc);
-  $downloadImage.style.display = 'block';
 }
 
 function getWatermarkDrawParams(

@@ -31,6 +31,7 @@ Table of contents
 * [Switchery for Mobile](https://vivaxy.github.io/design/switchery/) Switchery for Mobile
 * [Title Effects](https://vivaxy.github.io/design/title-effects/) Title Effects
 * [Tween](https://vivaxy.github.io/design/tween/) Tween
+* [Watermark](https://vivaxy.github.io/design/watermark/) Watermark
 
 #
 
