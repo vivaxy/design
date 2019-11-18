@@ -28,15 +28,16 @@ var favicon = {
       head.appendChild(linkTag);
     },
     remove: function() {
-      Array.prototype.slice.call(document.querySelectorAll('link[rel~=shortcut]')).forEach(function(favicon) {
-        document.head.removeChild(favicon);
-      });
-    }
+      Array.prototype.slice
+        .call(document.querySelectorAll('link[rel~=shortcut]'))
+        .forEach(function(favicon) {
+          document.head.removeChild(favicon);
+        });
+    },
   },
   faviconCount = 0,
   faviconToggle,
   interval,
-
   bind = function() {
     flash.addEventListener('click', function() {
       clearInterval(interval);
@@ -48,7 +49,7 @@ var favicon = {
         favicon.add({
           text: faviconCount,
           textColor: textColor,
-          backgroundColor: backgroundColor
+          backgroundColor: backgroundColor,
         });
       }, 400);
     });
@@ -60,7 +61,7 @@ var favicon = {
         favicon.add({
           text: faviconCount,
           textColor: '#fff',
-          backgroundColor: '#e74c3c'
+          backgroundColor: '#e74c3c',
         });
       }, 300);
     });

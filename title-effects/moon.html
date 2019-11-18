@@ -6,27 +6,20 @@
       name="viewport"
       content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"
     />
+    <meta name="description" content="Moon - Title Effects" />
+    <meta
+      name="keywords"
+      content="vivaxy,course,github,demo,playground,test,Moon - Title Effects"
+    />
+    <meta name="author" content="vivaxy" />
     <link type="image/png" rel="shortcut icon" href="/vivaxy.icon.png" />
-    <title>🕐</title>
+    <title>Moon - Title Effects</title>
   </head>
   <body>
     <script>
-      var f = [
-        "🕐",
-        "🕑",
-        "🕒",
-        "🕓",
-        "🕔",
-        "🕕",
-        "🕖",
-        "🕗",
-        "🕘",
-        "🕙",
-        "🕚",
-        "🕛",
-      ];
+      const f = ["🌑", "🌒", "🌓", "🌔", "🌕", "🌖", "🌗", "🌘"];
 
-      var i = 0;
+      let i = 0;
       setInterval(function() {
         document.title = f[i++];
         if (i >= f.length) {
