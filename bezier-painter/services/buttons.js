@@ -2,20 +2,19 @@
  * @since 20180613 20:16
  * @author vivaxy
  */
-
 import * as eventTypes from '../enums/event-types.js';
 import * as layerIndexes from '../enums/layer-indexes.js';
 import Button from '../class/button.js';
 
 function init(events) {
-  // http://www.iconfont.cn/collections/detail?spm=a313x.7781069.0.da5a778a4&cid=6596
+  // https://www.iconfont.cn/collections/detail?spm=a313x.7781069.0.da5a778a4&cid=6596
   const clearButton = new Button({
     label: 'Clear',
     image: createImage('./assets/clear.png'),
     left: 0,
     top: 0,
     width: 32,
-    height: 32
+    height: 32,
   });
   const deleteButton = new Button({
     label: 'Delete',
@@ -23,7 +22,7 @@ function init(events) {
     left: 0,
     top: 32,
     width: 32,
-    height: 32
+    height: 32,
   });
 
   events.on(eventTypes.ON_RENDER_PREPARING, onRenderPreparing);
@@ -67,7 +66,6 @@ function init(events) {
         startWithInButton = null;
       }
     }
-
   }
 
   function createImage(src) {
@@ -80,7 +78,6 @@ function init(events) {
   function handleImageLoad() {
     events.emit(eventTypes.APPLY_RENDER);
   }
-
 }
 
 export default { init };

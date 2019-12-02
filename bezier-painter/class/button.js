@@ -2,7 +2,6 @@
  * @since 20180613 20:15
  * @author vivaxy
  */
-
 import * as layerActions from '../enums/layer-actions.js';
 import * as layerFunctions from '../enums/layer-functions.js';
 import * as layerProperties from '../enums/layer-properties.js';
@@ -46,18 +45,33 @@ export default class Button {
       {
         type: layerActions.FUNCTION,
         func: layerFunctions.FILL_RECT,
-        params: [this.left + borderWidth, this.top + borderWidth, this.width - borderWidth * 2, this.height - borderWidth * 2],
+        params: [
+          this.left + borderWidth,
+          this.top + borderWidth,
+          this.width - borderWidth * 2,
+          this.height - borderWidth * 2,
+        ],
       },
       {
         type: layerActions.FUNCTION,
         func: layerFunctions.DRAW_IMAGE,
-        params: [this.image, this.left + iconPadding + borderWidth, this.top + iconPadding + borderWidth, this.width - iconPadding * 2 - borderWidth * 2, this.height - iconPadding * 2 - borderWidth * 2],
+        params: [
+          this.image,
+          this.left + iconPadding + borderWidth,
+          this.top + iconPadding + borderWidth,
+          this.width - iconPadding * 2 - borderWidth * 2,
+          this.height - iconPadding * 2 - borderWidth * 2,
+        ],
       },
     ];
   }
 
   coordsInButton({ x, y }) {
-    return x > this.left && y > this.top && x < this.left + this.width && y < this.top + this.height;
+    return (
+      x > this.left &&
+      y > this.top &&
+      x < this.left + this.width &&
+      y < this.top + this.height
+    );
   }
-
-};
+}

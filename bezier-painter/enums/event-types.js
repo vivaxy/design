@@ -2,7 +2,6 @@
  * @since 20180613 21:03
  * @author vivaxy
  */
-
 export const ON_CANVAS_TOUCH_START = 'ON_CANVAS_TOUCH_START';
 export const ON_CANVAS_TOUCH_MOVE = 'ON_CANVAS_TOUCH_MOVE';
 export const ON_CANVAS_TOUCH_END = 'ON_CANVAS_TOUCH_END';

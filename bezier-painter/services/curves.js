@@ -2,7 +2,6 @@
  * @since 20180614 11:10
  * @author vivaxy
  */
-
 import Curve from '../class/curve.js';
 import * as eventTypes from '../enums/event-types.js';
 import * as layerIndexes from '../enums/layer-indexes.js';
@@ -39,7 +38,6 @@ function init(events) {
   }
 
   function onDragStart(eventId, eventData) {
-
     const startingHitCurveInfo = getHitCurve(eventData.startingPoint);
 
     if (startingHitCurveInfo) {
@@ -55,8 +53,13 @@ function init(events) {
           cp1: { ...startingHitCurve.cp1 },
           p2: { ...startingHitCurve.p2 },
           cp2: { ...startingHitCurve.cp2 },
-        }
-      } else if (startingHitCurveInfo.type === 'p1' || startingHitCurveInfo.type === 'p2' || startingHitCurveInfo.type === 'cp1' || startingHitCurveInfo.type === 'cp2') {
+        };
+      } else if (
+        startingHitCurveInfo.type === 'p1' ||
+        startingHitCurveInfo.type === 'p2' ||
+        startingHitCurveInfo.type === 'cp1' ||
+        startingHitCurveInfo.type === 'cp2'
+      ) {
         startingPointInfo = {
           type: startingHitCurveInfo.type,
           curve: startingHitCurveInfo.curve,
@@ -99,8 +102,10 @@ function init(events) {
   }
 
   function onDragEnd(eventId, eventData) {
-
-    if (eventData.currentPoint.x === eventData.startingPoint.x && eventData.currentPoint.y === eventData.startingPoint.y) {
+    if (
+      eventData.currentPoint.x === eventData.startingPoint.x &&
+      eventData.currentPoint.y === eventData.startingPoint.y
+    ) {
       if (startingPointInfo) {
         // assume as user hit the curve
         startingHitCurve = startingPointInfo.curve;
@@ -170,7 +175,6 @@ function init(events) {
     }
 
     events.emit(eventTypes.APPLY_RENDER);
-
   }
 
   function getHitCurve(coord) {
@@ -206,14 +210,18 @@ function init(events) {
   }
 
   function moveCurve(eventData) {
-    startingHitCurve.move(eventData.currentPoint, eventData.startingPoint, startingPos);
+    startingHitCurve.move(
+      eventData.currentPoint,
+      eventData.startingPoint,
+      startingPos,
+    );
   }
 
   function movePoint(eventData) {
     const startingPos = startingPointInfo[startingPointInfo.type];
     const diffPos = {
       x: eventData.currentPoint.x - eventData.startingPoint.x,
-      y: eventData.currentPoint.y - eventData.startingPoint.y
+      y: eventData.currentPoint.y - eventData.startingPoint.y,
     };
     const newPos = addPos(startingPos, diffPos);
     if (startingPointInfo.type === 'p1') {
@@ -233,8 +241,7 @@ function init(events) {
     return { x: a.x + b.x, y: a.y + b.y };
   }
 
-  function saveDataSnapshot() {
-  }
+  function saveDataSnapshot() {}
 }
 
 export default { init };

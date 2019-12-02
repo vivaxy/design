@@ -2,7 +2,6 @@
  * @since 20180614 11:56
  * @author vivaxy
  */
-
 import * as eventTypes from '../enums/event-types.js';
 
 function init(events) {

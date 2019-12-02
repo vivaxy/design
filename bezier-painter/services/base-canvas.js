@@ -2,7 +2,6 @@
  * @since 20180613 20:13
  * @author vivaxy
  */
-
 import ASSERT from 'https://unpkg.com/event-based-framework/utils/assert.js';
 import * as eventTypes from '../enums/event-types.js';
 import * as layerIndexes from '../enums/layer-indexes.js';

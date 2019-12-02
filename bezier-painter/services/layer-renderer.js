@@ -2,11 +2,9 @@
  * @since 20180614 10:10
  * @author vivaxy
  */
-
 import * as eventTypes from '../enums/event-types.js';
 
 function init(events) {
-
   let needUpdate = true;
 
   renderLoop();
@@ -35,7 +33,6 @@ function init(events) {
     }
     requestAnimationFrame(renderLoop);
   }
-
 }
 
 export default { init };

@@ -2,7 +2,6 @@
  * @since 20180614 11:23
  * @author vivaxy
  */
-
 import * as layerActions from '../enums/layer-actions.js';
 import * as layerIndexes from '../enums/layer-indexes.js';
 import * as layerFunctions from '../enums/layer-functions.js';
@@ -24,13 +23,18 @@ function getLength(p1, p2) {
 
 function getBezier(p1, cp1, p2, cp2, t) {
   function bezier(_0, _1, _2, _3, _t) {
-    return _0 * Math.pow(1 - _t, 3) + 3 * _1 * _t * Math.pow(1 - _t, 2) + 3 * _2 * Math.pow(_t, 2) * (1 - _t) + _3 * Math.pow(_t, 3);
+    return (
+      _0 * Math.pow(1 - _t, 3) +
+      3 * _1 * _t * Math.pow(1 - _t, 2) +
+      3 * _2 * Math.pow(_t, 2) * (1 - _t) +
+      _3 * Math.pow(_t, 3)
+    );
   }
 
   return {
     x: bezier(p1.x, cp1.x, cp2.x, p2.x, t),
-    y: bezier(p1.y, cp1.y, cp2.y, p2.y, t)
-  }
+    y: bezier(p1.y, cp1.y, cp2.y, p2.y, t),
+  };
 }
 
 export default class Curve {
@@ -76,7 +80,6 @@ export default class Curve {
   }
 
   isInCurve(coord) {
-
     const keys = ['cp2', 'cp1', 'p2', 'p1'];
 
     for (let i = 0; i < keys.length; i++) {
@@ -91,9 +94,18 @@ export default class Curve {
       }
     }
 
-    const probablyLength = getLength(this.p1, this.cp1) + getLength(this.p1, this.p2) + getLength(this.p2, this.cp2);
+    const probablyLength =
+      getLength(this.p1, this.cp1) +
+      getLength(this.p1, this.p2) +
+      getLength(this.p2, this.cp2);
     for (let i = 0; i < probablyLength; i++) {
-      const p = getBezier(this.p1, this.cp1, this.p2, this.cp2, i / probablyLength);
+      const p = getBezier(
+        this.p1,
+        this.cp1,
+        this.p2,
+        this.cp2,
+        i / probablyLength,
+      );
       if (getLength(p, coord) < inCurveThreshold) {
         return {
           type: 'curve',
@@ -138,7 +150,14 @@ export default class Curve {
       {
         type: layerActions.FUNCTION,
         func: layerFunctions.BEZIER_CURVE_TO,
-        params: [this.cp1.x, this.cp1.y, this.cp2.x, this.cp2.y, this.p2.x, this.p2.y],
+        params: [
+          this.cp1.x,
+          this.cp1.y,
+          this.cp2.x,
+          this.cp2.y,
+          this.p2.x,
+          this.p2.y,
+        ],
       },
       {
         type: layerActions.FUNCTION,
@@ -236,7 +255,12 @@ export default class Curve {
         {
           type: layerActions.FUNCTION,
           func: layerFunctions.STROKE_RECT,
-          params: [this.p1.x - pointRadius, this.p1.y - pointRadius, pointRadius * 2, pointRadius * 2],
+          params: [
+            this.p1.x - pointRadius,
+            this.p1.y - pointRadius,
+            pointRadius * 2,
+            pointRadius * 2,
+          ],
         },
         {
           type: layerActions.PROPERTY,
@@ -246,7 +270,12 @@ export default class Curve {
         {
           type: layerActions.FUNCTION,
           func: layerFunctions.STROKE_RECT,
-          params: [this.p2.x - pointRadius, this.p2.y - pointRadius, pointRadius * 2, pointRadius * 2],
+          params: [
+            this.p2.x - pointRadius,
+            this.p2.y - pointRadius,
+            pointRadius * 2,
+            pointRadius * 2,
+          ],
         },
 
         // draw control point
