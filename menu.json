@@ -1,5 +1,9 @@
 [
   {
+    "name": "Fourier Series",
+    "link": "fourier-series/"
+  },
+  {
     "name": "Watermark",
     "link": "watermark/"
   },
