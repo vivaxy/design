@@ -5,12 +5,13 @@
 
 module.exports = {
   entry: {
-    'index': './src/index.js',
-    'worker': './src/worker.js',
+    index: './src/index.js',
+    worker: './src/worker.js',
   },
   output: {
-    filename: './dist/[name].js',
+    filename: '[name].js',
   },
+  mode: 'production',
   module: {
     rules: [
       {

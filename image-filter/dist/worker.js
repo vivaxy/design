@@ -1,106 +1,79 @@
-/******/ (function(modules) { // webpackBootstrap
-/******/ 	// The module cache
-/******/ 	var installedModules = {};
-/******/
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/
-/******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId]) {
-/******/ 			return installedModules[moduleId].exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = installedModules[moduleId] = {
-/******/ 			i: moduleId,
-/******/ 			l: false,
-/******/ 			exports: {}
-/******/ 		};
-/******/
-/******/ 		// Execute the module function
-/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/
-/******/ 		// Flag the module as loaded
-/******/ 		module.l = true;
-/******/
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/
-/******/
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = modules;
-/******/
-/******/ 	// expose the module cache
-/******/ 	__webpack_require__.c = installedModules;
-/******/
-/******/ 	// identity function for calling harmony imports with the correct context
-/******/ 	__webpack_require__.i = function(value) { return value; };
-/******/
-/******/ 	// define getter function for harmony exports
-/******/ 	__webpack_require__.d = function(exports, name, getter) {
-/******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, {
-/******/ 				configurable: false,
-/******/ 				enumerable: true,
-/******/ 				get: getter
-/******/ 			});
-/******/ 		}
-/******/ 	};
-/******/
-/******/ 	// getDefaultExport function for compatibility with non-harmony modules
-/******/ 	__webpack_require__.n = function(module) {
-/******/ 		var getter = module && module.__esModule ?
-/******/ 			function getDefault() { return module['default']; } :
-/******/ 			function getModuleExports() { return module; };
-/******/ 		__webpack_require__.d(getter, 'a', getter);
-/******/ 		return getter;
-/******/ 	};
-/******/
-/******/ 	// Object.prototype.hasOwnProperty.call
-/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
-/******/
-/******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
-/******/
-/******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 7);
-/******/ })
-/************************************************************************/
-/******/ ({
-
-/***/ 7:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-/**
- * @since 15-09-06 09:42
- * @author vivaxy
- */
-
-self.addEventListener('message', function (e) {
-  var data = e.data;
-  var savedColorChanges = data.savedColorChanges;
-  var imageData = data.imageData;
-
-  var map = Array.prototype.map.call(imageData.data, function (v, i) {
-    return v * savedColorChanges[i % 4] / 100;
-  });
-  var imageDataResult = map.map(function (v, i, array) {
-    var colorStart = i - i % 4;
-    var color = Array.prototype.slice.call(array, colorStart, colorStart + 4);
-    var averageColor = (color[0] + color[1] + color[2]) * color[3] / 3 / 255;
-    var colorDiff = averageColor - v;
-    return v + colorDiff * savedColorChanges[4] / 100;
-  });
-  self.postMessage({
-    imageData: imageDataResult,
-    width: imageData.width,
-    height: imageData.height
-  });
-}, false);
-
-/***/ })
-
-/******/ });
+!(function(e) {
+  var t = {};
+  function r(n) {
+    if (t[n]) return t[n].exports;
+    var o = (t[n] = { i: n, l: !1, exports: {} });
+    return e[n].call(o.exports, o, o.exports, r), (o.l = !0), o.exports;
+  }
+  (r.m = e),
+    (r.c = t),
+    (r.d = function(e, t, n) {
+      r.o(e, t) || Object.defineProperty(e, t, { enumerable: !0, get: n });
+    }),
+    (r.r = function(e) {
+      'undefined' != typeof Symbol &&
+        Symbol.toStringTag &&
+        Object.defineProperty(e, Symbol.toStringTag, { value: 'Module' }),
+        Object.defineProperty(e, '__esModule', { value: !0 });
+    }),
+    (r.t = function(e, t) {
+      if ((1 & t && (e = r(e)), 8 & t)) return e;
+      if (4 & t && 'object' == typeof e && e && e.__esModule) return e;
+      var n = Object.create(null);
+      if (
+        (r.r(n),
+        Object.defineProperty(n, 'default', { enumerable: !0, value: e }),
+        2 & t && 'string' != typeof e)
+      )
+        for (var o in e)
+          r.d(
+            n,
+            o,
+            function(t) {
+              return e[t];
+            }.bind(null, o),
+          );
+      return n;
+    }),
+    (r.n = function(e) {
+      var t =
+        e && e.__esModule
+          ? function() {
+              return e.default;
+            }
+          : function() {
+              return e;
+            };
+      return r.d(t, 'a', t), t;
+    }),
+    (r.o = function(e, t) {
+      return Object.prototype.hasOwnProperty.call(e, t);
+    }),
+    (r.p = ''),
+    r((r.s = 7));
+})({
+  7: function(e, t, r) {
+    'use strict';
+    self.addEventListener(
+      'message',
+      function(e) {
+        var t = e.data,
+          r = t.savedColorChanges,
+          n = t.imageData,
+          o = Array.prototype.map
+            .call(n.data, function(e, t) {
+              return (e * r[t % 4]) / 100;
+            })
+            .map(function(e, t, n) {
+              var o = t - (t % 4),
+                a = Array.prototype.slice.call(n, o, o + 4);
+              return (
+                e + ((((a[0] + a[1] + a[2]) * a[3]) / 3 / 255 - e) * r[4]) / 100
+              );
+            });
+        self.postMessage({ imageData: o, width: n.width, height: n.height });
+      },
+      !1,
+    );
+  },
+});

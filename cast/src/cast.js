@@ -2,15 +2,13 @@
  * @since 2015-09-29 15:03
  * @author vivaxy
  */
-
 import Tween from 'tween/src/tween.js';
 
 class Cast {
   constructor(text) {
     this.text = text;
     this.parent = document.body;
-    this.render()
-      .start();
+    this.render().start();
   }
 
   render() {
@@ -34,8 +32,8 @@ class Cast {
         style: 'bottom',
         from: -16,
         to: 0,
-        getValue: v => v + 'px',
-        duration: 500
+        getValue: (v) => v + 'px',
+        duration: 500,
       })
       .on('end', () => {
         new Tween(this.element)
@@ -43,8 +41,8 @@ class Cast {
             style: 'bottom',
             from: 0,
             to: 0,
-            getValue: v => v + 'px',
-            duration: 500
+            getValue: (v) => v + 'px',
+            duration: 500,
           })
           .on('end', () => {
             new Tween(this.element)
@@ -52,8 +50,8 @@ class Cast {
                 style: 'letterSpacing',
                 from: 0,
                 to: 10,
-                getValue: v => v + 'px',
-                duration: 500
+                getValue: (v) => v + 'px',
+                duration: 500,
               })
               .start();
             new Tween(this.element)
@@ -61,8 +59,8 @@ class Cast {
                 style: 'opacity',
                 from: 1,
                 to: 0,
-                getValue: v => v,
-                duration: 500
+                getValue: (v) => v,
+                duration: 500,
               })
               .on('end', () => {
                 this.parent.removeChild(this.element);
@@ -80,7 +78,6 @@ class Cast {
     this.callback = callback;
     return this;
   }
-
 }
 
 export default Cast;

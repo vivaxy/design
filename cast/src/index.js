@@ -2,10 +2,9 @@
  * @since 150425 18:30
  * @author vivaxy
  */
-
 import Cast from './cast.js';
 
-let data = ['author : vivaxy', 'date : 2015-04-25'];
+let data = ['Author: vivaxy', 'Date: 2015-04-25'];
 
 const callbackFactory = (index, callback) => {
   return () => {
@@ -13,8 +12,7 @@ const callbackFactory = (index, callback) => {
   };
 };
 
-let cb = () => {
-};
+let cb = () => {};
 
 data.forEach((value, index) => {
   cb = callbackFactory(data.length - index - 1, cb);
