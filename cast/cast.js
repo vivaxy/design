@@ -2,7 +2,7 @@
  * @since 2015-09-29 15:03
  * @author vivaxy
  */
-import Tween from 'tween/src/tween.js';
+import Tween from './tween.js';
 
 class Cast {
   constructor(text) {
