@@ -2,7 +2,6 @@
  * @since 20180608 11:05
  * @author vivaxy
  */
-
 export default class Sphere {
   constructor({ sphereRadius }) {
     this.sphereRadius = sphereRadius;
@@ -20,5 +19,4 @@ export default class Sphere {
     tag.setData({ sphereRadius: this.sphereRadius, sphereEl: this.el });
     this.tags.push(tag);
   }
-
 }

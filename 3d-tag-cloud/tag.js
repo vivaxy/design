@@ -2,7 +2,6 @@
  * @since 20180608 10:03
  * @author vivaxy
  */
-
 export default class Tag {
   constructor({ zAngle, yAngle, imageSrc, yAngleSpeed }) {
     this.zAngle = zAngle;
@@ -29,9 +28,11 @@ export default class Tag {
   }
 
   setStyle() {
-    this.translateX = Math.cos(this.zAngle) * Math.cos(this.yAngle) * this.sphereRadius;
+    this.translateX =
+      Math.cos(this.zAngle) * Math.cos(this.yAngle) * this.sphereRadius;
     this.translateY = -Math.sin(this.zAngle) * this.sphereRadius;
-    this.translateZ = -Math.cos(this.zAngle) * Math.sin(this.yAngle) * this.sphereRadius;
+    this.translateZ =
+      -Math.cos(this.zAngle) * Math.sin(this.yAngle) * this.sphereRadius;
     this.el.style.transform = `translate3d(${this.translateX}px, ${this.translateY}px, ${this.translateZ}px)`;
     this.el.style.opacity = this.translateZ / 2 / this.sphereRadius + 0.5;
 
@@ -40,5 +41,4 @@ export default class Tag {
       this.setStyle();
     });
   }
-
 }
