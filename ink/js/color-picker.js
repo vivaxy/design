@@ -2,29 +2,30 @@
  * @since 15-09-03 12:04
  * @author vivaxy
  */
-
 import setStyle from './set-style.js';
 import isMobile from './is-mobile.js';
-import EventEmitter from 'event-emitter/src/event-emitter';
+import EventEmitter from 'https://unpkg.com/event-based-framework/class/event-emitter.js';
 import getTouchPosition from './get-touch-position.js';
 
 class ColorPicker extends EventEmitter {
   constructor() {
     super();
     this.height = 10; // 10%
-    this._createCanvas()._addColor()._bindEvent();
+    this._createCanvas()
+      ._addColor()
+      ._bindEvent();
   }
 
   _createCanvas() {
     let canvas = document.createElement('canvas');
     canvas.width = document.body.clientWidth;
-    canvas.height = document.body.clientHeight * this.height / 100; // style.height = 10%
+    canvas.height = (document.body.clientHeight * this.height) / 100; // style.height = 10%
     setStyle(canvas, {
       position: 'absolute',
       width: '100%',
       height: this.height + '%',
       bottom: 0,
-      left: 0
+      left: 0,
     });
     document.body.appendChild(canvas);
     this.canvas = canvas;
@@ -52,22 +53,30 @@ class ColorPicker extends EventEmitter {
   _bindEvent() {
     let canvas = this.canvas;
     let ctx = this.ctx;
-    canvas.addEventListener(isMobile ? 'touchend' : 'click', (e) => {
-      e.preventDefault();
-      let position = getTouchPosition(e);
-      let imageData = ctx.getImageData(position.x, 0, 1, 1);
-      let color = imageData.data;
-      this.emit('pick', {
-        r: color[0],
-        g: color[1],
-        b: color[2],
-        a: color[3] / 256 // 0 ~ 255
-      });
-    }, false);
+    canvas.addEventListener(
+      isMobile ? 'touchend' : 'click',
+      (e) => {
+        e.preventDefault();
+        let position = getTouchPosition(e);
+        let imageData = ctx.getImageData(position.x, 0, 1, 1);
+        let color = imageData.data;
+        this.emit('pick', {
+          r: color[0],
+          g: color[1],
+          b: color[2],
+          a: color[3] / 256, // 0 ~ 255
+        });
+      },
+      false,
+    );
     // prevent default page scroll
-    canvas.addEventListener('touchmove', (e) => {
-      e.preventDefault();
-    }, false);
+    canvas.addEventListener(
+      'touchmove',
+      (e) => {
+        e.preventDefault();
+      },
+      false,
+    );
     return this;
   }
 }

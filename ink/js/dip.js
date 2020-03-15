@@ -2,13 +2,14 @@
  * @since 15-09-03 11:07
  * @author vivaxy
  */
-
 // todo simulate 100 hair with color to paint one point
 class Dip {
   constructor(options) {
-    this.ctx = options.ctx || (() => {
-      throw new Error('ctx must be supplied')
-    })();
+    this.ctx =
+      options.ctx ||
+      (() => {
+        throw new Error('ctx must be supplied');
+      })();
     /**
      * {
      *      r: 255,
@@ -47,7 +48,13 @@ class Dip {
     let ctx = this.ctx;
     let width = this.strokeWidth;
     ctx.beginPath();
-    ctx.arc(point.x + (Math.random() - 0.5) * width / 2, point.y + (Math.random() - 0.5) * width / 2, width * (Math.random() / 2 + 0.5), 0, 2 * Math.PI);
+    ctx.arc(
+      point.x + ((Math.random() - 0.5) * width) / 2,
+      point.y + ((Math.random() - 0.5) * width) / 2,
+      width * (Math.random() / 2 + 0.5),
+      0,
+      2 * Math.PI,
+    );
     ctx.fillStyle = this._getColor();
     ctx.fill();
     return this;
@@ -55,15 +62,16 @@ class Dip {
 
   _consume() {
     let color = this.color;
-    color.a *= ((100 - this.consumeRate) / 100);
+    color.a *= (100 - this.consumeRate) / 100;
     return this;
   }
 
   _getColor() {
     let color = this.color;
-    return 'rgba(' + color.r + ',' + color.g + ',' + color.b + ',' + color.a + ')';
+    return (
+      'rgba(' + color.r + ',' + color.g + ',' + color.b + ',' + color.a + ')'
+    );
   }
-
 }
 
 export default Dip;
