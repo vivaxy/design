@@ -3,4 +3,6 @@
  * @author vivaxy
  * @see https://github.com/isaacvr/coding/tree/gh-pages/fourier_transform
  */
-import '';
+import createCanvas from './utils/create-canvas.js';
+
+createCanvas();
