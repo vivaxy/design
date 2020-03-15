@@ -6,8 +6,9 @@
 module.exports = {
   entry: './src/index.js',
   output: {
-    filename: './dist/index.js',
+    filename: 'index.js',
   },
+  mode: 'production',
   module: {
     rules: [
       {
