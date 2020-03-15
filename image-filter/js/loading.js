@@ -2,7 +2,6 @@
  * @since 15-09-06 09:28
  * @author vivaxy
  */
-
 class Loading {
   constructor(container = document.querySelector('loading')) {
     this.container = container;

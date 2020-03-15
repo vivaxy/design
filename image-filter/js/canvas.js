@@ -2,7 +2,6 @@
  * @since 15-09-04 13:47
  * @author vivaxy
  */
-
 import setStyle from './set-style.js';
 
 class Canvas {
@@ -14,14 +13,14 @@ class Canvas {
   _createCanvas() {
     let canvas = document.createElement('canvas');
     canvas.width = document.body.clientWidth;
-    canvas.height = document.body.clientHeight * this.height / 100; // style.height = 40%
+    canvas.height = (document.body.clientHeight * this.height) / 100; // style.height = 40%
     setStyle(canvas, {
       display: 'block',
       width: '100%',
       height: this.height + '%',
       position: 'absolute',
       top: 0,
-      left: 0
+      left: 0,
     });
     document.body.appendChild(canvas);
     this.canvas = canvas;

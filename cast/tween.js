@@ -18,7 +18,7 @@
  *     .on('end', function () {
  *         console.log('end');
  *     })
- *     .on('frame', function (v) {
+ *     .on('frame', function (type, v) {
  *         console.log('top: ' + v + 'px;');
  *     })
  *     .start()

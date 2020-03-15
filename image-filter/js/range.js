@@ -2,9 +2,8 @@
  * @since 15-09-04 13:58
  * @author vivaxy
  */
-
 import setStyle from './set-style.js';
-import EventEmitter from 'event-emitter/src/event-emitter.js';
+import EventEmitter from 'https://unpkg.com/event-based-framework/class/event-emitter.js';
 
 class Range extends EventEmitter {
   constructor() {
@@ -54,14 +53,18 @@ class Range extends EventEmitter {
       webkitAppearance: 'none',
       display: 'block',
       background: color,
-      outline: 'none'
+      outline: 'none',
     });
-    input.addEventListener('change', (e) => {
-      this.emit('change', {
-        index: index,
-        value: parseInt(e.target.value) // 0 ~ 200
-      })
-    }, false);
+    input.addEventListener(
+      'change',
+      (e) => {
+        this.emit('change', {
+          index: index,
+          value: parseInt(e.target.value), // 0 ~ 200
+        });
+      },
+      false,
+    );
     document.body.appendChild(input);
     return this;
   }
