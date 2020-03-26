@@ -10,7 +10,3 @@ import * as eventTypes from './enums/event-types.js';
 const eventEmitter = new EventEmitter();
 
 canvas.init(eventEmitter);
-
-// eventEmitter.on(eventTypes.ON_RENDER, function(_, ctx) {
-//   ctx.clearRect(0, 0, 100, 100);
-// });
