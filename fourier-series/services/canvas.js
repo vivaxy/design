@@ -2,29 +2,18 @@
  * @since 20180613 20:13
  * @author vivaxy
  */
-import ASSERT from 'https://unpkg.com/@vivaxy/framework/utils/assert.js';
 import * as eventTypes from '../enums/event-types.js';
-import * as layerIndexes from '../enums/layer-indexes.js';
-import * as layerActions from '../enums/layer-actions.js';
-import * as layerFunctions from '../enums/layer-functions.js';
+import createResizedCanvasRenderingContext2D from '../utils/create-resized-canvas.js';
 
-function init(
-  events,
-  { canvas, width = window.innerWidth, height = window.innerHeight } = {},
-) {
+function init(eventEmitter, { canvas } = {}) {
   if (!canvas) {
     canvas = document.createElement('canvas');
-    document.body.appendChild('canvas');
+    document.body.appendChild(canvas);
   }
   const ctx = canvas.getContext('2d');
   const dpr = window.devicePixelRatio;
-  let rendering = true;
-
-  canvas.width = width * dpr;
-  canvas.height = window.innerHeight * dpr;
-  canvas.style.width = width + 'px';
-  canvas.style.height = height + 'px';
-  const resizedCtx = new Proxy(ctx, {});
+  const proxiedCtx = createResizedCanvasRenderingContext2D(ctx, dpr);
+  resize();
 
   canvas.addEventListener('touchstart', onCanvasTouchStart);
   canvas.addEventListener('mousedown', onCanvasTouchStart);
@@ -34,32 +23,31 @@ function init(
   canvas.addEventListener('mouseup', onCanvasTouchEnd);
   canvas.addEventListener('touchcancel', onCanvasTouchEnd);
   canvas.addEventListener('mouseout', onCanvasTouchEnd);
-
-  events.on(
-    eventTypes.ON_CANVAS_RENDER_STATE_CHANGE,
-    onCanvasRenderStateChange,
-  );
+  window.addEventListener('resize', resize);
+  window.addEventListener('orientationchange', resize);
   requestAnimationFrame(onAnimationFrame);
 
   function onCanvasTouchStart(e) {
-    events.emit(eventTypes.ON_CANVAS_TOUCH_START, getCoords(e));
+    eventEmitter.emit(eventTypes.ON_CANVAS_TOUCH_START, getCoords(e));
   }
 
   function onCanvasTouchMove(e) {
-    events.emit(eventTypes.ON_CANVAS_TOUCH_MOVE, getCoords(e));
+    eventEmitter.emit(eventTypes.ON_CANVAS_TOUCH_MOVE, getCoords(e));
   }
 
   function onCanvasTouchEnd(e) {
-    events.emit(eventTypes.ON_CANVAS_TOUCH_END, getCoords(e));
+    eventEmitter.emit(eventTypes.ON_CANVAS_TOUCH_END, getCoords(e));
   }
 
-  function onCanvasRenderStateChange(_, state = true) {
-    rendering = state;
+  function resize() {
+    canvas.width = window.innerWidth * dpr;
+    canvas.height = window.innerHeight * dpr;
+    canvas.style.width = canvas.width + 'px';
+    canvas.style.height = canvas.height + 'px';
   }
 
   function onAnimationFrame() {
-    if (rendering) {
-    }
+    eventEmitter.emit(eventTypes.ON_RENDER, proxiedCtx);
   }
 
   function getCoords(e) {
