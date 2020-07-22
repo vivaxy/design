@@ -11,7 +11,7 @@ const fragments = [];
 
 class Fragment {
   constructor() {
-    this.startScale = 1e-2;
+    this.startScale = 0.05;
     this.speed = 1e-2;
     this.roadLength = 667;
     this.paddingTop = 116;
@@ -25,8 +25,8 @@ class Fragment {
 
     const $container = document.createElement('div');
     $container.style.position = 'absolute';
-    $container.style.width = this.width;
-    $container.style.height = this.height;
+    $container.style.width = this.width + 'px';
+    $container.style.height = this.height + 'px';
     $container.appendChild($img);
 
     // const $markerLeft = document.createElement('div');

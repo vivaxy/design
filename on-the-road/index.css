@@ -4,8 +4,12 @@
  */
 body {
   margin: 0;
+  width: 100%;
+  overflow: hidden;
 }
 
 #canvas {
   position: relative;
+  width: 375px;
+  margin: 0 auto;
 }
