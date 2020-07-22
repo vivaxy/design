@@ -21,6 +21,7 @@ Table of contents
   * [Strawberry](https://vivaxy.github.io/design/loading-effects/strawberry/) Loading Effects - Strawberry
 * [Menu Animations](https://vivaxy.github.io/design/menu-animations/) Menu Animations
 * [Number Animations](https://vivaxy.github.io/design/number-animations/) Number Animations
+* [On the road](https://vivaxy.github.io/design/on-the-road/) On the road
 * [Polygon Painter](https://vivaxy.github.io/design/polygon-painter/) Polygon Painter
 * [Radio for Mobile](https://vivaxy.github.io/design/radio/) Radio for Mobile
 * [Rainbow](https://vivaxy.github.io/design/rainbow/) Rainbow

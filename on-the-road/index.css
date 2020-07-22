@@ -1,0 +1,11 @@
+/**
+ * @since 2020-07-22 11:04
+ * @author vivaxy
+ */
+body {
+  margin: 0;
+}
+
+#canvas {
+  position: relative;
+}
