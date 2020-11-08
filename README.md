@@ -30,6 +30,7 @@ Table of contents
 * [Shuffling Horizontal](https://vivaxy.github.io/design/shuffling-horizontal/) Shuffling Horizontal
 * [Shuffling Vertical](https://vivaxy.github.io/design/shuffling-vertical/) Shuffling Vertical
 * [Snow](https://vivaxy.github.io/design/snow/) Snow
+* [Sound Visualization](https://vivaxy.github.io/design/sound-visualization/) Sound Visualization
 * [Switchery for Mobile](https://vivaxy.github.io/design/switchery/) Switchery for Mobile
 * [Title Effects](https://vivaxy.github.io/design/title-effects/) Title Effects
 * [Tween](https://vivaxy.github.io/design/tween/) Tween

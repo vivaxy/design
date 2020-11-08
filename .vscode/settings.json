@@ -1,3 +1,7 @@
 {
-  "conventionalCommits.scopes": ["fourier-series", "on-the-road"]
+  "conventionalCommits.scopes": [
+    "fourier-series",
+    "on-the-road",
+    "sound-visualization"
+  ]
 }
