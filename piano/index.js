@@ -14,7 +14,9 @@ function play(frequency) {
   oscillator.connect(audioContext.destination);
   oscillator.start();
   oscillator.stop(0.5);
-  audioContext.close();
+  setTimeout(function() {
+    audioContext.close();
+  }, 500);
 }
 
 const keyFrequencyMap = {
