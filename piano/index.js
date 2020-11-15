@@ -90,18 +90,18 @@ function createKeyboard() {
     }
   });
 
-  if (
-    window.innerWidth / window.innerHeight <
-    $container.offsetWidth / $container.offsetHeight
-  ) {
-    // window is narrow
-    $container.style.transform = `scale(${window.innerWidth /
-      $container.offsetWidth})`;
-  } else {
-    // window is heigher
-    $container.style.transform = `scale(${window.innerHeight /
-      $container.offsetHeight})`;
-  }
+  // if (
+  //   window.innerWidth / window.innerHeight <
+  //   $container.offsetWidth / $container.offsetHeight
+  // ) {
+  //   // window is narrow
+  //   $container.style.transform = `scale(${window.innerWidth /
+  //     $container.offsetWidth})`;
+  // } else {
+  //   // window is heigher
+  //   $container.style.transform = `scale(${window.innerHeight /
+  //     $container.offsetHeight})`;
+  // }
 }
 
 createKeyboard();

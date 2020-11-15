@@ -20,6 +20,7 @@ body {
   display: inline-block;
   padding: 0;
   border-radius: 3px;
+  touch-action: none;
 }
 
 .white {
@@ -35,5 +36,5 @@ body {
   height: 95px;
   background: #000;
   position: absolute;
-  transform: translateX(-7px);
+  transform: translateX(-6.5px);
 }
