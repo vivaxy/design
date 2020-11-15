@@ -1,0 +1,39 @@
+/**
+ * @since 2020-11-15 15:55
+ * @author vivaxy
+ * 88键全部的宽度1224mm
+ * 白键长144mm 宽23mm；
+ * 黑键上端面宽度应为9mm-10.5mm，黑版键底宽度应为11mm-12.5mm；黑键长度应为94mm-96mm
+ */
+body {
+  margin: 0;
+}
+
+.container {
+  font-size: 0;
+  margin: calc(50vh - 72px) auto;
+  width: 1248px;
+}
+
+.key {
+  border: 0.5px solid #999;
+  display: inline-block;
+  padding: 0;
+  border-radius: 3px;
+}
+
+.white {
+  width: 23px;
+  height: 144px;
+  background-color: #fff;
+  margin: 0 0.5px;
+  box-sizing: border-box;
+}
+
+.black {
+  width: 14px;
+  height: 95px;
+  background: #000;
+  position: absolute;
+  transform: translateX(-7px);
+}

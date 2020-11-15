@@ -2,6 +2,7 @@
   "conventionalCommits.scopes": [
     "fourier-series",
     "on-the-road",
-    "sound-visualization"
+    "sound-visualization",
+    "piano"
   ]
 }
