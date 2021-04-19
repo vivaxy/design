@@ -28,7 +28,7 @@
     "husky": "6",
     "lint-staged": "^10.0.8",
     "pinst": "^2.1.4",
-    "prettier": "^2.0.0",
+    "prettier": "^2.2.1",
     "standard-version": "^9.0.0"
   },
   "lint-staged": {
