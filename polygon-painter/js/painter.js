@@ -3,12 +3,11 @@
  * @author vivaxy
  */
 
-import EventEmitter from 'https://unpkg.com/event-based-framework/class/event-emitter.js';
+import EventEmitter from 'https://unpkg.com/@vivaxy/framework/class/event-emitter.js';
 
 const RADIUS = 0.3;
 
 class Painter extends EventEmitter {
-
   constructor(canvas) {
     super();
     let ctx = canvas.getContext('2d');
@@ -18,7 +17,6 @@ class Painter extends EventEmitter {
   }
 
   paint(vertices, rotations) {
-
     let ctx = this.ctx;
     let size = this.size;
     let length = size * RADIUS;
@@ -37,13 +35,11 @@ class Painter extends EventEmitter {
     }
     ctx.closePath();
     ctx.stroke();
-
   }
 
   getInteriorAngle(vertices) {
-    return 2 * Math.PI / vertices;
+    return (2 * Math.PI) / vertices;
   }
-
 }
 
 export default Painter;

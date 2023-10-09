@@ -3,7 +3,7 @@
  * @author vivaxy
  */
 import setStyle from './set-style.js';
-import EventEmitter from 'https://unpkg.com/event-based-framework/class/event-emitter.js';
+import EventEmitter from 'https://unpkg.com/@vivaxy/framework/class/event-emitter.js';
 
 class Range extends EventEmitter {
   constructor() {

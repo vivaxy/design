@@ -1,0 +1,38 @@
+/**
+ * @since 2023-10-09
+ * @author vivaxy
+ */
+.input-group {
+  margin: 24px;
+}
+
+.button-group {
+  margin: 24px;
+}
+
+.preview-group {
+  margin: 24px;
+}
+
+#svg {
+  box-shadow: 0 0 24px 0 #999;
+  margin: 24px auto;
+}
+
+a[download] {
+  display: inline-block;
+  width: 160px;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+  text-decoration: none;
+  color: #333;
+  background: #efefef;
+  cursor: pointer;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+a[download]:hover {
+  background: #dedede;
+}

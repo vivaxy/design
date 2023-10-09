@@ -24,7 +24,7 @@
  *     .start()
  *     .pause();
  */
-import EventEmitter from 'https://unpkg.com/event-based-framework/class/event-emitter.js';
+import EventEmitter from 'https://unpkg.com/@vivaxy/framework/class/event-emitter.js';
 
 /**
  * @param {Object} element - target element
@@ -57,7 +57,7 @@ export default class Tween extends EventEmitter {
     this.duration = options.duration;
     this.getValue =
       options.getValue ||
-      function(v) {
+      function (v) {
         return v;
       };
     return this;

@@ -4,16 +4,14 @@
  */
 import setStyle from './set-style.js';
 import isMobile from './is-mobile.js';
-import EventEmitter from 'https://unpkg.com/event-based-framework/class/event-emitter.js';
+import EventEmitter from 'https://unpkg.com/@vivaxy/framework/class/event-emitter.js';
 import getTouchPosition from './get-touch-position.js';
 
 class ColorPicker extends EventEmitter {
   constructor() {
     super();
     this.height = 10; // 10%
-    this._createCanvas()
-      ._addColor()
-      ._bindEvent();
+    this._createCanvas()._addColor()._bindEvent();
   }
 
   _createCanvas() {

@@ -5,6 +5,7 @@ Table of contents
 
 * [3D Tag Cloud](https://vivaxy.github.io/design/3d-tag-cloud/) 3D Tag Cloud
 * [Bezier Painter](https://vivaxy.github.io/design/bezier-painter/) Bezier Painter
+* [Black](https://vivaxy.github.io/design/black/) black
 * [Cast](https://vivaxy.github.io/design/cast/) Cast
 * [Checkbox for PC](https://vivaxy.github.io/design/checkbox/) Checkbox for PC
 * [Click Effects](https://vivaxy.github.io/design/click-effects/) Click Effects
@@ -12,6 +13,7 @@ Table of contents
 * [Comment j'ai raté ma vie](https://vivaxy.github.io/design/comment-j-ai-rate-ma-vie/) Comment j'ai raté ma vie
 * [Draw Math Function](https://vivaxy.github.io/design/draw-math-function/) Draw math function
 * [Fourier Series](https://vivaxy.github.io/design/fourier-series/) Fourier series
+* [Icon Generator](https://vivaxy.github.io/design/icon-generator/) Icon Generator
 * [Image Filter](https://vivaxy.github.io/design/image-filter/) Image Filter
 * [Infinite Tubes With Three.js](https://vivaxy.github.io/design/infinite-tubes-with-three-js/) Infinite Tubes With Three.js
 * [Ink](https://vivaxy.github.io/design/ink/) Ink

@@ -2,7 +2,7 @@
  * @since 20180613 20:09
  * @author vivaxy
  */
-import EventEmitter from 'https://unpkg.com/event-based-framework/class/event-emitter.js';
+import EventEmitter from 'https://unpkg.com/@vivaxy/framework/class/event-emitter.js';
 import * as eventTypes from './enums/event-types.js';
 
 import hotkeys from './services/hotkeys.js';
