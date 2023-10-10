@@ -2,21 +2,26 @@
  * @since 2023-10-09
  * @author vivaxy
  */
-.input-group {
-  margin: 24px;
+body {
+  font-family: system-ui;
 }
 
-.button-group {
-  margin: 24px;
-}
-
+.form-group,
+.button-group,
 .preview-group {
   margin: 24px;
 }
 
-#svg {
+.text-line {
+  margin-left: 24px;
+}
+
+.input-item {
+  margin-right: 12px;
+}
+
+#svg svg {
   box-shadow: 0 0 24px 0 #999;
-  margin: 24px auto;
 }
 
 a[download] {

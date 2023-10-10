@@ -17,65 +17,16 @@
     <title>Icon Generator</title>
   </head>
   <body>
-    <div class="input-group">
-      <div>
-        <h4>Background</h4>
-        <label for="width">Width: </label>
-        <input type="number" id="width" min="1" step="1" value="128" />
-        <label for="height">Height: </label>
-        <input type="number" id="height" min="1" step="1" value="128" />
-        <label for="background-color">Background Color: </label>
-        <input type="color" id="background-color" value="#ff5d6b" />
-        <label for="background-opacity">Opacity: </label>
-        <input
-          type="number"
-          id="background-opacity"
-          min="0"
-          max="100"
-          step="1"
-          value="100"
-        />
-      </div>
-      <div>
-        <h4>Text</h4>
-        <label for="text">Text: </label>
-        <input type="text" id="text" value="vivaxy" />
-        <label for="text-size">Text size: </label>
-        <input
-          type="number"
-          id="text-size"
-          value="24"
-          min="12"
-          max="1024"
-          step="1"
-        />
-        <label for="text-color">Text color: </label>
-        <input type="color" id="text-color" value="#ffffff" />
-        <label for="text-shadow-color">Text shadow color: </label>
-        <input type="color" id="text-shadow-color" value="#000000" />
-        <label for="text-shadow-opacity">Text shadow opacity: </label>
-        <input
-          type="number"
-          id="text-shadow-opacity"
-          value="50"
-          min="0"
-          max="100"
-          step="1"
-        />
-        <label for="text-shadow-deviation">Text shadow deviation: </label>
-        <input
-          type="number"
-          id="text-shadow-deviation"
-          value="4"
-          min="0"
-          step="1"
-        />
-      </div>
+    <div class="form-group">
+      <div id="background-form"></div>
+      <div id="texts-form"></div>
     </div>
     <div class="button-group">
       <h4>Export</h4>
       <a id="export-as-svg" download="icon-generator-svg">Export as SVG</a>
       <a id="export-as-png" download="icon-generator-png">Export as PNG</a>
+      <h4>Import</h4>
+      <button id="import-from-svg">Import from SVG</button>
     </div>
     <div class="preview-group">
       <h4>Preview</h4>
