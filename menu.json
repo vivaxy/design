@@ -1,5 +1,9 @@
 [
   {
+    "name": "Markdown Code Style",
+    "link": "markdown-code-style/"
+  },
+  {
     "name": "Icon Generator",
     "link": "icon-generator/"
   },
