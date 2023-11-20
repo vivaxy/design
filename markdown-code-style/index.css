@@ -1,0 +1,17 @@
+/**
+ * @since 2023-11-20
+ * @author vivaxy
+ */
+body {
+  /*font-size: 60px;*/
+}
+
+code {
+  padding: 0.2em 0.4em;
+  margin: 0;
+  font-size: 85%;
+  white-space: break-spaces;
+  background-color: rgba(175, 184, 193, 0.2);
+  border-radius: 6px;
+  color: rgb(31, 35, 40);
+}

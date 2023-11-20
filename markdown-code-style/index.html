@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"
+    />
+    <meta name="description" content="Markdown Code Style" />
+    <meta
+      name="keywords"
+      content="vivaxy,example,examples,github,demo,demos,playground,test,Markdown Code Style,design,codrops,markdown-code-style"
+    />
+    <meta name="author" content="vivaxy" />
+    <link type="image/png" rel="shortcut icon" href="/vivaxy.icon.png" />
+    <link type="text/css" rel="stylesheet" href="index.css" />
+    <title>Markdown Code Style</title>
+  </head>
+  <body>
+    <h1>With Code Tag</h1>
+    <p>There is some <code>code thing</code> in this sentence.</p>
+    <h1>With SVG</h1>
+    <p>
+      There is some
+      <svg
+        height="1.2em"
+        style="
+          vertical-align: middle;
+          background: rgba(175, 184, 193, 0.2);
+          border-radius: 6px;
+        "
+      >
+        <text
+          x="50%"
+          y="50%"
+          font-family="monospace"
+          text-anchor="middle"
+          font-size="85%"
+          dominant-baseline="central"
+          fill="rgb(31, 35, 40)"
+        >
+          code thing
+        </text>
+        <script>
+          const svg = document.querySelector('svg'); const fontSize =
+          window.getComputedStyle(svg).fontSize.slice(0, -2); const text =
+          svg.querySelector('text'); const { width, height } = text.getBBox();
+          const svgWidth = width + fontSize * 0.4; svg.setAttribute('width',
+          String(svgWidth));
+        </script>
+      </svg>
+      in this sentence.
+    </p>
+    <script type="text/javascript" charset="utf-8" src="/ba.js"></script>
+  </body>
+</html>

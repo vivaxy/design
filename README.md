@@ -21,6 +21,7 @@ Table of contents
 * [Letter Animations](https://vivaxy.github.io/design/letter-animations/) Letter Animations
 * [Loading Effects](https://vivaxy.github.io/design/loading-effects/) Loading Effects
   * [Strawberry](https://vivaxy.github.io/design/loading-effects/strawberry/) Loading Effects - Strawberry
+* [Markdown Code Style](https://vivaxy.github.io/design/markdown-code-style/) Markdown Code Style
 * [Menu Animations](https://vivaxy.github.io/design/menu-animations/) Menu Animations
 * [Number Animations](https://vivaxy.github.io/design/number-animations/) Number Animations
 * [On the road](https://vivaxy.github.io/design/on-the-road/) On the road
