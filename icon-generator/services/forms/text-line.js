@@ -90,7 +90,7 @@ export default {
       ],
     });
 
-    inputs.forEach(function ({ key, type, lineId }) {
+    inputs.forEach(function ({ key, type }) {
       const id = camelCaseToKebabCase(key);
       const $input = $element.querySelector(`#${id}`);
       $input.addEventListener('change', function (e) {
