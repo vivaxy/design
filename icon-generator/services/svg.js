@@ -118,7 +118,9 @@ export default {
       events.emit(E.DOWNLOAD_URL_CHANGE, {
         svgURL,
         pngURL,
-        fileName: encodeURIComponent(values.text),
+        fileName: encodeURIComponent(
+          values.texts.map(({ text }) => text).join('_'),
+        ),
       });
     }
 
