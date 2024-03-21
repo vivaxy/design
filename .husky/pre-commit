@@ -1,6 +1,9 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-yarn gds
+npx gps toc
+git add README.md *.html
+npx gps sitemap
+git add sitemap.xml
+npx lint-staged
 git add .
-yarn lint-staged
