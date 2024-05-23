@@ -36,6 +36,7 @@ Table of contents
 * [Snow](https://vivaxy.github.io/design/snow/) Snow
 * [Sound Visualization](https://vivaxy.github.io/design/sound-visualization/) Sound Visualization
 * [Switchery for Mobile](https://vivaxy.github.io/design/switchery/) Switchery for Mobile
+* [Text Selection Animation](https://vivaxy.github.io/design/text-selection-animation/) Text Selection Animation
 * [Title Effects](https://vivaxy.github.io/design/title-effects/) Title Effects
 * [Tween](https://vivaxy.github.io/design/tween/) Tween
 * [Watermark](https://vivaxy.github.io/design/watermark/) Watermark

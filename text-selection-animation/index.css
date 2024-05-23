@@ -1,0 +1,15 @@
+/**
+ * @since 2024-05-23
+ * @author vivaxy
+ */
+@keyframes highlight {
+  100% {
+    background-position: 0 0;
+  }
+}
+
+.highlight {
+  background: linear-gradient(90deg, #d3e3fd 50%, #0000 50%) no-repeat 100% 0;
+  animation: 0.75s cubic-bezier(0.05, 0.7, 0.1, 1) highlight 0.25s forwards;
+  background-size: 200% 100%;
+}

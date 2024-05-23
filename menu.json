@@ -1,5 +1,9 @@
 [
   {
+    "name": "Text Selection Animation",
+    "link": "text-selection-animation/"
+  },
+  {
     "name": "Markdown Code Style",
     "link": "markdown-code-style/"
   },
