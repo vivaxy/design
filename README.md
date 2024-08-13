@@ -12,6 +12,7 @@ Table of contents
 * [Colorful](https://vivaxy.github.io/design/colorful/) Colorful
 * [Comment j'ai raté ma vie](https://vivaxy.github.io/design/comment-j-ai-rate-ma-vie/) Comment j'ai raté ma vie
 * [Draw Math Function](https://vivaxy.github.io/design/draw-math-function/) Draw math function
+* [Emoji Space](https://vivaxy.github.io/design/emoji-space/) Emoji Space
 * [Fourier Series](https://vivaxy.github.io/design/fourier-series/) Fourier series
 * [Icon Generator](https://vivaxy.github.io/design/icon-generator/) Icon Generator
 * [Image Filter](https://vivaxy.github.io/design/image-filter/) Image Filter

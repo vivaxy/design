@@ -1,0 +1,139 @@
+/**
+ * @since 2024-08-13
+ * @author vivaxy
+ */
+body {
+  background: #101747;
+  --sun-radius: 30px;
+  --earth-revolution-radius: 100px;
+  --earth-radius: 12px;
+  --moon-revolution-radius: 30px;
+  --moon-radius: 6px;
+}
+
+#sun {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  width: 0;
+  height: 0;
+}
+
+#sun:after {
+  display: block;
+  width: calc(var(--sun-radius) * 2);
+  height: calc(var(--sun-radius) * 2);
+  line-height: calc(var(--sun-radius) * 2);
+  text-align: center;
+  content: "☀️";
+  font-size: calc(var(--sun-radius) * 2);
+  margin-left: calc(-1 * var(--sun-radius));
+  margin-top: calc(-1 * var(--sun-radius));
+}
+
+#earth {
+  position: absolute;
+  animation: revolution 12s infinite linear;
+  width: var(--earth-revolution-radius);
+  height: var(--earth-revolution-radius);
+  bottom: 0;
+  right: 0;
+  transform-origin: bottom right;
+}
+
+#earth:after {
+  display: block;
+  width: calc(var(--earth-radius) * 2);
+  height: calc(var(--earth-radius) * 2);
+  content: "🌍";
+  animation: earth-rotation 1s infinite linear;
+  font-size: calc(var(--earth-radius) * 2);
+  line-height: calc(var(--earth-radius) * 2);
+  text-align: center;
+  margin-left: calc(-1 * var(--earth-radius));
+  margin-top: calc(-1 * var(--earth-radius));
+}
+
+@keyframes revolution {
+  0% {
+    transform: rotate(0) translate3d(-50%, -50%, 0);
+  }
+
+  100% {
+    transform: rotate(360deg) translate3d(-50%, -50%, 0);
+  }
+}
+
+@keyframes earth-rotation {
+  0%,
+  100% {
+    content: "🌍";
+  }
+
+  33% {
+    content: "🌎";
+  }
+
+  66% {
+    content: "🌏";
+  }
+}
+
+#moon {
+  position: absolute;
+  animation: revolution 1s infinite linear;
+  width: var(--moon-revolution-radius);
+  height: var(--moon-revolution-radius);
+  bottom: 100%;
+  right: 100%;
+  transform-origin: bottom right;
+}
+
+#moon:after {
+  display: block;
+  content: "🌑";
+  animation: moon-rotation 1s infinite linear;
+  width: calc(var(--moon-radius) * 2);
+  height: calc(var(--moon-radius) * 2);
+  font-size: calc(var(--moon-radius) * 2);
+  line-height: calc(var(--moon-radius) * 2);
+  text-align: center;
+  margin-left: calc(-1 * var(--moon-radius));
+  margin-top: calc(-1 * var(--moon-radius));
+}
+
+@keyframes moon-rotation {
+  0%,
+  100% {
+    content: "🌑";
+  }
+
+  12.5% {
+    content: "🌒";
+  }
+
+  25% {
+    content: "🌓";
+  }
+
+  37.5% {
+    content: "🌔";
+  }
+
+  50% {
+    content: "🌕";
+  }
+
+  62.5% {
+    content: "🌖";
+  }
+
+  75% {
+    content: "🌗";
+  }
+
+  87.5% {
+    content: "🌘";
+  }
+}
