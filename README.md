@@ -24,6 +24,7 @@ Table of contents
   * [Strawberry](https://vivaxy.github.io/design/loading-effects/strawberry/) Loading Effects - Strawberry
 * [Markdown Code Style](https://vivaxy.github.io/design/markdown-code-style/) Markdown Code Style
 * [Menu Animations](https://vivaxy.github.io/design/menu-animations/) Menu Animations
+* [metamorphic animation](https://vivaxy.github.io/design/metamorphic-animation/) metamorphic animation
 * [Number Animations](https://vivaxy.github.io/design/number-animations/) Number Animations
 * [On the road](https://vivaxy.github.io/design/on-the-road/) On the road
 * [Piano](https://vivaxy.github.io/design/piano/) Piano

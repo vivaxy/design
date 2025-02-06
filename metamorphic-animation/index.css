@@ -1,0 +1,41 @@
+/**
+ * @since 2025-02-06
+ * @author vivaxy
+ */
+.circle {
+  background: #23d3fb;
+  width: 500px;
+  height: 500px;
+  animation: metamorphic 20s ease-in-out infinite alternate both;
+}
+
+@keyframes metamorphic {
+  0%,
+  to {
+    border-radius: 63% 37% 54% 46%/55% 48% 52% 45%;
+  }
+
+  14% {
+    border-radius: 40% 60% 54% 46%/49% 60% 40% 51%;
+  }
+
+  28% {
+    border-radius: 54% 46% 38% 62%/49% 70% 30% 51%;
+  }
+
+  42% {
+    border-radius: 61% 39% 55% 45%/61% 38% 62% 39%;
+  }
+
+  56% {
+    border-radius: 61% 39% 67% 33%/70% 50% 50% 30%;
+  }
+
+  70% {
+    border-radius: 50% 50% 34% 66%/56% 68% 32% 44%;
+  }
+
+  84% {
+    border-radius: 46% 54% 50% 50%/35% 61% 39% 65%;
+  }
+}
